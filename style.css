@@ -1,0 +1,184 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+    background-color: #7752FE;
+}
+
+.head-container{
+    display: flex;
+    justify-content: center;
+}
+
+.main-header {
+    background-color: #D0A2F7;
+    width: 97%;
+    color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border: solid;
+    border-width:0px ;
+    border-radius: 10px;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.logo>img {
+    height: 4rem;
+}
+
+.unselectable {
+    user-select: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav li {
+    margin-right: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.email {
+    margin-right: 20px;
+}
+
+.profile-ui {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.profile-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    font-size: 16px;
+}
+
+#profileUI.show {
+    display: flex;
+}
+
+
+.flex-container{
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 25px;
+    justify-content: space-between;
+}
+
+.card{
+    min-height: 500px;
+    width: 97%;
+    background-color:#DCBFFF;
+    border: solid;
+    border-width: 0cap;
+    border-radius: 10px;
+}
+
+.card li{
+    list-style: none;
+}
+
+.card li>button{
+    padding: 2%;
+}
+
+.card h1{
+    padding-left: 5%;
+}
+
+.head-container>footer{
+    background-color: #D0A2F7;
+    width: 97%;
+    color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    border: solid;
+    border-width:0px ;
+    border-radius: 10px;
+}
+
+.Bookings-container{
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25%;
+}
+
+.Bookings-container li{
+    list-style: none;
+    /* margin: 2%; */
+}
+
+button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 2%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.arrival-departure-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25%;
+    height: 100vh;
+}
+
+.arrival-departure{
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 42px;
+    width: 15rem;
+    height: 15rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 2%;
+}
