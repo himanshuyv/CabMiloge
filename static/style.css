@@ -14,9 +14,9 @@ body {
     position: fixed;
     z-index: 100;
     background-color: #D0A2F7;
-    width: 97%;
+    width: 100%;
     color: black;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,6 +36,7 @@ body {
 
 .unselectable {
     user-select: none;
+    margin: 5px 20px;
 }
 
 .main-nav ul {
@@ -74,7 +75,7 @@ body {
 
 .card{
     min-height: 500px;
-    width: 97%;
+    width: 100%;
     background-color:#DCBFFF;
     border: solid;
     border-width: 0cap;
@@ -102,11 +103,11 @@ body {
     position: relative;
     top: 6rem;
     background-color: #D0A2F7;
-    width: 97%;
+    width: 100%;
     color: black;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 25px;
     border: solid;

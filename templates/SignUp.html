@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <script src="/../static/script.js" defer></script>
+    <title>CabMiloge</title>
+</head>
+<style>
+body{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Montserrat', sans-serif;
+    color:#fff;
+}
+
+h1{
+    font-weight:900
+}
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 16px;
+    flex-direction: column;
+}
+
+.box{
+    width:350px;
+    height:460px;
+    font-size:16px;
+    padding:40px 40px;
+    background-color: #0f044c;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 30px;
+}
+
+.box h1{
+    text-align: center;
+}
+.user{
+    margin-top: 50px;
+}
+
+.fas{
+    position: absolute;
+}
+
+input{
+    width:90%;
+    margin-bottom:25px;
+    padding:0 30px 15px;
+    font-size:16px;
+    border:none;
+    border-bottom: 1px solid #141e75;
+    outline:none;
+    background-color: #0f044c;
+    color: #fff;
+}
+
+input:focus{
+    border-bottom: 1px solid #eeeeee;
+}
+
+.reset-password{
+    color:#ff7f50;
+    text-align:right;
+    margin-top:0px;
+    font-size:12px;
+}
+
+.login-btn{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.btn{
+    display:block;
+    width:80%;
+    padding:15px;
+    background-color: #eeeeee;
+    color:#0f044c;
+    border:none;
+    border-radius:20px;
+    font-size:20px;
+    font-weight:600;
+    opacity:0.8;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn:hover{
+    opacity:1;
+}
+
+.signup span{
+    color:#7fb8e6;
+}
+
+.signup span::hover{
+    color:#3793df
+}
+
+a{
+    text-decoration: none;
+}
+</style>
+<body>
+    <div class="head-container">
+        <header class="main-header">
+            <div class="logo unselectable"><img src="/../static/logo.svg" alt="logo">
+            </div>
+            <div class="user-info">
+                <div class="profile-dropdown">
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="container">
+        <div class="box">
+        <h1>Log In</h1>
+        <div class="user">
+        <form action="/LogIn">
+            <i class="fas fa-user"></i>
+            <input type="text" name="fname" id="fname" placeholder="First Name">
+            <i class="fas fa-envelope"></i>
+            <input type="text" name="fname" id="lname" placeholder="Last Name">
+            <i class="fas fa-envelope"></i>
+            <input type="text" name="email" id="email" placeholder="Email Address">
+            <i class="fas fa-unlock-alt"></i>
+            <input type="password" name="password" id="password" placeholder="Password">
+            <i class="fas fa-unlock-alt"></i>
+
+            <div class="login-btn">
+              <button class="btn" value="Submit"> <a> Submit</a></button>
+            </div>
+        </form>
+            <!-- <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->
+          </div>
+        </div>
+    </div>
+
+    <div class="head-container">
+        <footer>
+            &copy; copyright
+        </footer>
+    </div>
+</body>
+</html>
