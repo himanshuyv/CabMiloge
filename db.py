@@ -64,6 +64,31 @@ def GetCabmate(Datetime, interval):
     cabmates_within_interval = cursor.fetchall()
     return cabmates_within_interval
 
+#***input format****
+# Datetime = '2024-01-21T10:00'
+# interval = 1
+# selected_batches = {'UG1': True, 'UG2': True, 'UG3': False, 'UG4': True, 'UG5': False, 'PG1': False, 'PG2': True}
+# selected_genders = {'Male': True, 'Female': False, 'Others': True}
+def GetFilteredCabmate(Datetime, interval,selected_batches, selected_genders):
+    start_datetime = subtract_duration_from_iso_datetime(Datetime,hours=interval)
+    end_datetime = add_duration_to_iso_datetime(Datetime,hours=interval)
+    selected_batches_list = [batch for batch, selected in selected_batches.items() if selected]
+    selected_genders_list = [gender for gender, selected in selected_genders.items() if selected]
+    datequery = '''
+        AND Cabmate.DateTime >= '{}' AND Cabmate.DateTime <= '{}'
+    '''.format(start_datetime, end_datetime)
+
+    query = '''
+        SELECT Login.*, Cabmate.*
+        FROM Login
+        INNER JOIN Cabmate ON Login.Email = Cabmate.Email
+        WHERE Login.Batch IN ({})
+        AND Login.Gender IN ({})'''.format(','.join(['"{}"'.format(batch) for batch in selected_batches_list]),
+            ','.join(['"{}"'.format(gender) for gender in selected_genders_list]))
+    query=query+datequery
+    cursor.execute(query)
+    qualified_cabmates = cursor.fetchall()
+    return qualified_cabmates
 
 def removeEntry(BookId):
     try:
