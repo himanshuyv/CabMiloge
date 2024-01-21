@@ -4,15 +4,64 @@ function directionOfTravelFunction(direction) {
     if (!directionOfTravel) {
         directionOfTravel = document.createElement("div");
         directionOfTravel.classList.add("card");
-        let heading = document.createElement("h1");
-        heading.textContent = direction;
-        directionOfTravel.appendChild(heading);
+        if (direction === "From Campus" || direction === "To Campus") {
+            let heading = document.createElement("h1");
+            heading.textContent = direction;
+            heading.classList.add("from-to-heading")
+            directionOfTravel.appendChild(heading);
+            let formContainer = document.createElement("div");
+            formContainer.classList.add("form-container");
+
+            let form = document.createElement("form");
+
+            let stationLabel = document.createElement("label");
+            stationLabel.textContent = `${direction === "From Campus" ? "To" : "From"} Station:`;
+            let stationDropdown = document.createElement("select");
+            stationDropdown.name = "station";
+            
+            let stations = ["Rajiv Gandhi International Airport", "Secunderabad Junction", "Kacheguda Railway Station"];
+            
+            for (let station of stations) {
+                let option = document.createElement("option");
+                option.value = station;
+                option.textContent = station;
+                stationDropdown.appendChild(option);
+            }
+            
+            stationLabel.appendChild(stationDropdown);
+
+            let dateLabel = document.createElement("label");
+            dateLabel.textContent = "Date of Departure:";
+            let dateInput = document.createElement("input");
+            dateInput.type = "date";
+            dateInput.name = "departureDate";
+            dateLabel.appendChild(dateInput);
+
+            let timeLabel = document.createElement("label");
+            timeLabel.textContent = "Time of Departure:";
+            let timeInput = document.createElement("input");
+            timeInput.type = "time";
+            timeInput.name = "departureTime";
+            timeLabel.appendChild(timeInput);
+
+            let submitButton = document.createElement("button");
+            submitButton.type = "button"; 
+            submitButton.textContent = "Submit";
+
+            form.appendChild(stationLabel);
+            form.appendChild(dateLabel);
+            form.appendChild(timeLabel);
+            form.appendChild(submitButton);
+
+            formContainer.appendChild(form);
+            directionOfTravel.appendChild(formContainer);
+        }
         let flexContainer = document.querySelector('.flex-container');
         flexContainer.appendChild(directionOfTravel);
         directionOfTravel.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    } else{
+    } else {
         directionOfTravel.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }   
+    }
 }
 
 let bookingDiv;
@@ -62,5 +111,3 @@ function createNewBookingDiv() {
         bookingDiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }
 }
-
-
