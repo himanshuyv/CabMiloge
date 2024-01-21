@@ -27,11 +27,12 @@ body {
 }
 
 .logo {
+    padding: 0.3rem;
     font-size: 1.5rem;
 }
 
 .logo>img {
-    height: 4.2rem;
+    height: 4.1rem;
 }
 
 .unselectable {
