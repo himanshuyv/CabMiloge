@@ -26,10 +26,16 @@ cursor.execute('''
     )
 ''')
 
-# cursor.execute('''
-#                 INSERT INTO Login (Fname, Lname, Email, Password)
-#                 VALUES (?, ?, ?, ?)
-#             ''', ('fname', 'lname', 'email', 'password'))
+cursor.execute('''
+                INSERT INTO Cabmate (Email, Datetime, Pickup, Destination)
+                VALUES (?, ?, ?, ?)
+            ''', ('fname', 'lname', 'email', 'password'))
+
+cursor.execute('SELECT * FROM Cabmate')
+cabmate_entries = cursor.fetchall()
+
+for item in cabmate_entries:
+    print(item)
 
 cursor.execute('SELECT * FROM Login')
 cabmate_entries = cursor.fetchall()

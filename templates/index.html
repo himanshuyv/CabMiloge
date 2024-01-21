@@ -21,7 +21,7 @@
                     <li><a href="#AddNewTravel">Add New</a></li>
                 </ul>
             </nav>
-            <div class="user-info email">tempmail.com</div>
+            <div class="user-info email">{{ user }}</div>
         </header>
     </div>
 
@@ -30,10 +30,9 @@
             <img id="upcomingTravels" src="./../static/upcoming-travels.svg" alt="upcoming-travels">
             <h1>Upcoming <br> Travels  </h1>
             <div class="travel-container">
-                <div class="travel-card"></div>
-                <div class="travel-card"></div>
-                <div class="travel-card"></div>
-                <div class="travel-card"></div>
+                {% for entry in entries %}
+                <div class="travel-card">{{ entry }}</div>
+                {% endfor %}
             </div>
         </div>
         <div class="card add-new-journey">

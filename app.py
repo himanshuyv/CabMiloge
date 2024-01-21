@@ -1,6 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect,session;
 import sqlite3
 from bcrypt import gensalt,hashpw,checkpw
+import os
+
+app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 def hash_password(password):
     salt = gensalt()
@@ -11,7 +15,6 @@ def check_password(entered_password, hashed_password):
     return checkpw(entered_password.encode('utf-8'), hashed_password)
 
 
-app = Flask(__name__)
 
 @app.route('/')
 def LogIn():
@@ -33,11 +36,11 @@ def Get_Auth():
                             SELECT * FROM Login WHERE Email = ?
                             ''', (email,))
             entry=cursor.fetchone()
-            print(entry[3])
-            cursor.execute('''
-                            SELECT * FROM Login
-                            ''')
-            Allentry=cursor.fetchall()
+            # print(entry[3])
+            # cursor.execute('''
+            #                 SELECT * FROM Login
+            #                 ''')
+            # Allentry=cursor.fetchall()
 
             conn.commit()
             conn.close()
@@ -45,7 +48,8 @@ def Get_Auth():
 
             if check_password(password, entry[5]) :
                 print('login sucessfull')
-                return render_template('index.html',user_list=Allentry)
+                session['email'] = email
+                return redirect('/index')
             else :
                 message='wrong password!'
                 return render_template('LogIn.html',message=message)
@@ -91,6 +95,20 @@ def Get_userData():
 @app.route('/SignUp',methods=['POST', 'GET'])
 def SignUp():
     return render_template('SignUp.html')
+
+@app.route('/index')
+def index():
+    email=session['email']
+    conn = sqlite3.connect('cabmates.db') 
+    cursor = conn.cursor()
+
+    cursor.execute( '''
+                    SELECT * FROM Login WHERE Email = ?
+                    ''', (email,))
+    entries=cursor.fetchall()
+    return render_template('index.html',entries=entries,user=email)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
