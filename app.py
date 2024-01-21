@@ -33,7 +33,7 @@ def Get_Auth():
             entry=cursor.fetchone()
             conn.commit()
             conn.close()
-            print(entry[3])
+            
             if check_password(password, entry[3]) :
                 print('login sucessfull')
                 return render_template('index.html')
