@@ -32,6 +32,15 @@ h1{
     font-size: 16px;
     flex-direction: column;
 }
+.message-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.message-box p{
+    font-size:10px;
+    color:red;
+}
 
 .box{
     width:350px;
@@ -130,16 +139,25 @@ a{
         <div class="box">
         <h1>Log In</h1>
         <div class="user">
-        <form action="/index">
+        <form action="/Get_Auth">
             <i class="fas fa-user"></i>
             <!-- <input type="text" name="username" id="username" placeholder="Full Name">
             <i class="fas fa-envelope"></i> -->
-            <input type="text" name="email" id="email" placeholder="Email Address">
+            <input type="text" name="email" id="email" placeholder="Email Address" required>
             <i class="fas fa-unlock-alt"></i>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <i class="fas fa-unlock-alt"></i>
+            <div class="message-box">
+                {% if message %}
+                <p>
+                  {{ message }}
+                </p>
+                {% else %}
+                <p style="display: none"></p>
+                {% endif %}
+            </div>
             <div class="login-btn">
-              <button class="btn" value="Submit"> <a > Submit</a></button>
+              <button class="btn" value="Submit"> <a> Submit</a></button>
               <p class="signup">Don't have an account ? <a href="/SignUp"><span>Sign Up</span> </a></p>
             </div>
         </form>
