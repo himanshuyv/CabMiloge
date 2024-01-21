@@ -24,26 +24,35 @@ def Get_Auth():
         email = request.form['email']
         password = request.form['password']
         
+        print(email)
+        print(password)
         conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
-        try:
-            cursor.execute( '''
-                            SELECT * FROM Login WHERE Email = ?
-                            ''', (email,))
-            entry=cursor.fetchone()
-            conn.commit()
-            conn.close()
-            
-            if check_password(password, entry[3]) :
-                print('login sucessfull')
-                return render_template('index.html')
-            else :
-                message='wrong password!'
-                return render_template('LogIn.html',message=message)
-        except:
-            print('login failed')
-            message='Email not found!'
+        # try:
+        cursor.execute( '''
+                        SELECT * FROM Login WHERE Email = ?
+                        ''', (email,))
+        entry=cursor.fetchone()
+        print(entry[3])
+        cursor.execute('''
+                        SELECT * FROM Login
+                        ''')
+        Allentry=cursor.fetchall()
+
+        conn.commit()
+        conn.close()
+
+
+        if check_password(password, entry[3]) :
+            print('login sucessfull')
+            return render_template('index.html',user_list=Allentry)
+        else :
+            message='wrong password!'
             return render_template('LogIn.html',message=message)
+        # except:
+        #     print('login failed')
+        #     message='Email not found!'
+        #     return render_template('LogIn.html',message=message)
     else:
         return render_template('LogIn.html')
         
