@@ -8,7 +8,7 @@ def LogIn():
     return render_template('LogIn.html')
 
 
-@app.route('/Get_Auth')
+@app.route('/Get_Auth', methods=['POST', 'GET'])
 def Get_Auth():
     if request.method == 'POST':
         email = request.form['email']
@@ -34,10 +34,12 @@ def Get_Auth():
             print('login failed')
             message='Email not found!'
             return render_template('LogIn.html')
+    else:
+        return render_template('LogIn.html')
         
 
 
-@app.route('/Get_userData')
+@app.route('/Get_userData',methods=['POST', 'GET'])
 def Get_userData():
     if request.method == 'POST':
         fname = request.form['fname']
@@ -67,7 +69,7 @@ def Get_userData():
             message='Email not found!'
             return render_template('SignUp.html',message=message)
 
-@app.route('/SignUp')
+@app.route('/SignUp',methods=['POST', 'GET'])
 def SignUp():
     return render_template('SignUp.html')
 
