@@ -9,6 +9,8 @@ cursor.execute('''
         Fname TEXT,
         Lname TEXT,
         Email TEXT PRIMARY KEY,
+        Batch TEXT,
+        Gender TEXT,
         Password TEXT
     )
 ''')

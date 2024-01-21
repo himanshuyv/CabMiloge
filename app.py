@@ -28,31 +28,31 @@ def Get_Auth():
         print(password)
         conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
-        # try:
-        cursor.execute( '''
-                        SELECT * FROM Login WHERE Email = ?
-                        ''', (email,))
-        entry=cursor.fetchone()
-        print(entry[3])
-        cursor.execute('''
-                        SELECT * FROM Login
-                        ''')
-        Allentry=cursor.fetchall()
+        try:
+            cursor.execute( '''
+                            SELECT * FROM Login WHERE Email = ?
+                            ''', (email,))
+            entry=cursor.fetchone()
+            print(entry[3])
+            cursor.execute('''
+                            SELECT * FROM Login
+                            ''')
+            Allentry=cursor.fetchall()
 
-        conn.commit()
-        conn.close()
+            conn.commit()
+            conn.close()
 
 
-        if check_password(password, entry[3]) :
-            print('login sucessfull')
-            return render_template('index.html',user_list=Allentry)
-        else :
-            message='wrong password!'
+            if check_password(password, entry[5]) :
+                print('login sucessfull')
+                return render_template('index.html',user_list=Allentry)
+            else :
+                message='wrong password!'
+                return render_template('LogIn.html',message=message)
+        except:
+            print('login failed')
+            message='Email not found!'
             return render_template('LogIn.html',message=message)
-        # except:
-        #     print('login failed')
-        #     message='Email not found!'
-        #     return render_template('LogIn.html',message=message)
     else:
         return render_template('LogIn.html')
         
@@ -65,16 +65,18 @@ def Get_userData():
         lname = request.form['lname']
         email = request.form['email']
         Password = request.form['password']
-
+        gender = request.form['gender']
+        batch = request.form['batch']
+    
         hashpw = hash_password(Password)
 
         conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
         try:
             cursor.execute('''
-                        INSERT INTO Login (Fname, Lname, Email, Password)
-                        VALUES (?, ?, ?, ?)
-                        ''', (fname, lname, email, hashpw))
+                        INSERT INTO Login (Fname, Lname, Email, Batch, Gender, Password)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                        ''', (fname, lname, email, batch, gender, hashpw))
             print('signUp successful')
             conn.commit()
             conn.close()

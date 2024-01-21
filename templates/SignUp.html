@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/../static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
     <script src="/../static/script.js" defer></script>
     <title>CabMiloge</title>
 </head>
@@ -45,10 +45,12 @@ h1{
 }
 
 .box{
-    width:350px;
-    height:460px;
-    font-size:16px;
-    padding:40px 40px;
+    width:20%;
+    min-height: fit-content;
+    height:35rem;
+    min-width: 350px;
+    font-size:1rem;
+    padding:2rem;
     background-color: rgba(0,0,0,0.6);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     border-radius: 30px;
@@ -58,7 +60,7 @@ h1{
     text-align: center;
 }
 .user{
-    margin-top: 50px;
+    margin-top: 4rem;
 }
 
 .fas{
@@ -126,6 +128,25 @@ input:focus{
 a{
     text-decoration: none;
 }
+
+select {
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 0 30px 15px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #9b6a457b;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    color:#666666;
+}
+
+select:focus {
+    border-bottom: 1px solid #eeeeee;
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+}
+
 </style>
 <body>
     <div class="head-container">
@@ -151,7 +172,26 @@ a{
             <input type="text" name="email" id="email" placeholder="Email Address" required>
             <i class="fas fa-unlock-alt"></i>
             <input type="password" name="password" id="password" placeholder="Password" required>
-            <i class="fas fa-unlock-alt"></i>
+            <i class="fas fa-venus-mars"></i>
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <!-- Batch Dropdown -->
+            <i class="fas fa-graduation-cap"></i>
+            <select name="batch" id="batch" required>
+                <option value="" disabled selected>Select Batch</option>
+                <option value="UG1">UG1</option>
+                <option value="UG2">UG2</option>
+                <option value="UG3">UG3</option>
+                <option value="UG4">UG4</option>
+                <option value="UG5">UG5</option>
+                <option value="PG1">PG1</option>
+                <option value="PG2">PG2</option>
+            </select>
             <div class="message-box"> 
                 {% if message %}
                 <p>

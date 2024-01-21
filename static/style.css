@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Mukta', sans-serif;
     background-color: #7752FE;
 }
 
@@ -15,15 +15,10 @@ body {
     z-index: 100;
     background-color:#E5E0FF;
     width: 100%;
-    color: #7286D3;
-    /* padding: 10px; */
+    color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    border: solid;
-    border-width:0px ;
-    /* border-radius: 10px; */
 }
 
 .logo {
@@ -51,7 +46,7 @@ body {
 
 .main-nav a {
     text-decoration: none;
-    color: #fff;
+    color: black;
 }
 
 .user-info {
@@ -60,17 +55,16 @@ body {
 }
 
 .email {
-    margin-right: 20px;
+    margin-right: 1%;
 }
 
 .flex-container{
     position: relative;
-    top: 6.5rem;
+    top: 5rem;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
-    gap: 25px;
     justify-content: space-between;
 }
 
@@ -78,9 +72,6 @@ body {
     min-height: 500px;
     width: 100%;
     background-color:#DCBFFF;
-    border: solid;
-    border-width: 0cap;
-    border-radius: 10px;
 }
 
 .card li{
@@ -102,18 +93,13 @@ body {
 
 .base-container>footer{
     position: relative;
-    top: 6rem;
+    top: 5rem;
     background-color: #D0A2F7;
     width: 100%;
     color: black;
-    /* padding: 10px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
-    border: solid;
-    border-width:0px ;
-    border-radius: 10px;
 }
 
 .Bookings-container{
@@ -127,7 +113,6 @@ body {
 
 .Bookings-container li{
     list-style: none;
-    /* margin: 2%; */
 }
 
 button {

@@ -13,12 +13,14 @@
 <body>
     <div class="head-container">
         <header class="main-header">
-            <div class="logo unselectable"><img src="./../static/logo.svg" alt="logo">
-            </div>
-            <div class="user-info">
-                <div class="profile-dropdown">
-                </div>
-            </div>
+            <div class="logo unselectable"><img src="./../static/logo.svg" alt="logo"></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Upcoming Travels</a></li>
+                    <li><a href="#">Add New</a></li>
+                </ul>
+            </nav>
+            <div class="user-info email">{{ user_list[0][2]}}</div>
         </header>
     </div>
 
@@ -29,11 +31,6 @@
             </ul>
             <h1>Previous Bookings</h1>
             <div class="Bookings-container">
-                {% for item in user_list %}
-                <div>
-                    <p> {{ item[0] }}{{ item[1] }}{{ item[2] }}{{ item[3] }} </p>
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
