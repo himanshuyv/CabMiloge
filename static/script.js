@@ -1,77 +1,66 @@
+let directionOfTravel;
 
-function createBookingDetailsDiv(displayText) {
-    let newDiv = document.createElement("div");
-    newDiv.classList.add("card");
-    let heading = document.createElement("h1");
-    heading.textContent = displayText;
-    newDiv.appendChild(heading);
-    let flexContainer = document.querySelector('.flex-container');
-    flexContainer.appendChild(newDiv);
-    newDiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-}
-
-let arrival;
-let departure;
-
-function arrivalDepartureFunction(typeOfTravel){
-    if (!arrival && typeOfTravel==="Arrival"){
-        arrival = document.createElement("div");
-        arrival.classList.add("card");
+function directionOfTravelFunction(direction) {
+    if (!directionOfTravel) {
+        directionOfTravel = document.createElement("div");
+        directionOfTravel.classList.add("card");
         let heading = document.createElement("h1");
-        heading.textContent = typeOfTravel;
-        arrival.appendChild(heading);
+        heading.textContent = direction;
+        directionOfTravel.appendChild(heading);
         let flexContainer = document.querySelector('.flex-container');
-        flexContainer.appendChild(arrival);
-        arrival.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }else{
-        arrival.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }
-
-    if (!departure && typeOfTravel==="Departure"){
-        departure = document.createElement("div");
-        departure.classList.add("card");
-        let heading = document.createElement("h1");
-        heading.textContent = typeOfTravel;
-        departure.appendChild(heading);
-        let flexContainer = document.querySelector('.flex-container');
-        flexContainer.appendChild(departure);
-        departure.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }else{
-        departure.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }
+        flexContainer.appendChild(directionOfTravel);
+        directionOfTravel.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    } else{
+        directionOfTravel.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    }   
 }
-  
 
 let bookingDiv;
-
-function createNewBookingDiv(){
-    if (!bookingDiv){
+function createNewBookingDiv() {
+    if (!bookingDiv) {
         bookingDiv = document.createElement("div");
         bookingDiv.classList.add("card");
-        let Button1 = document.createElement("Button");
-        let Button2 = document.createElement("Button");
-        Button1.textContent = "Arrival";
-        Button2.textContent = "Departure";
-        Button1.classList.add("arrival-departure");
-        Button2.classList.add("arrival-departure");
+        let img1 = document.createElement("img");
+        let img2 = document.createElement("img");
+        let label1 = "From Campus";
+        let label2 = "To Campus";
+        let wrapperDiv1 = document.createElement("div");
+        let wrapperDiv2 = document.createElement("div");
+        
+        wrapperDiv1.classList.add("label");
+        wrapperDiv2.classList.add("label");
+        let heading1 = document.createElement("div");
+        let heading2 = document.createElement("div");
+        heading1.textContent = label1;
+        heading2.textContent = label2;
 
-        Button1.onclick = function(){
-            arrivalDepartureFunction("Arrival");
-        }
-
-        Button2.onclick = function(){
-            arrivalDepartureFunction("Departure");
-        }
-
+        wrapperDiv1.classList.add("image-container");
+        wrapperDiv2.classList.add("image-container");
+        img1.src = "./../static/from-campus.svg";
+        img2.src = "./../static/to-campus.svg";
+        img1.classList.add("arrival-departure");
+        img2.classList.add("arrival-departure");
+        img1.onclick = function () {
+            directionOfTravelFunction("From Campus")
+        };
+        img2.onclick = function () {
+            directionOfTravelFunction("To Campus")
+        };
+        wrapperDiv1.appendChild(img1);
+        wrapperDiv2.appendChild(img2);
+        wrapperDiv1.appendChild(heading1);
+        wrapperDiv2.appendChild(heading2);
         let containerDiv = document.createElement("div");
         containerDiv.classList.add("arrival-departure-container");
-        containerDiv.appendChild(Button1);
-        containerDiv.appendChild(Button2);
+        containerDiv.appendChild(wrapperDiv1);
+        containerDiv.appendChild(wrapperDiv2);
         bookingDiv.appendChild(containerDiv);
         let flexContainer = document.querySelector('.flex-container');
         flexContainer.appendChild(bookingDiv);
         bookingDiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
-    }else{
+    } else {
         bookingDiv.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
     }
 }
+
+

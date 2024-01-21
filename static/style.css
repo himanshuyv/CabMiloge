@@ -157,20 +157,31 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 25%;
-    height: 50vh;
+    height: 90vh;
 }
 
 .arrival-departure{
-    background-color: #3498db;
     color: #ffffff;
     padding: 10px 20px;
     font-size: 42px;
     width: 15rem;
     height: 15rem;
-    border: none;
-    border-radius: 50%;
+    box-shadow: 5px 5px 25px #a696f9ff;
+    border-radius: 25%;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.image-container{
+    position: relative;
+    text-align: center;
+}
+
+.image-container>div {
+    width: 100%;
+    color:#4b68dbff;
+    font-size: 2rem;
+    padding: 10px;
 }
 
 .base-container{
