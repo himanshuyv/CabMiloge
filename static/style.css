@@ -44,14 +44,25 @@ body {
     margin-right: 20px;
 }
 
-.main-nav a {
-    text-decoration: none;
-    color: black;
+.main-nav .nav-item {
+    font-weight: bold;
 }
 
+.main-nav a {
+    text-decoration: none;
+    color: #4b68dbff;
+    transition: color 0.3s;
+}
+.main-nav a:hover {
+    color: rgb(137, 114, 254);
+}
 .user-info {
     display: flex;
     align-items: center;
+}
+.user-info.email {
+    color: rgb(118, 95, 235) ;
+    font-weight: bold;
 }
 
 .email {
