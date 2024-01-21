@@ -6,10 +6,6 @@
 3. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [Support](#support)
-7. [License](#license)
 
 ## Introduction
 Welcome to CabMiloge, the cab-sharing website designed exclusively for the HackIIIT community at IIIT Hyderabad! CabMiloge aims to simplify and enhance your travel experience by connecting you with fellow travelers heading to airports, stations, or back to campus.
