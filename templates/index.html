@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
     <script src="./../static/script.js" defer></script>
     <title>CabMiloge</title>
 </head>
@@ -16,22 +17,28 @@
             <div class="logo unselectable"><img src="./../static/logo.svg" alt="logo"></div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#">Upcoming Travels</a></li>
-                    <li><a href="#">Add New</a></li>
+                    <li><a href="#upcomingTravels">Upcoming Travels</a></li>
+                    <li><a href="#AddNewTravel">Add New</a></li>
                 </ul>
             </nav>
-            <div class="user-info email">{{ user_list[0][2]}}</div>
+            <div class="user-info email">tempmail.com</div>
         </header>
     </div>
 
     <div class="flex-container">
-        <div class="card">
-            <ul>
-                <li><button onclick="createNewBookingDiv()">Book New</button></li>
-            </ul>
-            <h1>Previous Bookings</h1>
-            <div class="Bookings-container">
+        <div class="card upcoming-travels">
+            <img src="./../static/upcoming-travels.svg" alt="upcoming-travels">
+            <h1 id="upcomingTravels">Upcoming <br> Travels  </h1>
+            <div class="travel-container">
+                <div class="travel-card"></div>
+                <div class="travel-card"></div>
+                <div class="travel-card"></div>
+                <div class="travel-card"></div>
             </div>
+        </div>
+        <div class="card add-new-journey">
+            <img src="./../static/add-new-journey.svg" alt="add-new">
+            <a onclick="createNewBookingDiv()"><h1 id="AddNewTravel">Add New <br> Journey</h1></a>
         </div>
     </div>
 

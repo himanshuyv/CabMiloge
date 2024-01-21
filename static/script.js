@@ -14,7 +14,7 @@ let arrival;
 let departure;
 
 function arrivalDepartureFunction(typeOfTravel){
-    if (!arrival && typeOfTravel==="Arival"){
+    if (!arrival && typeOfTravel==="Arrival"){
         arrival = document.createElement("div");
         arrival.classList.add("card");
         let heading = document.createElement("h1");
@@ -50,13 +50,13 @@ function createNewBookingDiv(){
         bookingDiv.classList.add("card");
         let Button1 = document.createElement("Button");
         let Button2 = document.createElement("Button");
-        Button1.textContent = "Arival";
+        Button1.textContent = "Arrival";
         Button2.textContent = "Departure";
         Button1.classList.add("arrival-departure");
         Button2.classList.add("arrival-departure");
 
         Button1.onclick = function(){
-            arrivalDepartureFunction("Arival");
+            arrivalDepartureFunction("Arrival");
         }
 
         Button2.onclick = function(){

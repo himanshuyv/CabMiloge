@@ -92,11 +92,5 @@ def Get_userData():
 def SignUp():
     return render_template('SignUp.html')
 
-
-
-
-
-
-
 if __name__ == '__main__':
     app.run(debug=True)

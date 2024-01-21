@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Mukta', sans-serif;
-    background-color: #7752FE;
+    background-color: #E5E0FF;
 }
 
 .head-container{
@@ -55,12 +55,12 @@ body {
 }
 
 .email {
-    margin-right: 1%;
+    margin-right: 4%;
 }
 
 .flex-container{
     position: relative;
-    top: 5rem;
+    top: 6rem;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
@@ -69,10 +69,18 @@ body {
 }
 
 .card{
-    min-height: 500px;
+    min-height: fit-content;
     width: 100%;
-    background-color:#DCBFFF;
 }
+
+.upcoming-travels img{
+    width: 70%;
+    float: right;
+}
+
+
+/* .card>* {
+} */
 
 .card li{
     list-style: none;
@@ -83,36 +91,49 @@ body {
 }
 
 .card h1{
-    padding-left: 5%;
+    margin-left: 2%;
+    padding-top: 6%;
+    font-size: 5em;
+    color:#4b68dbff;
 }
 
-.base-container{
-    display: flex;
-    justify-content: center;
-}
 
-.base-container>footer{
-    position: relative;
-    top: 5rem;
-    background-color: #D0A2F7;
+.travel-container{
+    clear: left;
+    margin-top: 5%;
+    /* padding: 1%; */
+    /* padding-left: 10%; */
+    height: 50vh;
     width: 100%;
-    color: black;
-    display: flex;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: space-around;
     justify-content: center;
-    align-items: center;
+    gap: 10%;
 }
 
-.Bookings-container{
-    padding: 1%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25%;
+.travel-card {
+    background-color: #a696f9ff;
+    width: 40%;
+    height: 50%;
+    min-width: 500px;
+    border: solid;
+    border-width: 0px;
+    border-radius: 15px;
 }
 
-.Bookings-container li{
-    list-style: none;
+
+.add-new-journey img{
+    width: 70%;
+    float: left;
+}
+
+.add-new-journey{
+    margin-top: 5%;
+}
+
+.add-new-journey a{
+    cursor: pointer;
 }
 
 button {
@@ -136,7 +157,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     gap: 25%;
-    height: 100vh;
+    height: 50vh;
 }
 
 .arrival-departure{
@@ -149,6 +170,21 @@ button:hover {
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.Copied3s ease;
-    margin: 2%;
+    transition: background-color 0.3s ease;
+}
+
+.base-container{
+    display: flex;
+    justify-content: center;
+}
+
+.base-container>footer{
+    position: relative;
+    top: 6rem;
+    background-color: #D0A2F7;
+    width: 100%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
