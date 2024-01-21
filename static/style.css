@@ -13,9 +13,9 @@ body {
 .main-header {
     position: fixed;
     z-index: 100;
-    background-color:rgb(41, 31, 24);
+    background-color:#E5E0FF;
     width: 100%;
-    color: black;
+    color: #7286D3;
     /* padding: 10px; */
     display: flex;
     justify-content: space-between;
@@ -164,6 +164,6 @@ button:hover {
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.Copied3s ease;
     margin: 2%;
 }
