@@ -13,7 +13,7 @@ body {
 .main-header {
     position: fixed;
     z-index: 100;
-    background-color: #D0A2F7;
+    background-color:rgb(41, 31, 24);
     width: 100%;
     color: black;
     /* padding: 10px; */
@@ -23,7 +23,7 @@ body {
     margin-bottom: 25px;
     border: solid;
     border-width:0px ;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .logo {
@@ -31,7 +31,7 @@ body {
 }
 
 .logo>img {
-    height: 4rem;
+    height: 4.2rem;
 }
 
 .unselectable {
