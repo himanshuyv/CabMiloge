@@ -5,7 +5,7 @@
    viewBox="0 0 3907.15 2087.06"
    version="1.1"
    id="svg1162"
-   sodipodi:docname="drawkit-transport-scene-8.svg"
+   sodipodi:docname="upcoming-travels.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.25526709"
-     inkscape:cx="1813.7865"
-     inkscape:cy="677.72151"
+     inkscape:zoom="0.20287209"
+     inkscape:cx="1493.5519"
+     inkscape:cy="192.23935"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -1785,7 +1785,7 @@
              stroke-linejoin="round"
              stroke-width="6"
              id="polyline977"
-             style="stroke:#4b68db;stroke-opacity:1" />
+             style="stroke:#f3b304;stroke-opacity:1" />
           <line
              x1="1974.09"
              y1="289.96"
@@ -1797,7 +1797,7 @@
              stroke-linejoin="round"
              stroke-width="6"
              id="line979"
-             style="stroke:#4b68db;stroke-opacity:1" />
+             style="stroke:#f3b304;stroke-opacity:1" />
           <polyline
              points="1446.95 267.92 1421.72 289.95 1446.95 312"
              fill="none"
@@ -1806,7 +1806,7 @@
              stroke-linejoin="round"
              stroke-width="6"
              id="polyline981"
-             style="stroke:#4b68db;stroke-opacity:1" />
+             style="stroke:#f3b304;stroke-opacity:1" />
           <line
              x1="1421.73"
              y1="289.96"
@@ -1818,7 +1818,7 @@
              stroke-linejoin="round"
              stroke-width="6"
              id="line983"
-             style="stroke:#4b68db;stroke-opacity:1" />
+             style="stroke:#f3b304;stroke-opacity:1" />
           <line
              x1="1522.95"
              y1="267.92"
