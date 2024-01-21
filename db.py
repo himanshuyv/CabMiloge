@@ -29,7 +29,7 @@ cursor.execute('''
 #                 VALUES (?, ?, ?, ?)
 #             ''', ('fname', 'lname', 'email', 'password'))
 
-cursor.execute('SELECT * FROM Cabmate')
+cursor.execute('SELECT * FROM Login')
 cabmate_entries = cursor.fetchall()
 
 for item in cabmate_entries:

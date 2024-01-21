@@ -33,6 +33,17 @@ h1{
     flex-direction: column;
 }
 
+.message-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-box p{
+    font-size:15px;
+    color:red;
+}
+
 .box{
     width:350px;
     height:460px;
@@ -131,17 +142,25 @@ a{
         <div class="box">
         <h1>Sign Up</h1>
         <div class="user">
-        <form action="/Get_userData">
+        <form action="/Get_userData" method="post">
             <i class="fas fa-user"></i>
-            <input type="text" name="fname" id="fname" placeholder="First Name">
+            <input type="text" name="fname" id="fname" placeholder="First Name" required>
             <i class="fas fa-envelope"></i>
-            <input type="text" name="fname" id="lname" placeholder="Last Name">
+            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
             <i class="fas fa-envelope"></i>
-            <input type="text" name="email" id="email" placeholder="Email Address">
+            <input type="text" name="email" id="email" placeholder="Email Address" required>
             <i class="fas fa-unlock-alt"></i>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <i class="fas fa-unlock-alt"></i>
-
+            <div class="message-box"> 
+                {% if message %}
+                <p>
+                  {{ message }}
+                </p>
+                {% else %}
+                <p style="display: none"></p>
+                {% endif %}
+            </div>
             <div class="login-btn">
               <button class="btn" value="Submit"> <a> Submit</a></button>
             </div>
