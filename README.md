@@ -37,7 +37,7 @@ pip install Flask
 pip install bcrypt
 ```
 
-### Installation Steps
+### Installation
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/techoflashh/CabMiloge 
