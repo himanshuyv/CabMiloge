@@ -99,15 +99,32 @@ body {
 
 .card h1{
     margin-left: 2%;
-    font-size: 5em;
+    font-size: 4em;
     color:#4b68dbff;
 }
 
+.travel-type-heading{
+    clear: both;
+    margin-top: 2%;
+    margin-left: 4%;
+    font-size: 3em;
+    color:#4b68dbff;
+}
 
-.travel-container{
+.travel-container-from{
     clear: left;
-    margin-top: 5%;
-    height: 50vh;
+    height: auto;
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    gap: 10%;
+}
+
+.travel-container-to{
+    clear: left;
+    height: auto;
     width: 100%;
     display: inline-flex;
     flex-wrap: wrap;
@@ -119,11 +136,40 @@ body {
 .travel-card {
     background-color: #a696f9ff;
     width: 40%;
-    height: 50%;
+    height: 25vh;
     min-width: 500px;
     border: solid;
     border-width: 0px;
+    margin: 1%;
     border-radius: 15px;
+}
+
+.travel-card-content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.travel-card-content-left {
+    padding: 2%;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.travel-card-content-right {
+    float: right;
+    padding: 2%;
+    display: flex;
+    justify-content: right;
+    align-items: end;
+}
+
+.travel-card-content-right img {
+    float: right;
+    width: 40%;
+    height: 40%;
+    cursor: pointer;
 }
 
 
@@ -140,7 +186,8 @@ body {
     cursor: pointer;
 }
 
-button {
+
+/* button {
     background-color: #3498db;
     color: #ffffff;
     padding: 10px 20px;
@@ -154,7 +201,7 @@ button {
 
 button:hover {
     background-color: #2980b9;
-}
+} */
 
 .arrival-departure-container{
     display: flex;

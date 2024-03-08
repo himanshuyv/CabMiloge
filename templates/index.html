@@ -29,9 +29,40 @@
         <div class="card upcoming-travels">
             <img id="upcomingTravels" src="./../static/upcoming-travels.svg" alt="upcoming-travels">
             <h1>Upcoming <br> Travels  </h1>
-            <div class="travel-container">
-                {% for entry in entries %}
-                <div class="travel-card">{{ entry }}</div>
+            <h2 class="travel-type-heading">From Campus</h2>
+            <div class="travel-container-from">
+                {% for entry in fromCampus_entries %}
+                <div class="travel-card">
+                    <div class="travel-card-content">
+                        <div class="travel-card-content-left">
+                            <h3>{{ entry[2] }}</h3>
+                            <p>Time: {{entry[1]}}</p>
+                            <p>Date: {{entry[0]}}</p>
+                        </div>
+                        <div class="travel-card-content-right">
+                            <img src="./../static/view-button.png" alt="view" onclick="viewBooking('{{ entry[3] }}')">
+                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBookingFromCampus('{{ entry[3] }}')">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <h2 class="travel-type-heading">To Campus</h2>
+            <div class="travel-container-to">
+                {% for entry in toCampus_entries %}
+                <div class="travel-card">
+                    <div class="travel-card-content">
+                        <div class="travel-card-content-left">
+                            <h3>{{ entry[2] }}</h3>
+                            <p>Time: {{entry[1]}}</p>
+                            <p>Date: {{entry[0]}}</p>
+                        </div>
+                        <div class="travel-card-content-right">
+                            <img src="./../static/view-button.png" alt="view" onclick="viewBooking('{{ entry[3] }}')">
+                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBookingToCampus('{{ entry[3] }}')">
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
         </div>

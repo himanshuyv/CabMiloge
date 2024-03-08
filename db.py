@@ -15,31 +15,30 @@ cursor.execute('''
     )
 ''')
 
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Cabmate (
-        BookingID INTEGER PRIMARY KEY AUTOINCREMENT,
-        Email TEXT,
-        DateTime DATETIME,
-        PickUp TEXT,
-        Destination TEXT,
-        UNIQUE (Email, DateTime)
-    )
-''')
 
-cursor.execute('''
-                INSERT INTO Cabmate (Email, Datetime, Pickup, Destination)
-                VALUES (?, ?, ?, ?)
-            ''', ('fname', 'lname', 'email', 'password'))
+cursor.execute('''CREATE TABLE IF NOT EXISTS fromCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Email TEXT, DateTime DATETIME, Station TEXT)''')
 
-cursor.execute('SELECT * FROM Cabmate')
+cursor.execute('''CREATE TABLE IF NOT EXISTS toCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Email TEXT, DateTime DATETIME, Station TEXT)''')
+
+cursor.execute('''select * from fromCampus''')
 cabmate_entries = cursor.fetchall()
 
+print("From Campus")
 for item in cabmate_entries:
     print(item)
+
+cursor.execute('''select * from toCampus''')
+cabmate_entries = cursor.fetchall()
+
+print("To Campus")
+for item in cabmate_entries:
+    print(item)
+
 
 cursor.execute('SELECT * FROM Login')
 cabmate_entries = cursor.fetchall()
 
+print("Login")
 for item in cabmate_entries:
     print(item)
 
