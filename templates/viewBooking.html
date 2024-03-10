@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
+    <script src="./../static/script.js" defer></script>
+    <title>CabMiloge</title>
+</head>
+<body>
+    <div class="head-container">
+        <header class="main-header">
+            <div class="logo unselectable"><img src="./../static/logo.svg" alt="logo"></div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="nav-item"><a href="index#upcomingTravels">Upcoming Travels</a></li>
+                    <li class="nav-item"><a href="index#AddNewTravel">Add New</a></li>
+                </ul>
+            </nav>
+            <div class="profile-logout">
+                <div class="user-info">{{ user }}</div>
+                <div class="logout" onclick="logout_user()">Logout</div>
+            </div>
+        </header>
+    </div>
+
+    <div class="flex-container">
+        <div class="card">
+            <div class="form-container">
+                <form method="post" action="viewBooking">
+                    <label for="hours">+- Hrs:</label>
+                    <input type="number" name="hours">
+                    <input type="hidden" name="entry_id" value="{{ entry_id }}">
+                    <input type="hidden" name="direction" value='{{direction}}'>
+                    <button type="submit">Update Booking</button>
+                </form>
+            </div>
+        </div>
+        <div class="travel-container">
+            {% for entry in available_options %}
+            <div class="booking-card">
+                <div class="booking-card-content">
+                    <div class="booking-card-content-left">
+                        <h3>Name: {{entry[3]}}</h3>
+                        <p>Batch: {{entry[5]}}</p>
+                        <p>Gender: {{entry[4]}}</p>
+                        <p>Email: {{entry[2]}}</p>
+                    </div>
+                    <div class="booking-card-content-right">
+                        <h3>Date: {{entry[1]}}</h3>
+                        <h3>Time: {{entry[0]}}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+   
+
+    <div class="base-container">
+        <footer>
+            <span>&copy; copyright</span>
+        </footer>
+    </div>
+</body>
+</html>

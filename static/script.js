@@ -1,6 +1,6 @@
 let directionOfTravel;
 
-function directionOfTravelFunction(direction) {
+function sendDataForBooking(direction) {
     if (!directionOfTravel) {
         directionOfTravel = document.createElement("div");
         directionOfTravel.classList.add("card");
@@ -11,14 +11,14 @@ function directionOfTravelFunction(direction) {
             directionOfTravel.appendChild(heading);
             let formContainer = document.createElement("div");
             formContainer.classList.add("form-container");
-
             let form = document.createElement("form");
             form.method = "post";
-            if (direction === "From Campus"){
-                form.action = "getForFromCampus";
-            }else{
-                form.action = "getForToCampus";
-            }
+            form.action = "getDataForBooking"
+            let input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "direction";
+            input.value = direction;
+            form.appendChild(input);
             let stationLabel = document.createElement("label");
             stationLabel.textContent = `${direction === "From Campus" ? "To" : "From"} Station:`;
             let stationDropdown = document.createElement("select");
@@ -95,10 +95,10 @@ function createNewBookingDiv() {
         img1.classList.add("arrival-departure");
         img2.classList.add("arrival-departure");
         img1.onclick = function () {
-            directionOfTravelFunction("From Campus")
+            sendDataForBooking("From Campus")
         };
         img2.onclick = function () {
-            directionOfTravelFunction("To Campus")
+            sendDataForBooking("To Campus")
         };
         wrapperDiv1.appendChild(img1);
         wrapperDiv2.appendChild(img2);
@@ -118,28 +118,59 @@ function createNewBookingDiv() {
 }
 
 
-function deleteBookingFromCampus(entry_id){
+function deleteBooking(entry_id, direction) {
     let form = document.createElement("form");
     form.method = "post";
-    form.action = "deleteBookingFromCampus";
+    form.action = "deleteBooking";
     let input = document.createElement("input");
     input.type = "hidden";
     input.name = "entry_id";
     input.value = entry_id;
+    form.appendChild(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "direction";
+    if (direction === 0) {
+        input.value = "From Campus";
+    }else
+    {
+        input.value = "To Campus";
+    }
     form.appendChild(input);
     document.body.appendChild(form);
     form.submit();
 }
 
-function deleteBookingToCampus(entry_id){
+
+function redirect_to_booking(entry_id, direction){
+    window.location.href = "/viewBookingRedirect";
     let form = document.createElement("form");
     form.method = "post";
-    form.action = "deleteBookingToCampus";
+    form.action = "viewBookingRedirect";
     let input = document.createElement("input");
     input.type = "hidden";
     input.name = "entry_id";
     input.value = entry_id;
     form.appendChild(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "direction";
+    if (direction === 0) {
+        input.value = "From Campus";
+    }
+    else
+    {
+        input.value = "To Campus";
+    }
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();    
+}
+
+function logout_user() {
+    let form = document.createElement("form");
+    form.method = "post";
+    form.action = "logout_user";
     document.body.appendChild(form);
     form.submit();
 }

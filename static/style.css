@@ -56,17 +56,33 @@ body {
 .main-nav a:hover {
     color: rgb(137, 114, 254);
 }
+
 .user-info {
     display: flex;
     align-items: center;
 }
-.user-info.email {
-    color: rgb(118, 95, 235) ;
+
+.profile-logout{
+    display: flex;
+    justify-content: space-around;
+    gap:15%;
     font-weight: bold;
+    margin-right: 2%;
 }
 
-.email {
-    margin-right: 4%;
+.user-info{
+    color: rgb(118, 95, 235) ;
+}
+
+.logout {
+    text-decoration: none;
+    color: #4b68dbff;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.logout:hover {
+    color: rgb(137, 114, 254);
 }
 
 .flex-container{
@@ -280,6 +296,39 @@ button:hover {
     background-color: #2980b9;
 }
 
+.booking-card {
+    background-color: #a696f9ff;
+    width: 40%;
+    height: 30vh;
+    min-width: 500px;
+    border: solid;
+    border-width: 0px;
+    margin: 1%;
+    border-radius: 15px;
+}
+
+.booking-card-content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.booking-card-content-left {
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+}
+
+.booking-card-content-right {
+    float: right;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
 
 .base-container{
     display: flex;

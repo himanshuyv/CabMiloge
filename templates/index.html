@@ -21,7 +21,10 @@
                     <li class="nav-item"><a href="#AddNewTravel">Add New</a></li>
                 </ul>
             </nav>
-            <div class="user-info email">{{ user }}</div>
+            <div class="profile-logout">
+                <div class="user-info">{{ user }}</div>
+                <div class="logout" onclick="logout_user()">Logout</div>
+            </div>
         </header>
     </div>
 
@@ -40,8 +43,8 @@
                             <p>Date: {{entry[0]}}</p>
                         </div>
                         <div class="travel-card-content-right">
-                            <img src="./../static/view-button.png" alt="view" onclick="viewBooking('{{ entry[3] }}')">
-                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBookingFromCampus('{{ entry[3] }}')">
+                            <img src="./../static/view-button.png" alt="view" onclick="redirect_to_booking('{{ entry[3] }}',0)">
+                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBooking('{{ entry[3]}}',0)">
                         </div>
                     </div>
                 </div>
@@ -58,8 +61,8 @@
                             <p>Date: {{entry[0]}}</p>
                         </div>
                         <div class="travel-card-content-right">
-                            <img src="./../static/view-button.png" alt="view" onclick="viewBooking('{{ entry[3] }}')">
-                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBookingToCampus('{{ entry[3] }}')">
+                            <img src="./../static/view-button.png" alt="view" onclick="redirect_to_booking('{{ entry[3] }}',1)">
+                            <img src="./../static/delete-button.svg" alt="delete" onclick="deleteBooking('{{ entry[3] }}',1)">
                         </div>
                     </div>
                 </div>
