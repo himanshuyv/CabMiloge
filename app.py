@@ -191,37 +191,39 @@ def view_booking():
 def index():
     conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
-
-    cursor.execute( '''
-                    SELECT * FROM fromCampus WHERE Email = ?
-                    ''', (session['email'],))
-    entries = cursor.fetchall()
-    sort_by_datetime(entries)
-    fromCampus_entries = []
-    for item in entries:
-        date = item[2].split(' ')[0]
-        time = item[2].split(' ')[1]
-        station = item[3]
-        entry_id = item[0]
-        temp_tuple = (date,time,station,entry_id)
-        fromCampus_entries.append(temp_tuple)
-    cursor.execute( '''
-                    SELECT * FROM toCampus WHERE Email = ?
-                    ''', (session['email'],))
-    
-    entries = cursor.fetchall()
-    sort_by_datetime(entries)
-    toCampus_entries = []
-    for item in entries:
-        date = item[2].split(' ')[0]
-        time = item[2].split(' ')[1]
-        station = item[3]
-        entry_id = item[0]
-        temp_tuple = (date,time,station,entry_id)
-        toCampus_entries.append(temp_tuple)
-    cursor.execute( '''select fname from Login where Email = ?''', (session['email'],))
-    user = cursor.fetchone()
-    return render_template('index.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, user=user[0])
+    if(session):
+        cursor.execute( '''
+                        SELECT * FROM fromCampus WHERE Email = ?
+                        ''', (session['email'],))
+        entries = cursor.fetchall()
+        sort_by_datetime(entries)
+        fromCampus_entries = []
+        for item in entries:
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            station = item[3]
+            entry_id = item[0]
+            temp_tuple = (date,time,station,entry_id)
+            fromCampus_entries.append(temp_tuple)
+        cursor.execute( '''
+                        SELECT * FROM toCampus WHERE Email = ?
+                        ''', (session['email'],))
+        
+        entries = cursor.fetchall()
+        sort_by_datetime(entries)
+        toCampus_entries = []
+        for item in entries:
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            station = item[3]
+            entry_id = item[0]
+            temp_tuple = (date,time,station,entry_id)
+            toCampus_entries.append(temp_tuple)
+        cursor.execute( '''select fname from Login where Email = ?''', (session['email'],))
+        user = cursor.fetchone()
+        return render_template('index.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, user=user[0])
+    else:
+        return redirect('/')
 
 @app.route('/logout_user', methods=['POST', 'GET'])
 def logout_user():
