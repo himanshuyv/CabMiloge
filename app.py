@@ -2,7 +2,7 @@ from flask import Flask, render_template, request,redirect,session;
 import sqlite3
 from bcrypt import gensalt,hashpw,checkpw
 import os
-import datetime
+from functools import cmp_to_key
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -15,14 +15,18 @@ def hash_password(password):
 def check_password(entered_password, hashed_password):
     return checkpw(entered_password.encode('utf-8'), hashed_password)
 
+def compare_datetime(entry1, entry2):
+    if entry1[2] < entry2[2]:
+        return -1
+    elif entry1[2] > entry2[2]:
+        return 1
+    else:
+        return 0
+    
 def sort_by_datetime(entries):
-    for i in range(len(entries)):
-        for j in range(len(entries)):
-            if entries[i][2] < entries[j][2]:
-                temp = entries[i]
-                entries[i] = entries[j]
-                entries[j] = temp
+    entries.sort(key=cmp_to_key(compare_datetime))
     return entries
+
 
 
 @app.route('/')

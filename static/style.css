@@ -127,18 +127,7 @@ body {
     color:#4b68dbff;
 }
 
-.travel-container-from{
-    clear: left;
-    height: auto;
-    width: 100%;
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: center;
-    gap: 10%;
-}
-
-.travel-container-to{
+.travel-container{
     clear: left;
     height: auto;
     width: 100%;
@@ -152,7 +141,7 @@ body {
 .travel-card {
     background-color: #a696f9ff;
     width: 40%;
-    height: 25vh;
+    height: auto;
     min-width: 500px;
     border: solid;
     border-width: 0px;
@@ -161,30 +150,29 @@ body {
 }
 
 .travel-card-content {
+    padding: 2%;
     display: flex;
-    justify-content: space-between;
-    height: 100%;
+    height: 100;
 }
 
 .travel-card-content-left {
-    padding: 2%;
     display: flex;
-    justify-content: left;
+    width: 70%;
+    justify-content: flex-start;
     flex-direction: column;
 }
 
 .travel-card-content-right {
     float: right;
-    padding: 2%;
     display: flex;
-    justify-content: right;
-    align-items: end;
+    width: 30%;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .travel-card-content-right img {
-    float: right;
-    width: 40%;
-    height: 40%;
+    width: 20%;
+    height: 30%;
     cursor: pointer;
 }
 
@@ -296,10 +284,21 @@ button:hover {
     background-color: #2980b9;
 }
 
+.booking-container{
+    clear: left;
+    height: auto;
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    gap: 2%;
+}
+
 .booking-card {
     background-color: #a696f9ff;
-    width: 40%;
-    height: 30vh;
+    width: 60%;
+    height: auto;
     min-width: 500px;
     border: solid;
     border-width: 0px;
