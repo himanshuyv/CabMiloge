@@ -336,13 +336,25 @@ button:hover {
 
 .base-container>footer{
     position: relative;
+    padding: 70px;
+    font-size: 18px;
     top: 6rem;
     background-color: #D0A2F7;
     width: 100%;
     color: black;
     display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-end;
     justify-content: center;
     align-items: center;
 }
 
+
+.footer_links{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+}
 
