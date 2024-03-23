@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
     <script src="./../static/script.js" defer></script>
     <title>CabMiloge</title>
@@ -21,10 +22,14 @@
                     <li class="nav-item"><a href="#AddNewTravel">Add New</a></li>
                 </ul>
             </nav>
-            <div class="profile-logout">
-                <div class="user-info">{{ user }}</div>
-                <div class="logout" onclick="logout_user()">Logout</div>
-            </div>
+            <div class="dropdown ">
+                <button class="dropbtn user-info" onclick="(toggleUserDropDown())">{{user}}&nbsp;
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                  <a href="#" onclick="logout_user()">Logout</a>
+                </div>
+                </div>
         </header>
     </div>
 
