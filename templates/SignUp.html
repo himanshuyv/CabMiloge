@@ -165,14 +165,11 @@ select:focus {
         <h1>Sign Up</h1>
         <div class="user">
         <form action="/Get_userData" method="post">
-            <i class="fas fa-user"></i>
-            <input type="text" name="fname" id="fname" placeholder="First Name" required>
-            <i class="fas fa-envelope"></i>
-            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
-            <i class="fas fa-envelope"></i>
-            <input type="text" name="email" id="email" placeholder="Email Address" required>
-            <i class="fas fa-unlock-alt"></i>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="text" name="roll" id="roll" required readonly hidden value={{roll}}>
+            <input type="text" name="fname" id="fname" required readonly hidden value={{first_name}}>
+            <input type="text" name="lname" id="lname" required readonly hidden value={{last_name}}>
+            <input type="text" name="email" id="email" required readonly hidden value={{email}}>
+            <input type="text" name="uid" id="uid" required readonly hidden value={{uid}}>
             <i class="fas fa-venus-mars"></i>
             <select name="gender" id="gender" required>
                 <option value="" disabled selected>Select Gender</option>
@@ -180,7 +177,6 @@ select:focus {
                 <option value="Female">Female</option>
                 <option value="Others">Others</option>
             </select>
-
             <!-- Batch Dropdown -->
             <i class="fas fa-graduation-cap"></i>
             <select name="batch" id="batch" required>

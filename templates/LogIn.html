@@ -140,17 +140,13 @@ a{
     </div>
     <div class="container">
         <div class="box">
-        <h1>Log In</h1>
+        <h1>Log In Using IIIT Credentials</h1>
         <div class="user">
         <form method="post" action="/Get_Auth">
             <i class="fas fa-user"></i>
             <!-- <input type="text" name="username" id="username" placeholder="Full Name">
             <i class="fas fa-envelope"></i> -->
-            <input type="text" name="email" id="email" placeholder="Email Address" required>
-            <i class="fas fa-unlock-alt"></i>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <i class="fas fa-unlock-alt"></i>
-            <div class="message-box">
+            <div class="message-box"> 
                 {% if message %}
                 <p>
                   {{ message }}
@@ -160,8 +156,7 @@ a{
                 {% endif %}
             </div>
             <div class="login-btn">
-              <button class="btn" value="Submit"> <a> Submit</a></button>
-              <p class="signup">Don't have an account ? <a href="/SignUp"><span>Sign Up</span> </a></p>
+              <button class="btn" value="Submit"> <a>Login</a></button>
             </div>
         </form>
             <!-- <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->

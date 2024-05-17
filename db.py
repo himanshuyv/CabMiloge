@@ -8,17 +8,18 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS Login (
         Fname TEXT,
         Lname TEXT,
-        Email TEXT PRIMARY KEY,
+        Email TEXT,
+        RollNo TEXT,
+        Uid TEXT PRIMARY KEY,
         Batch TEXT,
-        Gender TEXT,
-        Password TEXT
+        Gender TEXT
     )
 ''')
 
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS fromCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Email TEXT, DateTime DATETIME, Station TEXT)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS fromCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Uid TEXT, DateTime DATETIME, Station TEXT)''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS toCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Email TEXT, DateTime DATETIME, Station TEXT)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS toCampus (BookingID INTEGER PRIMARY KEY AUTOINCREMENT, Uid TEXT, DateTime DATETIME, Station TEXT)''')
 
 cursor.execute('''select * from fromCampus''')
 cabmate_entries = cursor.fetchall()
