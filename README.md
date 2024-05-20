@@ -4,8 +4,6 @@
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
 
 ## Introduction
 Welcome to CabMiloge, the cab-sharing website designed exclusively for the HackIIIT community at IIIT Hyderabad! CabMiloge aims to simplify and enhance your travel experience by connecting you with fellow travelers heading to airports, stations, or back to campus.
@@ -20,31 +18,21 @@ Welcome to CabMiloge, the cab-sharing website designed exclusively for the HackI
 
 ## Getting Started
 
-### Prerequisites
 ## Installation
 
-To run CabMiloge locally, follow the steps below:
 
-### Prerequisites
-Ensure you have the following prerequisites installed:
-- Python (version 3.x)
-- Flask
-- SQLite3
-- bcrypt
-
-```bash
-pip install Flask
-pip install bcrypt
-```
-
-### Installation
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/techoflashh/CabMiloge 
    cd CabMiloge
    ```
+2. **Install Requirements**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-5. **Run the Application:**
+
+3. **Run the Application:**
    ```bash
    python app.py
    ```
