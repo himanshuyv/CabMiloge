@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect,session;
+from flask import Flask, render_template, request,redirect,session,jsonify;
 import sqlite3
 from bcrypt import gensalt,hashpw,checkpw
 from cas import CASClient
@@ -6,6 +6,11 @@ from urllib.parse import quote_plus
 from cryptography.fernet import Fernet
 import os
 from functools import cmp_to_key
+import smtplib
+from email.message import EmailMessage
+import datetime
+
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -135,6 +140,9 @@ def Get_userData():
             message='Sign Up Failed!'
             return render_template('LogIn.html', message=message)
 
+
+
+
 @app.route('/getDataForBooking',methods=['POST', 'GET'])
 def getForFromCampus():
     if request.method == 'POST':
@@ -201,13 +209,24 @@ def view_booking():
         BookingEntries = []
         if direction == 'From Campus':
             cursor.execute('''SELECT * FROM fromCampus WHERE BookingID = ?''', (entry_id,))
+            # cursor.execute('''SELECT * FROM fromCampus''')
             entry = cursor.fetchone()
             cursor.execute('''SELECT * FROM fromCampus WHERE Station = ?''', (entry[3],))
+            # cursor.execute('''SELECT * FROM fromCampus ''')
+            
         else:
             cursor.execute('''SELECT * FROM toCampus WHERE BookingID = ?''', (entry_id,))
+            # cursor.execute('''SELECT * FROM toCampus''')
             entry = cursor.fetchone()
             cursor.execute('''SELECT * FROM toCampus WHERE Station = ?''', (entry[3],))
+            # cursor.execute('''SELECT * FROM toCampus''')
+            
         entries = cursor.fetchall()
+        
+        
+        
+        print(entries)
+        
         for item in entries:
             if item[1] == uid:
                 continue
@@ -229,7 +248,7 @@ def view_booking():
         conn.close()
     except:
         print('Data not found')
-    return render_template('/viewBooking.html', available_options = BookingEntries, user=user[0] , entry_id=entry_id,  direction=direction)
+    return render_template('/bookingspage.html', available_options = BookingEntries, user=user[0] , entry_id=entry_id,  direction=direction)
 
 @app.route('/index')
 def index():
@@ -282,18 +301,558 @@ def logout_user():
 
 @app.route('/viewBookingRedirect', methods=['POST', 'GET'])
 def view_booking_redirect():
-    conn = sqlite3.connect('cabmates.db') 
-    entry_id = request.form['entry_id']
-    direction = request.form['direction']
+    # entry_id = request.form['entry_id']
+    # direction = request.form['direction']
     token = session['token']
     with open('key.key', 'rb') as file:
         key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
+
+    # print(direction, entry_id)
+        
+    try:
+        conn = sqlite3.connect('cabmates.db') 
+        cursor = conn.cursor()
+        BookingEntries = []
+        # if direction == 'From Campus':
+        # cursor.execute('''SELECT * FROM fromCampus WHERE BookingID = ?''', (entry_id,))
+        # # cursor.execute('''SELECT * FROM fromCampus''')
+        # entry = cursor.fetchone()
+        cursor.execute('''select * from Login where Uid = ?''', (uid,))
+        user_data=cursor.fetchall()
+        
+        
+        cursor.execute('''SELECT * FROM fromCampus''')
+        entries1 = cursor.fetchall()
+        
+        # print("\n\nentries:\n",entries1)
+        # print("\n\n")
+        
+        for item in entries1:
+            if item[1] == uid:
+                continue
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            uid = item[1]
+            cursor.execute( '''select * from Login where Uid = ?''', (item[1],))
+            data = cursor.fetchone()
+            # print("\n\n data:\n",data)
+            # print("\n\n")
+            Fname = data[0]
+            Lname = data[1]
+            Name = Fname + ' ' + Lname
+            email_id=data[2]
+            Gender = data[6]
+            Batch = data[5]
+            station= item[3]
+            from_location="IIIT Campus"
+            temp_tuple = (date, time, uid, Name, Gender, Batch, station, from_location, email_id, user_data[0][3]) #user_data[2] is user emailid
+            # print("\nhello\n")
+            BookingEntries.append(temp_tuple)
+        
+        # /print("hello")
+        
+        cursor.execute('''SELECT * FROM toCampus''')
+        entries1 = cursor.fetchall()
+        # print(entries1)
+        for item in entries1:
+            if item[1] == uid:
+                continue
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            uid = item[1]
+            cursor.execute( '''select * from Login where Uid = ?''', (item[1],))
+            data = cursor.fetchone()
+            Fname = data[0]
+            Lname = data[1]
+            Name = Fname + ' ' + Lname
+            Gender = data[6]
+            Batch = data[5]
+            email_id=data[2]
+            station= "IIIT Campus"
+            from_location=item[3]
+            temp_tuple = (date, time, uid, Name, Gender, Batch,station,from_location, email_id, user_data[0][3])
+            BookingEntries.append(temp_tuple)
+        
+        # print(BookingEntries)
+        cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
+        user = cursor.fetchone()
+        # print("\n\nuser:", user)
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print('An error occurred:', e)
+        
+    return render_template('/bookingspage.html', available_options = BookingEntries, user=user[0])
+
+
+
+
+def isTimeinRange(entry, BookingEntries, rev_requested_time):
+    
+    for time in rev_requested_time:
+        time = int(time)
+        
+        if time== 23:
+            time_p = time
+            time1 = time_p + ":00:00"
+            time_first = datetime.datetime.strptime(time1, "%H:%M:%S")
+            # time_second = datetime.datetime.strptime(time2, "%H:%M:%S")
+            entry_time = datetime.datetime.strptime(entry[1], "%H:%M:%S")
+            
+            if datetime.time(23, 0, 0) == time_first:
+                if entry_time >= time_first:
+                    BookingEntries.append(entry[1])
+        else:
+            
+            time_p = time
+            time_s = time + 1
+            if time < 10:
+                time_p = "0" + str(time_p)
+                time_s = "0" + str(time_s)
+            else:
+                time_p = str(time_p)
+                time_s = str(time_s)
+            print("hey1")
+            time1 = time_p + ":00:00"
+            time2 = time_s + ":00:00"
+            time_first = datetime.datetime.strptime(time1, "%H:%M:%S")
+            time_second = datetime.datetime.strptime(time2, "%H:%M:%S")
+            entry_time = datetime.datetime.strptime(entry[1], "%H:%M:%S")
+            
+            if datetime.time(23, 0, 0) == time_first:
+                if entry_time >= time_first:
+                    BookingEntries.append(entry)
+            elif entry_time >=time_first and entry_time < time_second:
+                print(entry_time)
+                print(time_first)
+                print(time_second)
+                BookingEntries.append(entry)
+                break
+
+
+@app.route('/apply_filters', methods=['POST'])
+def apply_filters():
+    token = session['token']
+    with open('key.key', 'rb') as file:
+        key = file.read()
+    fernet = Fernet(key)
+    uid = fernet.decrypt(token).decode()
+
+    try:       
+        conn = sqlite3.connect('cabmates.db')
+        cursor = conn.cursor()
+        filters = request.json
+        
+        cursor.execute('''select * from Login where Uid = ?''', (uid,))
+        user_data=cursor.fetchall()
+  
+        AllEntries = []
+        BookingEntries = []
+        
+        # print(filters)
+        
+                
+        requested_batch= filters.get('selectedBatch').split(",")
+        requested_time= filters.get('selectedTime').split(",")
+        requested_desti= filters.get('selectedDestination').split(",")
+        requested_start= filters.get('selectedStart').split(",")
+        requested_date= filters.get('selectedDate')
+        
+        
+        rev_requested_time=[]
+        
+        for time in requested_time:
+            rev_requested_time.append(time.split('-')[0])
+        
+        print(requested_time[0])
+        
+        cursor.execute('''SELECT * FROM fromCampus''')
+        entries1 = cursor.fetchall()
+        
+        # print("\n\nentries:\n",entries1)
+        # print("\n\n")
+        
+        for item in entries1:
+            # if item[1] == uid:
+            #     continue
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            uid = item[1]
+            cursor.execute( '''select * from Login where Uid = ?''', (item[1],))
+            data = cursor.fetchone()
+            # print("\n\n data:\n",data)
+            # print("\n\n")
+            Fname = data[0]
+            Lname = data[1]
+            Name = Fname + ' ' + Lname
+            email_id=data[2]
+            Gender = data[6]
+            Batch = data[5]
+            station= item[3]
+            from_location="IIIT Campus"
+            temp_tuple = (date, time, uid, Name, Gender, Batch, station, from_location, email_id, user_data[0][3]) #user_data[2] is user emailid
+            # print("\nhello\n")
+            AllEntries.append(temp_tuple)
+        
+        # /print("hello")
+        
+        cursor.execute('''SELECT * FROM toCampus''')
+        entries1 = cursor.fetchall()
+        # print(entries1)
+        for item in entries1:
+            if item[1] == uid:
+                continue
+            date = item[2].split(' ')[0]
+            time = item[2].split(' ')[1]
+            uid = item[1]
+            cursor.execute( '''select * from Login where Uid = ?''', (item[1],))
+            data = cursor.fetchone()
+            Fname = data[0]
+            Lname = data[1]
+            Name = Fname + ' ' + Lname
+            Gender = data[6]
+            Batch = data[5]
+            email_id=data[2]
+            station= "IIIT Campus"
+            from_location=item[3]
+            temp_tuple = (date, time, uid, Name, Gender, Batch,station,from_location, email_id, user_data[0][3])
+            AllEntries.append(temp_tuple)
+        
+        # print(BookingEntries)
+        cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
+        user = cursor.fetchone()
+        # print("\n\nuser:", user)
+        conn.commit()
+        conn.close()
+
+        # print(AllEntries)        
+        # print(requested_batch)
+        # print(requested_desti)
+        # print(requested_date)
+        # print(requested_start)
+        # print(requested_time)
+        
+        
+        # for starrting_point in 
+        for entry in  AllEntries:
+            
+            if requested_start[0] != '':
+                # print(entry[7])
+                # print(requested_start)
+                if entry[7] in requested_start:
+                    print("here2")
+                    if requested_date:
+                        
+                        if entry[0]==requested_date:
+                        
+                            if requested_desti[0] != '':
+                                
+                                if entry[6] in requested_desti:
+                                
+                                    if requested_batch[0] != '':
+                                        
+                                        if "All" in requested_batch:
+                                            
+                                            if requested_time[0] != '':
+
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+                                                
+                                                
+                                        elif "UG5+" in requested_batch:
+                                            if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                                
+                                                if requested_time[0] != '':
+                                                    print("hey2")
+                                                    isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                                else:            
+                                                    BookingEntries.append(entry)
+                                                
+                                        elif entry[5] in requested_batch:
+                                            if requested_time[0] != '':
+                                                print("hey3")
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+            
+ 
+                                    else:
+                                        
+                                        if requested_time[0] != '':
+                                            print("hey4")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                            
+                            else:
+                                if requested_batch[0] != '':
+                                          
+                                    if "All" in requested_batch:                                            
+                                        if requested_time[0] != '':
+                                            print("hey5")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                            
+                                            
+                                            
+                                    elif "UG5+" in requested_batch:
+                                        if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                            
+                                            
+                                            if requested_time[0] != '':
+                                                print("hey6")
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+                                                
+                                    elif entry[5] in requested_batch:
+                                        
+                                        if requested_time[0] != '':
+                                            print("hey7")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+        
+ 
+                                else:
+                                    if requested_time[0] != '':
+                                        print("hey8")
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                    else:
+                        if requested_desti[0] != '':
+                                
+                            if entry[6] in requested_desti:
+                            
+                                if requested_batch[0] !='':
+                                    
+                                    if "All" in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey9")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                    elif "UG5+" in requested_batch:
+                                        if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                            
+                                            if requested_time[0] != '':
+                                                print("hey10")
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+                                    elif entry[5] in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey11")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+ 
+                                else:
+                                    
+                                    if requested_time[0] != '':
+                                        print("hey12")
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                    
+                        else:
+                            if requested_batch[0] != '':
+                                if "All" in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey13")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                elif "UG5+" in requested_batch:
+                                    if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                        if requested_time[0] != '':
+                                            print("hey14")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                elif entry[5] in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey15")
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+ 
+                            else:
+                                if requested_time[0] != '':
+                                    print("hey16")
+                                    isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                else:            
+                                    BookingEntries.append(entry)
+                                                 
+            else:
+                
+                if requested_date:
+                    
+                        if entry[0]==requested_date:
+                        
+                            if requested_desti[0] != '':
+                                
+                                if entry[6] in requested_desti:
+                                
+                                    if requested_batch[0] != '':
+                                        if "All" in requested_batch:
+                                            if requested_time[0] != '':
+                                                print("hey17")
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+                                        elif "UG5+" in requested_batch:
+                                            if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                                if requested_time[0] != '':
+                                                    print("hey18")    
+                                                    isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                                else:            
+                                                    BookingEntries.append(entry)
+                                        elif entry[5] in requested_batch:
+                                            if requested_time[0] != '':
+                                                print("hey19")    
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+            
+                                    else:
+                                        if requested_time[0] != '':
+                                            print("hey20")    
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                            
+                            else:
+                                
+                                if requested_batch[0] != '':  
+                                    if "All" in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey21")    
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                    elif "UG5+" in requested_batch:
+                                        if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                            if requested_time[0] != '':
+                                                print("hey22")    
+                                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                            else:            
+                                                BookingEntries.append(entry)
+                                    elif entry[5] in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey23")    
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                
+                                else:
+                                    if requested_time[0] != '':
+                                        print("hey24")    
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                else:
+                    if requested_desti[0] != '':
+                        print("here")
+                        print(entry[6]) 
+                        print(requested_desti)
+                        if entry[6] in requested_desti:
+                            print("now")
+                            if requested_batch[0] != '':
+                                
+                                if "All" in requested_batch:
+                                    if requested_time[0] != '':
+                                        print("hey25")    
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                                elif "UG5+" in requested_batch:
+                                    if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                        if requested_time[0] != '':
+                                            print("hey26")    
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+                                elif entry[5] in requested_batch:
+                                        if requested_time[0] != '':
+                                            print("hey27")    
+                                            isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                        else:            
+                                            BookingEntries.append(entry)
+ 
+                            else:
+                                
+                                if requested_time[0] != '':
+                                    print("hey28")    
+                                    isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                else:            
+                                    BookingEntries.append(entry)
+                        
+                    else:
+                        if requested_batch[0] != '':
+                            
+                            if "All" in requested_batch:
+                                    if requested_time[0] != '':
+                                        print("hey29")    
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                            elif "UG5+" in requested_batch:
+                                if entry[5]=="UG5" and entry[5]=="UG6" and entry[5]=="UG7" and entry[5]=="UG8" and entry[5]=="UG9" and entry[5]=="UG10" and entry[5]=="UG11":
+                                    if requested_time[0] != '':
+                                        print("hey30")    
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                            elif entry[5] in requested_batch:
+                                    if requested_time[0] != '':
+                                        print("hey31")    
+                                        isTimeinRange(entry, BookingEntries, rev_requested_time)
+                                    else:            
+                                        BookingEntries.append(entry)
+                                
+                        else:
+            
+                            if requested_time[0] != '':
+                                print("hey32")  
+                                isTimeinRange(entry, BookingEntries, rev_requested_time)
+                            else:            
+                                BookingEntries.append(entry)
+                                            
+                
+        filtered_data = {'available_options': BookingEntries, 'user': user_data[0]}
+        
+        # print(filtered_data)
+        
+        return jsonify(filtered_data)
+    
+    except Exception as e:
+        # print("Error occurred on line:", traceback.extract_tb(e.__traceback__)[0].lineno)
+        print("Error:", e)
+        return jsonify({'error': str(e)}), 500
+    
+    
+    
+@app.route('/about')
+def about():
+    token = session['token']
+    with open('key.key', 'rb') as file:
+        key = file.read()
+    fernet = Fernet(key)
+    uid = fernet.decrypt(token).decode()
+    
+    conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
     cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
     user = cursor.fetchone()
-    return render_template('/viewBooking.html', user=user[0], entry_id=entry_id, direction=direction)
+    
+    return render_template('about.html', user=user[0])
+
 
 if __name__ == '__main__':
     key = Fernet.generate_key()
