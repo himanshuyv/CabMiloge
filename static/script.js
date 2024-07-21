@@ -2,8 +2,8 @@ let bookingDiv;
 let directionOfTravel;
 
 
-let img1=document.getElementById("img1")
-let img2=document.getElementById("img2")
+let img1 = document.getElementById("img1")
+let img2 = document.getElementById("img2")
 // function createNewBookingDiv() {
 //   if (!bookingDiv) {
 //     bookingDiv = document.createElement("div");
@@ -29,13 +29,13 @@ let img2=document.getElementById("img2")
 //     img1.classList.add("arrival-departure");
 //     img2.classList.add("arrival-departure");
 
-    // Event listeners for image clicks to switch booking type
-    img1.addEventListener("click", function () {
-      switchBookingType("From Campus");
-    });
-    img2.addEventListener("click", function () {
-      switchBookingType("To Campus");
-    });
+// Event listeners for image clicks to switch booking type
+img1.addEventListener("click", function () {
+  switchBookingType("From Campus");
+});
+img2.addEventListener("click", function () {
+  switchBookingType("To Campus");
+});
 
 //     wrapperDiv1.appendChild(img1);
 //     wrapperDiv2.appendChild(img2);
@@ -92,15 +92,14 @@ function sendDataForBooking(direction) {
     input.value = direction;
     form.appendChild(input);
     let stationLabel = document.createElement("label");
-    stationLabel.textContent = `${
-      direction === "From Campus" ? "To" : "From"
-    } Station:`;
+    stationLabel.textContent = `${direction === "From Campus" ? "To" : "From"
+      } Station:`;
     let stationDropdown = document.createElement("select");
     stationDropdown.name = "station";
     stationDropdown.required = true;
 
 
-    
+
     let stations = [
       "Rajiv Gandhi International Airport",
       "Secunderabad Junction",
@@ -325,11 +324,30 @@ function toggleUserDropDown() {
 }
 
 // Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
+// window.onclick = function (e) {
+//   if (!e.target.matches('.dropbtn')) {
+//     var myDropdown = document.getElementById("myDropdown");
+//     if (myDropdown.classList.contains('show')) {
+//       myDropdown.classList.remove('show');
+//     }
+//   }
+// }
+
+
+/////////////////////////////////////////////// SIDEBAR 
+
+document.getElementById("openSidebar").onclick = function () {
+  document.getElementById("sidebar").style.width = "23rem";
+  document.getElementById("overlay").style.display = "block";
+}
+
+document.getElementById("closeSidebar").onclick = function () {
+  document.getElementById("sidebar").style.width = "0";
+  document.getElementById("overlay").style.display = "none";
+}
+
+// Close sidebar when clicking outside of it
+document.getElementById("overlay").onclick = function () {
+  document.getElementById("sidebar").style.width = "0";
+  document.getElementById("overlay").style.display = "none";
 }
