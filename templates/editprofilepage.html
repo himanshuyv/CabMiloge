@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../static/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
-    <script src="./../static/script.js" defer></script>
-    <title>CabMiloge</title>
-  </head>
-  <body>
-    <div class="head-container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./../static/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
+  <script src="./../static/script.js" defer></script>
+
+  <title>CabMiloge</title>
+</head>
+
+<body>
+
+  <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
           <img src="./../static/logo.svg" alt="logo" />
@@ -27,24 +31,29 @@
         <nav class="main-nav">
           <ul>
             <li class="nav-item"><a href="/about">About</a></li>
-            <li class="nav-item">
-              <a href="index#filler">Upcoming Travels</a>
-            </li>
-            <li class="nav-item">
-              <a href="index#AddNewTravel">Add new trip</a>
-            </li>
+            <li class="nav-item"><a href="/index#filler">Upcoming Travels</a></li>
+            <li class="nav-item"><a href="/index#AddNewTravel">Add new trip</a></li>
             <li class="nav-item">
               <a href="#" onclick="redirect_to_booking()">View all bookings</a>
             </li>
           </ul>
         </nav>
+        <!--<div class="dropdown">
+          <button class="dropbtn user-info" onclick="(toggleUserDropDown())">
+            {{user}}&nbsp;
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="myDropdown">
+            <a href="#" onclick="logout_user()">Logout</a>
+          </div>
+        </div>-->
         <div class="dropdown">
           <button class="dropbtn user-info"  id="openSidebar">
             &nbsp;<i class="fa-solid fa-bars icon-bars"></i>
           </button>
           <div id="sidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
-            <h2>{{ fname }}&nbsp;{{ lname }}</h2>
+            <h2>{{ user[0][0] }}&nbsp;{{ user[0][1] }}</h2>
             <hr>
             
             <a href="/index#filler" class="sidebar-options">Home</a>
@@ -60,43 +69,76 @@
 
     <div id="filler" class="filler"></div>
 
-    <div class="about">
-      <h3>About Us</h3>
-      <hr />
-      <h4>
-        Cabmiloge is a user-friendly platform developed by the members of the
-        Open Source Development Group at IIIT Hyderabad. Its main aim is to make
-        it simpler for students to connect with peers who happen to be heading
-        in the same direction. By doing so, Cabmiloge streamlines the process of
-        coordinating rides and travel plans, offering students a convenient and
-        hassle-free way to arrange their journeys.
-      </h4>
+<!--    <div class="head-container">
+        <header class="main-header">
+            <div class="logo unselectable"><img src="/../static/logo.svg" alt="logo">
+            </div>
+            <div class="user-info">
+                <div class="profile-dropdown">
+                </div>
+            </div>
+        </header>
+    </div>-->
+
+
+    <div class="form-container">
+
+      <div class="container-top">
+        <div>
+          <h2>Current Info</h2>
+          <p style="margin-top:3vh;"><span class="label-edit">Name</span> <span class="user-details">&nbsp;&nbsp;&nbsp;<b>{{ user[0][0] }} {{ user[0][1] }}</b></span></p>
+          <p><span class="label-edit">Email</span> <span class="user-details"><b>{{ user[0][2] }}</b></span></p>
+          <p><span class="label-edit">Roll no</span> <span class="user-details">&nbsp;&nbsp;<b>{{ user[0][3] }}</b></span></p>
+          <p><span class="label-edit">Batch</span> <span class="user-details">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{ user[0][5] }}</b></span></p>
+          <p style="borde-bottom:1px solid rgb(75, 72, 72);"><span class="label-edit">Gender</span> <span class="user-details"><b>&nbsp;{{ user[0][6] }}</b></span></p>
+        </div>
+      </div>
+
+
+      <div class="container-bottom">
+        <div class="box-edit">
+          <h2>Update info</h2>
+          <div class="user-edit">
+            <form action="/update_userData" method="post">
+                <div class="input-div">
+                  <i class="fas fa-venus-mars"></i>
+                  <select name="gender" id="gender" required>
+                      <option value="" disabled selected>Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Others">Others</option>
+                  </select>
+              </div>
+                <!-- Batch Dropdown -->
+
+                <div class="input-div">
+                  <i class="fas fa-graduation-cap"></i>
+                  <select name="batch" id="batch" required>
+                      <option value="" disabled selected>Select Batch</option>
+                      <option value="UG1">UG1</option>
+                      <option value="UG2">UG2</option>
+                      <option value="UG3">UG3</option>
+                      <option value="UG4">UG4</option>
+                      <option value="UG5+">UG5+</option>
+                      <option value="MS">MS</option>
+                      <option value="Mtech">Mtech</option>
+                      <option value="PHD">PHD</option>
+                  </select>
+
+              </div>
+                <div class="update-btn">
+                  <button value="Submit"> <a>Submit</a></button>
+                </div>
+            </form>
+            <!-- <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->
+          </div>
+        </div>
+      </div>
     </div>
-
-
-    
-    <div class="howTouse">
-      <h3>How to use</h3>
-      <hr />
-      <h4>
-        To ensure a smooth process, we recommend first checking if there's
-        someone traveling in the direction you're planning to go. To simplify
-        this, we've incorporated various filtering options such as batch
-        starting point, destination, date, and time. You can choose one or
-        multiple filters to search for a suitable partner. If you find a match,
-        you can effortlessly send them a prewritten email by clicking the "send
-        mail" option. However, if there's no one traveling in your desired
-        direction, you have the option to add your own card. Simply wait for
-        interested individuals to contact you. Once the taxi is filled, you can
-        delete the card. <br />
-        <br />Wishing you pleasant travels!
-      </h4>
-    </div>
-
 
     <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:10vh;">
 
-      <div class="text-xs h-auto">
+      <div class="text-xs h-auto" >
         <img alt="OSDG" loading="lazy" width="1192" height="484" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="./../static/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
@@ -113,6 +155,7 @@
             <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
           </svg>
         </a>
+
 
         <a href="https://www.linkedin.com/company/74330374" class="mx-2 opacity-60 hover:opacity-100 w-8 h-8">
           <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -141,6 +184,24 @@
       </div>
     </footer>
 
+
+
+
+
+
+    <script>
+      // Check for URL query parameter and show alert
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const updateMessage = urlParams.get('update_message');
+  
+        if (updateMessage === 'success') {
+          alert('User information updated successfully!');
+        } else if (updateMessage === 'error') {
+          alert('An error occurred while updating the information.');
+        }
+      }
+    </script>
     <script>
       document.getElementById("openSidebar").onclick = function () {
         document.getElementById("sidebar").style.width = "23rem";
@@ -158,5 +219,5 @@
         document.getElementById("overlay").style.display = "none";
       }
     </script>
-  </body>
+</body>
 </html>

@@ -1,66 +1,17 @@
 let bookingDiv;
 let directionOfTravel;
+let curDate = new Date();
+
+let img1 = document.getElementById("img1")
+let img2 = document.getElementById("img2")
 
 
-let img1=document.getElementById("img1")
-let img2=document.getElementById("img2")
-// function createNewBookingDiv() {
-//   if (!bookingDiv) {
-//     bookingDiv = document.createElement("div");
-//     bookingDiv.classList.add("card");
-//     let img1 = document.createElement("img");
-//     let img2 = document.createElement("img");
-//     let label1 = "From Campus";
-//     let label2 = "To Campus";
-//     let wrapperDiv1 = document.createElement("div");
-//     let wrapperDiv2 = document.createElement("div");
-
-//     wrapperDiv1.classList.add("label");
-//     wrapperDiv2.classList.add("label");
-//     let heading1 = document.createElement("div");
-//     let heading2 = document.createElement("div");
-//     heading1.textContent = label1;
-//     heading2.textContent = label2;
-
-//     wrapperDiv1.classList.add("image-container");
-//     wrapperDiv2.classList.add("image-container");
-//     img1.src = "./../static/from-campus.svg";
-//     img2.src = "./../static/to-campus.svg";
-//     img1.classList.add("arrival-departure");
-//     img2.classList.add("arrival-departure");
-
-    // Event listeners for image clicks to switch booking type
-    img1.addEventListener("click", function () {
-      switchBookingType("From Campus");
-    });
-    img2.addEventListener("click", function () {
-      switchBookingType("To Campus");
-    });
-
-//     wrapperDiv1.appendChild(img1);
-//     wrapperDiv2.appendChild(img2);
-//     wrapperDiv1.appendChild(heading1);
-//     wrapperDiv2.appendChild(heading2);
-//     let containerDiv = document.createElement("div");
-//     containerDiv.classList.add("arrival-departure-container");
-//     containerDiv.appendChild(wrapperDiv1);
-//     containerDiv.appendChild(wrapperDiv2);
-//     bookingDiv.appendChild(containerDiv);
-//     let flexContainer = document.querySelector(".flex-container");
-//     flexContainer.appendChild(bookingDiv);
-//     bookingDiv.scrollIntoView({
-//       behavior: "smooth",
-//       block: "end",
-//       inline: "nearest",
-//     });
-//   } else {
-//     bookingDiv.scrollIntoView({
-//       behavior: "smooth",
-//       block: "end",
-//       inline: "nearest",
-//     });
-//   }
-// }
+img1.addEventListener("click", function () {
+  switchBookingType("From Campus");
+});
+img2.addEventListener("click", function () {
+  switchBookingType("To Campus");
+});
 
 function switchBookingType(direction) {
   if (directionOfTravel) {
@@ -69,9 +20,6 @@ function switchBookingType(direction) {
   }
   sendDataForBooking(direction);
 }
-
-
-
 
 function sendDataForBooking(direction) {
   directionOfTravel = document.createElement("div");
@@ -92,15 +40,14 @@ function sendDataForBooking(direction) {
     input.value = direction;
     form.appendChild(input);
     let stationLabel = document.createElement("label");
-    stationLabel.textContent = `${
-      direction === "From Campus" ? "To" : "From"
-    } Station:`;
+    stationLabel.textContent = `${direction === "From Campus" ? "To" : "From"
+      } Station:`;
     let stationDropdown = document.createElement("select");
     stationDropdown.name = "station";
     stationDropdown.required = true;
 
 
-    
+
     let stations = [
       "Rajiv Gandhi International Airport",
       "Secunderabad Junction",
@@ -121,6 +68,7 @@ function sendDataForBooking(direction) {
     let dateInput = document.createElement("input");
     dateInput.type = "date";
     dateInput.name = "departureDate";
+    dateInput.min = curDate.toISOString().split("T")[0];
     dateLabel.appendChild(dateInput);
     dateInput.required = true;
 
@@ -155,108 +103,6 @@ function sendDataForBooking(direction) {
 }
 
 
-
-
-
-
-// function sendDataForBooking(direction) {
-//   directionOfTravel = document.createElement("div");
-//   directionOfTravel.classList.add("card");
-
-//   if (direction === "From Campus" || direction === "To Campus") {
-//     let heading = document.createElement("h1");
-//     heading.textContent = direction;
-//     heading.classList.add("from-to-heading");
-//     directionOfTravel.appendChild(heading);
-
-//     let formContainer = document.createElement("div");
-//     formContainer.classList.add("form-container");
-
-//     let form = document.createElement("form");
-//     form.method = "post";
-//     form.action = "getDataForBooking";
-
-//     let input = document.createElement("input");
-//     input.type = "hidden";
-//     input.name = "direction";
-//     input.value = direction;
-//     form.appendChild(input);
-
-//     let stationLabel = document.createElement("label");
-//     stationLabel.textContent = `${
-//       direction === "From Campus" ? "To" : "From"
-//     } Station:`;
-//     let stationDropdown = document.createElement("select");
-//     stationDropdown.name = "station";
-
-//     let stations = [
-//       "Rajiv Gandhi International Airport",
-//       "Secunderabad Junction",
-//       "Kacheguda Railway Station",
-//     ];
-
-//     for (let station of stations) {
-//       let option = document.createElement("option");
-//       option.value = station;
-//       option.textContent = station;
-//       stationDropdown.appendChild(option);
-//     }
-
-//     stationLabel.appendChild(stationDropdown);
-
-//     let dateLabel = document.createElement("label");
-//     dateLabel.textContent = "Date of Departure:";
-//     let dateInput = document.createElement("input");
-//     dateInput.type = "date";
-//     dateInput.name = "departureDate";
-//     dateLabel.appendChild(dateInput);
-
-//     let timeLabel = document.createElement("label");
-//     timeLabel.textContent = "Departure Time Range:";
-
-//     let timeSelect = document.createElement("select");
-//     timeSelect.name = "departureTimeRange";
-
-//     function generateHourlyRanges() {
-//       for (let startHour = 0; startHour < 24; startHour++) {
-//         const endHour = (startHour + 1) % 24;
-//         const optionText = `${startHour}-${endHour}`;
-//         const optionElement = new Option(optionText, optionText);
-//         timeSelect.appendChild(optionElement);
-//       }
-//     }
-
-//     generateHourlyRanges();
-
-//     let containerElement = document.createElement("div"); // Optional container
-//     containerElement.appendChild(timeLabel);
-//     containerElement.appendChild(timeSelect);
-
-//     form.appendChild(stationLabel);
-//     form.appendChild(dateLabel);
-//     form.appendChild(containerElement); // Append time selection here
-
-//     let submitButton = document.createElement("button");
-//     submitButton.type = "submit";
-//     submitButton.textContent = "Submit";
-
-//     form.appendChild(submitButton);
-
-//     formContainer.appendChild(form);
-//     directionOfTravel.appendChild(formContainer);
-
-//     let flexContainer = document.querySelector(".flex-container");
-//     flexContainer.appendChild(directionOfTravel);
-//     directionOfTravel.scrollIntoView({
-//       behavior: "smooth",
-//       block: "end",
-//       inline: "nearest",
-//     });
-//   }
-// }
-
-
-
 function deleteBooking(entry_id, direction) {
   let form = document.createElement("form");
   form.method = "post";
@@ -286,31 +132,6 @@ function redirect_to_booking() {
 
 }
 
-
-
-// function redirect_to_booking(entry_id, direction) {
-//   window.location.href = "/viewBookingRedirect";
-//   let form = document.createElement("form");
-//   form.method = "post";
-//   form.action = "viewBookingRedirect";
-//   let input = document.createElement("input");
-//   input.type = "hidden";
-//   input.name = "entry_id";
-//   input.value = entry_id;
-//   form.appendChild(input);
-//   input = document.createElement("input");
-//   input.type = "hidden";
-//   input.name = "direction";
-//   if (direction === 0) {
-//     input.value = "From Campus";
-//   } else {
-//     input.value = "To Campus";
-//   }
-//   form.appendChild(input);
-//   document.body.appendChild(form);
-//   form.submit();
-// }
-
 function logout_user() {
   let form = document.createElement("form");
   form.method = "post";
@@ -325,11 +146,30 @@ function toggleUserDropDown() {
 }
 
 // Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
-    }
-  }
+// window.onclick = function (e) {
+//   if (!e.target.matches('.dropbtn')) {
+//     var myDropdown = document.getElementById("myDropdown");
+//     if (myDropdown.classList.contains('show')) {
+//       myDropdown.classList.remove('show');
+//     }
+//   }
+// }
+
+
+/////////////////////////////////////////////// SIDEBAR 
+
+document.getElementById("openSidebar").onclick = function () {
+  document.getElementById("sidebar").style.width = "23rem";
+  document.getElementById("overlay").style.display = "block";
+}
+
+document.getElementById("closeSidebar").onclick = function () {
+  document.getElementById("sidebar").style.width = "0";
+  document.getElementById("overlay").style.display = "none";
+}
+
+// Close sidebar when clicking outside of it
+document.getElementById("overlay").onclick = function () {
+  document.getElementById("sidebar").style.width = "0";
+  document.getElementById("overlay").style.display = "none";
 }

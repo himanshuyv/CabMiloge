@@ -43,13 +43,21 @@
           </ul>
         </nav>
         <div class="dropdown">
-          <button class="dropbtn user-info" onclick="(toggleUserDropDown())">
-            {{user}}&nbsp;
-            <i class="fa fa-caret-down"></i>
+          <button class="dropbtn user-info"  id="openSidebar">
+            &nbsp;<i class="fa-solid fa-bars icon-bars"></i>
           </button>
-          <div class="dropdown-content" id="myDropdown">
-            <a href="#" onclick="logout_user()">Logout</a>
-          </div>
+          <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
+            <h2>{{ fname }}&nbsp;{{ lname }}</h2>
+            <hr>
+            
+            <a href="/index#filler" class="sidebar-options">Home</a>
+            <a href="/about" class="sidebar-options">About</a>
+            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View all bookings</a>
+            <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="#" class="sidebar-options" onclick="logout_user()">Logout</a>
+         </div>
+         <div id="overlay" class="overlay"></div>
         </div>
       </header>
     </div>
@@ -107,6 +115,12 @@
             <i class="fa-solid fa-check check-icon"></i>
           </span>
           <span class="item-text_batch">MS</span>
+        </li>
+        <li class="item_batch">
+          <span class="checkbox">
+            <i class="fa-solid fa-check check-icon"></i>
+          </span>
+          <span class="item-text_batch">Mtech</span>
         </li>
         <li class="item_batch">
           <span class="checkbox">
@@ -392,5 +406,24 @@
     <script src="./../static/bookings.js"></script>
     <script src="./../static/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+      document.getElementById("openSidebar").onclick = function () {
+        document.getElementById("sidebar").style.width = "23rem";
+        document.getElementById("overlay").style.display = "block";
+      }
+      
+      document.getElementById("closeSidebar").onclick = function () {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+      
+      // Close sidebar when clicking outside of it
+      document.getElementById("overlay").onclick = function () {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+
+    </script>
   </body>
 </html>

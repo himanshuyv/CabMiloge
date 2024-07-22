@@ -34,7 +34,7 @@
             </li>
           </ul>
         </nav>
-        <div class="dropdown">
+        <!--<div class="dropdown">
           <button class="dropbtn user-info" onclick="(toggleUserDropDown())">
             {{user}}&nbsp;
             <i class="fa fa-caret-down"></i>
@@ -42,6 +42,23 @@
           <div class="dropdown-content" id="myDropdown">
             <a href="#" onclick="logout_user()">Logout</a>
           </div>
+        </div>-->
+        <div class="dropdown">
+          <button class="dropbtn user-info"  id="openSidebar">
+            &nbsp;<i class="fa-solid fa-bars icon-bars"></i>
+          </button>
+          <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
+            <h2>{{ fname }}&nbsp;{{ lname }}</h2>
+            <hr>
+            
+            <a href="/index" class="sidebar-options">Home</a>
+            <a href="/about" class="sidebar-options">About</a>
+            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View all bookings</a>
+            <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="#" class="sidebar-options" onclick="logout_user()">Logout</a>
+         </div>
+         <div id="overlay" class="overlay"></div>
         </div>
       </header>
     </div>
@@ -215,10 +232,13 @@
         </div>
       </div>
     </footer>-->
-    <footer class="flex flex-col md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:10vh;">
 
-      <div class="text-xs h-auto">
-        <img alt="OSDG" loading="lazy" width="1192" height="484" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="./../static/OSDG_logo.png">
+
+
+    <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:10vh;">
+
+      <div class="text-xs h-auto" >
+        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="./../static/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
 
@@ -256,8 +276,10 @@
         </a>
       </div>
       <div class="h-auto flex flex-col justify-center text-center">
-        <p>© 2024</p><p>Open Source Developers Group</p>
-        <p>International Institute of Information</p><p>Technology, Hyderabad</p>
+        <p>© 2024</p>
+        <p style="margin-top:-1px;">Open Source Developers Group</p>
+        <p style="margin-top:-1px;">International Institute of Information</p>
+        <p style="margin-top:-1px;">Technology, Hyderabad</p>
       </div>
     </footer>
   </body>

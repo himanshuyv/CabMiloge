@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect,session,jsonify;
+from flask import Flask, render_template, request,redirect,session,jsonify,flash,url_for;
 import sqlite3
 from bcrypt import gensalt,hashpw,checkpw
 from cas import CASClient
@@ -11,13 +11,15 @@ from email.message import EmailMessage
 import datetime
 
 
+SECRET_KEY = os.getenv('SECRET_KEY',os.urandom(24))
+CAS_SERVER_URL = os.getenv('CAS_SERVER_URL', 'https://login.iiit.ac.in/cas/')
+SERVICE_URL = os.getenv('SERVICE_URL', 'http://localhost:5000/Get_Auth')
+REDIRECT_URL = os.getenv('REDIRECT_URL', 'http://localhost:5000/Get_Auth')
+
+
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-
-CAS_SERVER_URL="https://login.iiit.ac.in/cas/"
-SERVICE_URL="http://localhost:5000/Get_Auth"
-REDIRECT_URL="http://localhost:5000/Get_Auth"
+app.secret_key = SECRET_KEY
 
 cas_client = CASClient(
     version=3,
@@ -242,13 +244,13 @@ def view_booking():
             Batch = data[5]
             temp_tuple = (date, time, uid, Name, Gender, Batch)
             BookingEntries.append(temp_tuple)
-        cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
+        cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
         conn.commit()
         conn.close()
     except:
         print('Data not found')
-    return render_template('/bookingspage.html', available_options = BookingEntries, user=user[0] , entry_id=entry_id,  direction=direction)
+    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[2] , entry_id=entry_id,  direction=direction)
 
 @app.route('/index')
 def index():
@@ -287,9 +289,14 @@ def index():
             entry_id = item[0]
             temp_tuple = (date,time,station,entry_id)
             toCampus_entries.append(temp_tuple)
-        cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
+        cursor.execute( '''select * from Login where Uid = ?''', (uid,))
+
         user = cursor.fetchone()
-        return render_template('index.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, user=user[0])
+        
+        print('uid:',uid)
+        print('user:',user)
+        
+        return render_template('index.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, fname=user[0],lname=user[1])
     else:
         return redirect('/')
 
@@ -376,7 +383,7 @@ def view_booking_redirect():
             BookingEntries.append(temp_tuple)
         
         # print(BookingEntries)
-        cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
+        cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
         # print("\n\nuser:", user)
         conn.commit()
@@ -384,7 +391,7 @@ def view_booking_redirect():
     except Exception as e:
         print('An error occurred:', e)
         
-    return render_template('/bookingspage.html', available_options = BookingEntries, user=user[0])
+    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1] )
 
 
 
@@ -836,8 +843,7 @@ def apply_filters():
         print("Error:", e)
         return jsonify({'error': str(e)}), 500
     
-    
-    
+
 @app.route('/about')
 def about():
     token = session['token']
@@ -846,14 +852,75 @@ def about():
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     
+    conn = sqlite3.connect('cabmates.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
+    user = cursor.fetchone()
+
+    conn.close()
+    return render_template('about.html', fname=user[0], lname=user[1])
+
+
+@app.route('/editprofilepage')
+def editprofilepage():
     conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
-    cursor.execute( '''select fname from Login where Uid = ?''', (uid,))
-    user = cursor.fetchone()
+    token = session['token']
+    with open('key.key', 'rb') as file:
+        key = file.read()
+    fernet = Fernet(key)
+    uid = fernet.decrypt(token).decode()
     
-    return render_template('about.html', user=user[0])
+    
+    try:
+        cursor.execute( '''
+                        SELECT * FROM Login WHERE Uid = ?
+                        ''', (uid,))
+        user = cursor.fetchall()
+        
+        print(user)
+    except Exception as e:
+        print('An error occurred:', e)
+        
+    return render_template('/editprofilepage.html', user=user)
 
 
+@app.route('/update_userData', methods=['POST'])
+def update_userData():
+    try:
+        gender = request.form.get('gender')
+        batch = request.form.get('batch')
+        token = session['token']
+        with open('key.key', 'rb') as file:
+            key = file.read()
+        fernet = Fernet(key)
+        uid = fernet.decrypt(token).decode()
+        
+        conn = sqlite3.connect('cabmates.db')
+        cursor = conn.cursor()
+
+        cursor.execute('''
+        UPDATE Login
+        SET gender = ?, batch = ?
+        WHERE Uid = ?
+        ''', (gender, batch, uid))
+        
+        conn.commit()
+        
+        cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
+        user = cursor.fetchall()
+        conn.close()
+
+        # Redirect with a success message
+        return redirect(url_for('editprofilepage', update_message='success'))
+        
+    except Exception as e:
+        print('An error occurred:', e)
+        return redirect(url_for('editprofilepage', update_message='error'))
+    
+    
+
+    
 if __name__ == '__main__':
     key = Fernet.generate_key()
     with open('key.key', 'wb') as file:
