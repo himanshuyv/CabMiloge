@@ -11,13 +11,15 @@ from email.message import EmailMessage
 import datetime
 
 
+SECRET_KEY = os.getenv('SECRET_KEY',os.urandom(24))
+CAS_SERVER_URL = os.getenv('CAS_SERVER_URL', 'https://login.iiit.ac.in/cas/')
+SERVICE_URL = os.getenv('SERVICE_URL', 'http://localhost:5000/Get_Auth')
+REDIRECT_URL = os.getenv('REDIRECT_URL', 'http://localhost:5000/Get_Auth')
+
+
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-
-CAS_SERVER_URL="https://login.iiit.ac.in/cas/"
-SERVICE_URL="http://localhost:5000/Get_Auth"
-REDIRECT_URL="http://localhost:5000/Get_Auth"
+app.secret_key = SECRET_KEY
 
 cas_client = CASClient(
     version=3,
