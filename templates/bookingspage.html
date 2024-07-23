@@ -35,29 +35,36 @@
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="index#filler">Upcoming Travels</a>
+              <a href="/upcomingTravels">Upcoming Trips</a>
             </li>
             <li class="nav-item">
-              <a href="index#AddNewTravel">Add New trip</a>
+              <a href="/index">Add New Trip</a>
             </li>
           </ul>
         </nav>
         <div class="dropdown">
-          <button class="dropbtn user-info"  id="openSidebar">
+          <button class="dropbtn user-info" id="openSidebar">
             &nbsp;<i class="fa-solid fa-bars icon-bars"></i>
           </button>
           <div id="sidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" id="closeSidebar"
+              >&times;</a
+            >
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
-            <hr>
-            
-            <a href="/index#filler" class="sidebar-options">Home</a>
-            <a href="/about" class="sidebar-options">About</a>
-            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View all bookings</a>
+            <hr />
+
+            <a href="/index" class="sidebar-options">Home</a>
+            <a href="/upcomingTravels" class="sidebar-options"
+              >Upcoming Trips</a
+            >
+            <a href="#" onclick="redirect_to_booking()" class="sidebar-options"
+              >View All Trips</a
+            >
             <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
-            <a href="#" class="sidebar-options" onclick="logout_user()">Logout</a>
-         </div>
-         <div id="overlay" class="overlay"></div>
+            <a href="#" class="sidebar-options" onclick="logout_user()"
+              >Logout</a
+            >
+            <a href="/about" class="sidebar-options">About</a>
         </div>
       </header>
     </div>

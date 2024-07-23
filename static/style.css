@@ -13,13 +13,11 @@ body {
 .head-container {
     display: flex;
     justify-content: center;
-    /* background-color: yellow; */
 }
 
 .main-header {
     position: fixed;
     z-index: 100;
-    /* background-color: red; */
     background-color: #E5E0FF;
     width: 100%;
     color: black;
@@ -28,14 +26,6 @@ body {
     align-items: center;
 }
 
-.filler {
-    margin-top: -20vh;
-    z-index: -10;
-    height: 25vh;
-    width: 100%;
-    background-color: transparent;
-    float: right;
-}
 
 .logo {
     padding: 0.3rem;
@@ -133,20 +123,24 @@ body {
 .flex-container {
     position: relative;
     top: 6rem;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: center;
     justify-content: space-between;
 }
 
 .card {
-    min-height: fit-content;
     width: 100%;
 }
 
-.upcoming-travels img {
-    width: 70%;
+.card h1 {
+    margin-left: 2%;
+    font-size: 350%;
+    color: #4b68dbff;
+}
+
+.card img {
+    width: 65%;
     float: right;
 }
 
@@ -158,17 +152,12 @@ body {
     padding: 2%;
 }
 
-.card h1 {
-    margin-left: 2%;
-    font-size: 4em;
-    color: #4b68dbff;
-}
 
 .travel-type-heading {
     clear: both;
     margin-top: 2%;
     margin-left: 4%;
-    font-size: 3em;
+    font-size: 300%;
     color: #4b68dbff;
 }
 
@@ -221,51 +210,22 @@ body {
     cursor: pointer;
 }
 
-
-.add-new-journey img {
-    width: 70%;
-    float: left;
-}
-
-.add-new-journey {
-    margin-top: 5%;
-}
-
 .add-new-journey a {
     cursor: pointer;
 }
 
-
-/* button {
-    background-color: #3498db;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 2%;
-}
-
-button:hover {
-    background-color: #2980b9;
-} */
-
 .arrival-departure-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 25%;
-    height: 60vh;
+    height: 50vh;
 }
 
 .arrival-departure {
     color: #ffffff;
     padding: 10px 20px;
-    font-size: 42px;
-    width: 15rem;
-    height: 15rem;
     box-shadow: 5px 5px 25px #a696f9ff;
     border-radius: 25%;
     cursor: pointer;
@@ -273,39 +233,51 @@ button:hover {
 }
 
 .image-container {
-    position: relative;
-    text-align: center;
-}
-
-.image-container>div {
-    width: 100%;
-    color: #4b68dbff;
-    font-size: 2rem;
-    padding: 10px;
-}
-
-.from-to-heading {
-    padding: 0;
-    margin: 0;
-}
-
-.card .form-container {
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    gap: 10%;
 }
 
-.card form {
+.image-container>img {
+    height: 20vh;
+    width: 20vh;
+    cursor: pointer;
+}
+
+.image-container>p{
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    color: #4b68dbff;
+    text-align: center;
+}
+
+
+.form-div{
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 20px;
 }
 
-.card label {
+.from-to-heading{
+    margin: 0;
+    padding: 0;
+}
+
+.form-div>form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-div>form {
     font-size: 1.2em;
     color: #4b68dbff;
+    padding: 2.5vh;
 }
 
 .card select,
@@ -329,83 +301,14 @@ button:hover {
     background-color: #2980b9;
 }
 
-.booking-container {
-    clear: left;
-    height: auto;
-    width: 100%;
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: center;
-    gap: 2%;
-}
-
-.booking-card {
-    background-color: #a696f9ff;
-    width: 60%;
-    height: auto;
-    min-width: 500px;
-    border: solid;
-    border-width: 0px;
-    margin: 1%;
-    border-radius: 15px;
-}
-
-.booking-card-content {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.booking-card-content-left {
-    padding: 2%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: start;
-}
-
-.booking-card-content-right {
-    float: right;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: end;
-}
-
-
-
-
-
-
-
-
-
-
-.base-container {
-    overflow-y: hidden;
-    display: flex;
-    margin-top: 10vh;
-    justify-content: center;
-    flex-direction: row;
-    background-color: rgb(137, 114, 254);
-    /* background-color: #D0A2F7; */
-}
-
 .base-container>div {
     position: relative;
     padding: 50px;
     font-size: 18px;
-    /* top: 6rem; */
     background-color: transparent;
-    /* width: 100%; */
     flex-wrap: wrap;
     color: #333;
-    /* display: flex; */
-    /* flex-direction: column-reverse; */
     justify-content: space-between;
-    /* gap: 30px; */
     align-items: flex-end;
     justify-content: center;
     align-items: center;
@@ -416,15 +319,12 @@ button:hover {
     height: 20vh;
     width: 40%;
     margin-top: 1%;
-    /* margin-left: -70%; */
     background-color: transparent;
 }
 
 .logo_footer>img {
     display: flex;
-    /* height: 20vh; */
     width: 40%;
-    /* margin-left: -70%; */
     background-color: transparent;
     margin-top: -15%;
     margin-left: -35%;
@@ -434,27 +334,8 @@ button:hover {
 .footer_links {
     display: flex;
     width: 60%;
-    /* float: left; */
     background-color: transparent;
-    /* justify-content: space-evenly; */
-    /* align-items: left; */
-    /* gap: 40px; */
 }
-
-/* .footer_links>a { */
-
-/* float: right; */
-/* background-color: transparent; */
-/* justify-content: space-evenly; */
-/* flex-direction: column-reverse; */
-/* align-items: right; */
-/* margin-right: 2vw; */
-/* width: 50px; */
-/* gap: 40px; */
-/* }  */
-
-
-
 
 .osdg {
     display: flex;
@@ -463,8 +344,6 @@ button:hover {
     display: flex;
     width: 20%;
     float: right;
-
-    /* justify-content: space-evenly; */
 }
 
 
@@ -489,8 +368,6 @@ button:hover {
     width: 100px;
     margin-top: -37%;
     float: right;
-    /* margin-left: %; */
-
 }
 
 .osdg_down>span {
@@ -499,87 +376,19 @@ button:hover {
     float: left;
 }
 
-/* 
-
-.osdg > a{
-    justify-content: left;
-    align-items: center;
-    float: right;
-    margin-top: 10%;
-} */
-
-@media screen and (max-width: 768px) {
-    .base-container {
-        /* overflow-y: hidden; */
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    .logo_footer {
-        height: 30vh;
-        width: 100%;
-    }
-
-    .logo_footer>img {
-        /* justify-content: space-between; */
-        /* gap: 30px; */
-        /* align-items: flex-end; */
-        float: left;
-        /* justify-content: center; */
-        align-items: center;
-        width: 50vw;
-        height: 20vh;
-        /* margin-left: 55%; */
-
-    }
-
-    .osdg {
-        display: flex;
-        flex-direction: column;
-        height: 10vh;
-        width: 100%;
-        float: right;
-        justify-content: space-evenly;
-    }
-
-    .osdg_down>img {
-        margin-right: 48%;
-        width: 25%;
-        margin-top: -5%;
-        float: right;
-        /* margin-left: %; */
-
-    }
-
-    .osdg_down>span {
-        margin-top: 10%;
-        margin-right: 25%;
-        float: right;
-    }
-
-    .footer_links {
-        width: 100%;
-        background-color: #2980b9;
-        /* justify-content: center; */
-        align-items: right;
-    }
-
-    .footer_links>a {
-        width: 100%;
-        background-color: #2980b9;
-        /* justify-content: center; */
-        /* align-items: right; */
-        float: left;
-    }
-}
-
-
-
-
-
 
 /* Media Queries */
 @media screen and (max-width: 768px) {
+
+    .card h1 {
+        font-size: 250%;
+    }
+
+    .card img {
+        width: 50%;
+        float: right;
+    }
+
     .main-nav li {
         margin-right: 10px;
         font-size: 1rem;
@@ -607,14 +416,82 @@ button:hover {
         min-width: auto;
     }
 
-    .arrival-departure {
-        font-size: 30px;
-        width: 10rem;
-        height: 10rem;
+    .arrival-departure-container {
+        display: flex;
+        flex-direction: column;
+        margin: 5vh;
+    }
+
+    .image-container>img {
+        height: 10vh;
+        width: 10vh;
+    }
+
+    .base-container {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .logo_footer {
+        height: 30vh;
+        width: 100%;
+    }
+
+    .logo_footer>img {
+        float: left;
+        align-items: center;
+        width: 50vw;
+        height: 20vh;
+    }
+
+    .osdg {
+        display: flex;
+        flex-direction: column;
+        height: 10vh;
+        width: 100%;
+        float: right;
+        justify-content: space-evenly;
+    }
+
+    .osdg_down>img {
+        margin-right: 48%;
+        width: 25%;
+        margin-top: -5%;
+        float: right;
+    }
+
+    .osdg_down>span {
+        margin-top: 10%;
+        margin-right: 25%;
+        float: right;
+    }
+
+    .footer_links {
+        width: 100%;
+        background-color: #2980b9;
+        align-items: right;
+    }
+
+    .footer_links>a {
+        width: 100%;
+        background-color: #2980b9;
+        float: left;
     }
 }
 
 @media screen and (max-width: 500px) {
+    .flex-container {
+        margin-top: 2.5vh;
+    }
+    .card h1 {
+        font-size: 220%;
+    }
+
+    .card img {
+        width: 50%;
+        float: right;
+    }
+
     .main-nav {
         display: none;
     }
@@ -655,12 +532,6 @@ button:hover {
         flex-direction: column;
         align-items: center;
         gap: 20px;
-    }
-
-    .arrival-departure {
-        width: 8rem;
-        height: 8rem;
-        font-size: 24px;
     }
 }
 

@@ -252,8 +252,8 @@ def view_booking():
         print('Data not found')
     return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[2] , entry_id=entry_id,  direction=direction)
 
-@app.route('/index')
-def index():
+@app.route('/upcomingTravels')
+def upcomingTravels():
     conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
     token = session['token']
@@ -296,9 +296,28 @@ def index():
         print('uid:',uid)
         print('user:',user)
         
-        return render_template('index.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, fname=user[0],lname=user[1])
+        return render_template('upcomingtravels.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, fname=user[0],lname=user[1])
     else:
         return redirect('/')
+    
+@app.route('/index')
+def index():
+    conn = sqlite3.connect('cabmates.db') 
+    cursor = conn.cursor()
+    token = session['token']
+    with open('key.key', 'rb') as file:
+        key = file.read()
+    fernet = Fernet(key)
+    uid = fernet.decrypt(token).decode()
+    if(session):
+        cursor.execute( '''select * from Login where Uid = ?''', (uid,))
+        user = cursor.fetchone()
+        print('uid:',uid)
+        print('user:',user)
+        return render_template('index.html', fname=user[0],lname=user[1])
+    else:
+        return redirect('/')
+
 
 @app.route('/logout_user', methods=['POST', 'GET'])
 def logout_user():
