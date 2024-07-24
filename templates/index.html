@@ -46,19 +46,16 @@
             <hr />
 
             <a href="/index" class="sidebar-options">Home</a>
-            <a href="/upcomingTravels" class="sidebar-options"
-              >Upcoming Trips</a
-            >
-            <a href="#" onclick="redirect_to_booking()" class="sidebar-options"
-              >View All Trips</a
-            >
+            <a href="/about" class="sidebar-options">About</a>
+            <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
+            <a href="/index" class="sidebar-options">Add Trip</a>
+            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
             <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
             <a href="#" class="sidebar-options" onclick="logout_user()"
               >Logout</a
             >
-            <a href="/about" class="sidebar-options">About</a>
-          </div>
-          <div id="overlay" class="overlay"></div>
+        </div>
+        <div id="overlay" class="overlay"></div>
         </div>
       </header>
     </div>
@@ -70,7 +67,7 @@
           src="./../static/add-new-journey.svg"
           alt="add-new"
         />
-        <h1>
+    <h1 style="margin-left:6vw; float:left;">
           Add New <br />
           Trip
         </h1>
@@ -100,7 +97,7 @@
 
     <footer
       class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white"
-      style="margin-top: 10vh"
+      style="margin-top: 30vh"
     >
       <div class="text-xs h-auto">
         <img

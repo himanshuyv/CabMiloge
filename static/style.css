@@ -214,6 +214,12 @@ body {
     cursor: pointer;
 }
 
+.add-new-journey h1 {
+    margin-left: 2vw;
+}
+
+
+
 .arrival-departure-container {
     position: relative;
     display: flex;
@@ -246,7 +252,7 @@ body {
     cursor: pointer;
 }
 
-.image-container>p{
+.image-container>p {
     height: 100%;
     width: 100%;
     font-size: 2rem;
@@ -255,13 +261,13 @@ body {
 }
 
 
-.form-div{
+.form-div {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.from-to-heading{
+.from-to-heading {
     margin: 0;
     padding: 0;
 }
@@ -483,6 +489,7 @@ body {
     .flex-container {
         margin-top: 2.5vh;
     }
+
     .card h1 {
         font-size: 220%;
     }
@@ -540,13 +547,25 @@ body {
 
 /* The booking page css starts */
 
+.filter-div {
+    width: 100%;
+    min-height: 20vh;
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 13vh;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 
 .container_dropdown {
     position: relative;
     max-width: 220px;
     width: 100%;
     float: inline-start;
-    margin: 120px 30px;
+    margin: 10px 30px;
+    /* background-color: #3498db; */
 }
 
 
@@ -934,12 +953,12 @@ body {
 }
 
 .list-items {
-    /* position: absolute; */
+    /* position: relative; */
     margin-top: 15px;
     border-radius: 8px;
     padding: 16px;
     width: 190px;
-    z-index: 1;
+    z-index: 4;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     display: none;
@@ -1015,11 +1034,11 @@ body {
     z-index: 1;
     color: #333;
     float: right;
-    font-size: 0.8vw;
+    font-size: 1rem;
     border: none;
     height: 50px;
     /* float: inline-start; */
-    margin: 120px 30px;
+    margin: 10px 30px;
     padding: 0 16px;
     border-radius: 8px;
     cursor: pointer;
@@ -1028,6 +1047,26 @@ body {
 }
 
 
+
+.clear_button {
+    position: relative;
+    width: 120px;
+    max-width: 300px;
+    /* width: 100%; */
+    z-index: 1;
+    color: #333;
+    float: right;
+    font-size: 1rem;
+    border: none;
+    height: 50px;
+    /* float: inline-start; */
+    margin: 10px 10px;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 
 /* Webkit (Chrome, Safari, etc.) specific scrollbar styles */
 .list-items::-webkit-scrollbar {
@@ -1065,86 +1104,6 @@ body {
     cursor: pointer;
 }
 
-
-/* Media queries for responsive styles */
-
-@media only screen and (max-width: 768px) {
-    .container_dropdown {
-        /* margin-top: 10px; */
-        margin: 30px auto;
-        /* Center the container on smaller screens */
-        position: relative;
-    }
-
-    .select-btn_batch,
-    .select-btn_destination,
-    .select-btn_start,
-    .select-btn_time,
-    .submit_button {
-        margin-top: 80px;
-        margin-left: 25%;
-        width: 60vw;
-        font-size: 16px;
-        /* Adjust font size for smaller screens */
-        position: relative;
-    }
-
-    .list-items {
-        /* Adjust width for list items on smaller screens */
-        width: calc(100% - 32px);
-        /* Subtract container padding */
-        margin-left: 25%;
-        width: 60vw;
-        position: relative;
-    }
-
-    .mail_btn {
-        width: 30vw;
-        /* Adjust width for smaller screens */
-        margin-right: 2vw;
-        /* Adjust margin for smaller screens */
-        font-size: 1.2rem;
-        /* Use rem for better font size scaling */
-    }
-
-    .mail_btn:hover {
-        background-color: #E5E0FF;
-        color: #6e93f7;
-        font-size: 1.2rem;
-        /* Use rem for better font size scaling */
-    }
-
-    .submit_button {
-        width: 68vw;
-        margin-right: 19%;
-
-    }
-}
-
-
-/* Media query for smaller screens (e.g., tablets, mobiles) */
-@media only screen and (max-width: 768px) {
-    .booking-card {
-        width: 100%;
-        /* Set full width on smaller screens */
-    }
-
-    .booking-card-content {
-        flex-direction: column;
-        /* Stack elements vertically */
-    }
-
-    .booking-card-content-left,
-    .booking-card-content-right {
-        padding: 5%;
-        /* Adjust padding for smaller screens */
-        justify-content: flex-start;
-        /* Align content to the left */
-        align-items: flex-start;
-        /* Align items to the top */
-    }
-}
-
 .date_filter {
     display: flex;
     height: 50px;
@@ -1175,6 +1134,126 @@ body {
 }
 
 
+
+
+/* Media queries for responsive styles */
+
+@media only screen and (max-width: 930px) {
+    .container_dropdown {
+        /* margin-top: 10px; */
+        /* margin: 30px auto; */
+        /* Center the container on smaller screens */
+        position: relative;
+    }
+
+    .select-btn_batch,
+    .select-btn_destination,
+    .select-btn_start,
+    .select-btn_time,
+    .submit_button .clear_button {
+        margin-top: 10px;
+        width: 60vw;
+        font-size: 16px;
+        /* Adjust font size for smaller screens */
+        position: relative;
+    }
+
+    .list-items {
+        /* Adjust width for list items on smaller screens */
+        width: calc(100% - 32px);
+        /* Subtract container padding */
+        /* margin-left: 25%; */
+        width: 60vw;
+        position: relative;
+    }
+
+    .mail_btn {
+        width: 30vw;
+        /* Adjust width for smaller screens */
+        margin-right: 2vw;
+        /* Adjust margin for smaller screens */
+        font-size: 1.2rem;
+        /* Use rem for better font size scaling */
+    }
+
+    .mail_btn:hover {
+        background-color: #E5E0FF;
+        color: #6e93f7;
+        font-size: 1.2rem;
+        /* Use rem for better font size scaling */
+    }
+
+    .submit_button {
+        width: 68vw;
+        margin-right: 19%;
+        margin-top: 10px;
+
+    }
+
+    .clear_button {
+        width: 68vw;
+        margin-right: 19%;
+        margin-left: 30px;
+        margin-top: 10px;
+
+    }
+
+    .filter-div {
+        /* background-color: bisque; */
+        flex-direction: column;
+        margin-top: 17vh;
+        justify-content: center;
+    }
+
+    .date_filter {
+        margin-top: 10px;
+
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    .date_filter {
+        margin-left: 0%;
+
+    }
+}
+
+@media only screen and (max-width: 638px) {
+    .date_filter {
+        margin-left: 0%;
+
+    }
+}
+
+
+
+
+
+/* Media query for smaller screens (e.g., tablets, mobiles) */
+@media only screen and (max-width: 768px) {
+    .booking-card {
+        width: 100%;
+        /* Set full width on smaller screens */
+    }
+
+    .booking-card-content {
+        flex-direction: column;
+        /* Stack elements vertically */
+    }
+
+    .booking-card-content-left,
+    .booking-card-content-right {
+        padding: 5%;
+        /* Adjust padding for smaller screens */
+        justify-content: flex-start;
+        /* Align content to the left */
+        align-items: flex-start;
+        /* Align items to the top */
+    }
+}
+
+
+
 .no_plan_msg {
     color: #333;
     font-size: 1.5rem;
@@ -1183,27 +1262,9 @@ body {
     text-align: justify;
 }
 
-
-@media only screen and (max-width: 768px) {
-    .date_filter {
-        height: 50px;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 1;
-        padding: 0 16px;
-        border-radius: 8px;
-        margin-left: 25%;
-        border: none;
-        width: 60vw;
-        margin-top: 80px;
-        background-color: #fff;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-
-    }
-}
-
 .about {
-    background-color: rgb(180, 138, 213);
+    background-color: rgba(177, 123, 248, 0.6);
+    /* background-color: rgb(180, 138, 213); */
     min-height: 50vh;
     width: 80%;
     border: solid;
@@ -1244,7 +1305,8 @@ body {
 }
 
 .howTouse {
-    background-color: rgb(180, 138, 213);
+    background-color: rgba(177, 123, 248, 0.6);
+    /* background-color: rgb(180, 138, 213); */
     min-height: 50vh;
     width: 80%;
     border: solid;
@@ -1407,7 +1469,7 @@ a {
 
     .bg-slate-700 {
         --tw-bg-opacity: 1;
-        background-color: #D0A2F7;
+        background-color: rgba(177, 123, 248, 0.6);
     }
 
     .justify-between {
@@ -1441,7 +1503,6 @@ a {
         flex-direction: column;
     }
 }
-
 
 
 .sidebar {
@@ -1514,8 +1575,6 @@ a {
 }
 
 /* 
-
-
 .sidebar a:hover {
     color: rgb(223, 219, 219);
     background-color: rgba(241, 241, 241, 0.3);
@@ -1546,7 +1605,6 @@ a {
     z-index: 0;
     /* Lower z-index to place it below the sidebar */
 }
-
 
 
 
@@ -1614,6 +1672,7 @@ a {
 }
 
 .container-bottom {
+    margin-top: 1rem;
     width: 100%;
     min-height: 40vh;
     background-color: transparent;
@@ -1730,6 +1789,7 @@ a {
 
 .update-btn {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     margin-left: 6rem;
     /* justify-content: center; */
