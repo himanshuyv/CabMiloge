@@ -1,173 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../static/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
     <script src="./../static/script.js" defer></script>
     <title>CabMiloge</title>
-</head>
-<style>
-body{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Montserrat', sans-serif;
-    background-image: url("../static/login-background.svg"); 
-    background-size:cover;
-    color:#fff;
-}
+  </head>
+  <style>
+    body {
+      font-family: "Montserrat", sans-serif;
+      background-image: url("../static/login-background.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: #fff;
+    }
 
-h1{
-    font-weight:900
-}
-.container{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size: 16px;
-    flex-direction: column;
-}
-.message-box{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-.message-box p{
-    font-size:15px;
-    color:red;
-}
+    .container {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        flex-direction: column;
+    }
 
-.box{
-    width:20%;
-    height:25rem;
-    min-width: 350px;
-    font-size:1rem;
-    padding:2rem;
-    background-color: rgba(0,0,0,0.55);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    border-radius: 30px;
-}
+    h1 {
+      font-weight: 900;
+    }
 
-.box h1{
-    text-align: center;
-}
-.user{
-    margin-top: 4rem;
-}
+    .message-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.fas{
-    position: absolute;
-}
+    .message-box p {
+      font-size: 15px;
+      color: red;
+    }
 
-input{
-    width:90%;
-    margin-bottom:25px;
-    padding:0 1rem 0.5px;
-    font-size:1rem;
-    border:none;
-    border-bottom: 1px solid rgba(255,255,255,0.55);
-    outline:none;
-    background-color: rgba(0,0,0,0);
-    color: #fff;
-}
+    .box {
+      width: 15vh;
+      height: 40vh;
+      min-width: 300px;
+      font-size: 1rem;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.55);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 30px;
+      margin-top: 10vh;
+    }
 
-input:focus{
-    border-bottom: 1px solid #eeeeee;
-}
+    .box h1 {
+      text-align: center;
+    }
+    .user {
+      margin-top: 4rem;
+    }
 
-.reset-password{
-    color:#ff7f50;
-    text-align:right;
-    margin-top:0px;
-    font-size:12px;
-}
+    .fas {
+      position: absolute;
+    }
 
-.login-btn{
-    margin-top:2rem;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-}
+    input {
+      width: 90%;
+      margin-bottom: 25px;
+      padding: 0 1rem 0.5px;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      outline: none;
+      background-color: rgba(0, 0, 0, 0);
+      color: #fff;
+    }
 
-.btn{
-    display:block;
-    width:80%;
-    padding:15px;
-    background-color: #eeeeee;
-    color:#2e1903;
-    border:none;
-    border-radius:20px;
-    font-size:20px;
-    font-weight:600;
-    opacity:0.8;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-}
+    input:focus {
+      border-bottom: 1px solid #eeeeee;
+    }
 
-.btn:hover{
-    background-color: #d3cfeb;
-    /* opacity:1; */
-}
+    .reset-password {
+      color: #ff7f50;
+      text-align: right;
+      margin-top: 0px;
+      font-size: 12px;
+    }
 
-.signup span{
-    color:#7fb8e6;
-}
+    .login-btn {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 
-.signup span::hover{
-    color:#216ca9
-}
+    .btn {
+      display: block;
+      width: 80%;
+      padding: 15px;
+      background-color: #eeeeee;
+      color: #2e1903;
+      border: none;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      opacity: 0.8;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 
-a{
-    text-decoration: none;
-}
-</style>
-<body>
+    .btn:hover {
+      background-color: #d3cfeb;
+    }
+
+    .signup span {
+      color: #7fb8e6;
+    }
+
+    .signup span::hover {
+      color: #216ca9;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+  <body>
     <div class="head-container">
-        <header class="main-header">
-            <div class="logo unselectable"><img src="/../static/logo.svg" alt="logo">
-            </div>
-            <div class="user-info">
-                <div class="profile-dropdown">
-                </div>
-            </div>
-        </header>
+      <header class="main-header">
+        <div class="logo unselectable">
+          <img src="/../static/logo.svg" alt="logo" />
+        </div>
+        <div class="user-info">
+          <div class="profile-dropdown"></div>
+        </div>
+      </header>
     </div>
     <div class="container">
-        <div class="box">
+      <div class="box">
         <h1>Log In Using IIIT Credentials</h1>
         <div class="user">
-        <form method="post" action="/Get_Auth">
+          <form method="post" action="/Get_Auth">
             <i class="fas fa-user"></i>
-            <!-- <input type="text" name="username" id="username" placeholder="Full Name">
-            <i class="fas fa-envelope"></i> -->
-            <div class="message-box"> 
-                {% if message %}
-                <p>
-                  {{ message }}
-                </p>
-                {% else %}
-                <p style="display: none"></p>
-                {% endif %}
+            <div class="message-box">
+              {% if message %}
+              <p>{{ message }}</p>
+              {% else %}
+              <p style="display: none"></p>
+              {% endif %}
             </div>
             <div class="login-btn">
-              <button class="btn" value="Submit"> <a>Login</a></button>
+              <button class="btn" value="Submit"><a>Login</a></button>
             </div>
-        </form>
-            <!-- <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->
-          </div>
+          </form>
         </div>
       </div>
-
-    <div class="head-container">
-        <footer>
-            &copy; copyright
-        </footer>
     </div>
-</body>
+  </body>
 </html>

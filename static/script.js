@@ -24,13 +24,12 @@ function switchBookingType(direction) {
 function sendDataForBooking(direction) {
   directionOfTravel = document.createElement("div");
   directionOfTravel.classList.add("card");
+  directionOfTravel.classList.add("form-div");
   if (direction === "From Campus" || direction === "To Campus") {
     let heading = document.createElement("h1");
     heading.textContent = direction;
     heading.classList.add("from-to-heading");
     directionOfTravel.appendChild(heading);
-    let formContainer = document.createElement("div");
-    formContainer.classList.add("form-container");
     let form = document.createElement("form");
     form.method = "post";
     form.action = "getDataForBooking";
@@ -89,9 +88,8 @@ function sendDataForBooking(direction) {
     form.appendChild(dateLabel);
     form.appendChild(timeLabel);
     form.appendChild(submitButton);
-
-    formContainer.appendChild(form);
-    directionOfTravel.appendChild(formContainer);
+    
+    directionOfTravel.appendChild(form);
   }
   let flexContainer = document.querySelector(".flex-container");
   flexContainer.appendChild(directionOfTravel);

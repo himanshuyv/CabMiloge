@@ -35,362 +35,365 @@
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="index#filler">Upcoming Travels</a>
+              <a href="/upcomingTravels">Upcoming Travels</a>
             </li>
             <li class="nav-item">
-              <a href="index#AddNewTravel">Add New trip</a>
+              <a href="/index">Add New trip</a>
             </li>
           </ul>
         </nav>
         <div class="dropdown">
-          <button class="dropbtn user-info"  id="openSidebar">
+          <button class="dropbtn user-info" id="openSidebar">
             &nbsp;<i class="fa-solid fa-bars icon-bars"></i>
           </button>
           <div id="sidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" id="closeSidebar">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" id="closeSidebar"
+              >&times;</a
+            >
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
-            <hr>
-            
-            <a href="/index#filler" class="sidebar-options">Home</a>
-            <a href="/about" class="sidebar-options">About</a>
-            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View all bookings</a>
+            <hr />
+
+            <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
+            <a href="/index" class="sidebar-options">Add Trip</a>
+            <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
             <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
-            <a href="#" class="sidebar-options" onclick="logout_user()">Logout</a>
-         </div>
-         <div id="overlay" class="overlay"></div>
+            <a href="/about" class="sidebar-options">About</a>
+            <a href="#" class="sidebar-options" onclick="logout_user()"
+              >Logout</a
+            >
+        </div>
+        <div id="overlay" class="overlay"></div>
         </div>
       </header>
     </div>
 
     <!-- NOW THE DROPDOWN STARTS -->
+    <div class="filter-div">
+        <!--THIS IS BATCH DROPDOWN-->
+        <div class="container_dropdown">
+          <div class="select-btn_batch" id="batch">
+            <span class="btn-text_batch">Select batch</span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
 
-    <!--THIS IS BATCH DROPDOWN-->
-    <div class="container_dropdown">
-      <div class="select-btn_batch" id="batch">
-        <span class="btn-text_batch">Select batch</span>
-        <span class="arrow-dwn">
-          <i class="fa-solid fa-chevron-down"></i>
-        </span>
-      </div>
+          <ul class="list-items">
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">UG1</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">UG2</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">UG3</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">UG4</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">UG5</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">PG1</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">PG2</span>
+            </li>
+            <li class="item_batch">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_batch">PhD</span>
+            </li>
+          </ul>
+        </div>
 
-      <ul class="list-items">
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">All</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">UG1</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">UG2</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">UG3</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">UG4</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">UG5+</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">MS</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">Mtech</span>
-        </li>
-        <li class="item_batch">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_batch">PHD</span>
-        </li>
-      </ul>
+        <!--THIS IS DESTINATION DROPDOWN-->
+        <div class="container_dropdown">
+          <div class="select-btn_destination" id="destination">
+            <span class="btn-text_destination">Select Destination</span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+
+          <ul class="list-items">
+            <li class="item_destination">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_destination">IIIT Campus</span>
+            </li>
+            <li class="item_destination">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_destination"
+                >Rajiv Gandhi International Airport</span
+              >
+            </li>
+            <li class="item_destination">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_destination">Secunderabad Junction</span>
+            </li>
+            <li class="item_destination">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_destination">Kacheguda Railway Station</span>
+            </li>
+          </ul>
+        </div>
+
+        <!--THIS IS STARTING POINT DROPDOWN-->
+        <div class="container_dropdown">
+          <div class="select-btn_start" id="start">
+            <span class="btn-text_start">Select Starting Point</span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+
+          <ul class="list-items">
+            <li class="item_start">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_start">IIIT Campus</span>
+            </li>
+            <li class="item_start">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_start"
+                >Rajiv Gandhi International Airport</span
+              >
+            </li>
+            <li class="item_start">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_start">Secunderabad Junction</span>
+            </li>
+            <li class="item_start">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_start">Kacheguda Railway Station</span>
+            </li>
+          </ul>
+        </div>
+
+        <!--THIS IS TIME DROPDOWN-->
+        <div class="container_dropdown">
+          <div class="select-btn_time" id="time">
+            <span class="btn-text_time">Select Time</span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+
+          <ul class="list-items">
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">0-1</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">1-2</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">2-3</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">3-4</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">4-5</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">5-6</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">6-7</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">7-8</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">8-9</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">9-10</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">10-11</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">11-12</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">12-13</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">13-14</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">14-15</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">15-16</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">16-17</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">17-18</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">18-19</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">19-20</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">20-21</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">21-22</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">22-23</span>
+            </li>
+            <li class="item_time">
+              <span class="checkbox">
+                <i class="fa-solid fa-check check-icon"></i>
+              </span>
+              <span class="item-text_time">23-0</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="container_dropdown">
+          <input type="date" class="date_filter" id="selectedDate"></input>
+        </div> 
+        <!-- CODE OF DROPDOWN ENDS HERE -->
+
+        <button type="submit" onclick="" class="submit_button">
+          Apply Filters
+        </button>
+        <button type="submit" onclick="clear_filter()" class="clear_button">
+          Clear Filters
+        </button>
+
     </div>
-
-    <!--THIS IS DESTINATION DROPDOWN-->
-    <div class="container_dropdown">
-      <div class="select-btn_destination" id="destination">
-        <span class="btn-text_destination">Select Destination</span>
-        <span class="arrow-dwn">
-          <i class="fa-solid fa-chevron-down"></i>
-        </span>
-      </div>
-
-      <ul class="list-items">
-        <li class="item_destination">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_destination">IIIT Campus</span>
-        </li>
-        <li class="item_destination">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_destination"
-            >Rajiv Gandhi International Airport</span
-          >
-        </li>
-        <li class="item_destination">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_destination">Secunderabad Junction</span>
-        </li>
-        <li class="item_destination">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_destination">Kacheguda Railway Station</span>
-        </li>
-      </ul>
-    </div>
-
-    <!--THIS IS STARTING POINT DROPDOWN-->
-    <div class="container_dropdown">
-      <div class="select-btn_start" id="start">
-        <span class="btn-text_start">Select Starting Point</span>
-        <span class="arrow-dwn">
-          <i class="fa-solid fa-chevron-down"></i>
-        </span>
-      </div>
-
-      <ul class="list-items">
-        <li class="item_start">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_start">IIIT Campus</span>
-        </li>
-        <li class="item_start">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_start"
-            >Rajiv Gandhi International Airport</span
-          >
-        </li>
-        <li class="item_start">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_start">Secunderabad Junction</span>
-        </li>
-        <li class="item_start">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_start">Kacheguda Railway Station</span>
-        </li>
-      </ul>
-    </div>
-
-    <!--THIS IS TIME DROPDOWN-->
-    <div class="container_dropdown">
-      <div class="select-btn_time" id="time">
-        <span class="btn-text_time">Select Time</span>
-        <span class="arrow-dwn">
-          <i class="fa-solid fa-chevron-down"></i>
-        </span>
-      </div>
-
-      <ul class="list-items">
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">0-1</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">1-2</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">2-3</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">3-4</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">4-5</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">5-6</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">6-7</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">7-8</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">8-9</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">9-10</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">10-11</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">11-12</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">12-13</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">13-14</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">14-15</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">15-16</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">16-17</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">17-18</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">18-19</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">19-20</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">20-21</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">21-22</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">22-23</span>
-        </li>
-        <li class="item_time">
-          <span class="checkbox">
-            <i class="fa-solid fa-check check-icon"></i>
-          </span>
-          <span class="item-text_time">23-0</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="container_dropdown">
-      <input type="date" class="date_filter" id="selectedDate"></input>
-    </div> 
-    <!-- CODE OF DROPDOWN ENDS HERE -->
-
-    <button type="submit" onclick="" class="submit_button">
-      Apply Filters
-    </button>
 
     <div class="booking-container">
       {% for entry in available_options %}
       <div class="booking-card">
-        <div class="booking-card-content">
           <div class="booking-card-content-left">
             <h3>Name: {{entry[3]}}</h3>
             <p>Batch: {{entry[5]}}</p>
             <p>Gender: {{entry[4]}}</p>
             <p>Email: {{entry[8]}}</p>
+            <p>Phone: {{entry[9]}}</p>
           </div>
           <div class="booking-card-content-right">
             <h3>From: {{entry[7]}}</h3>
             <h3>To: {{entry[6]}}</h3>
             <p>Time: {{entry[1]}}</p>
             <p>Date: {{entry[0]}}</p>
-            <!-- Add the button here -->
             <button
               class="mail_btn"
               onclick="sendEmail('{{ entry[8] }}', '{{ entry[6] }}', '{{ entry[1] }}', '{{entry[0]}}', '{{entry[3]}}')"
@@ -398,11 +401,10 @@
               Send Email
             </button>
           </div>
-        </div>
       </div>
       {% endfor %}
     </div>
-
+    
     <script src="./../static/bookings.js"></script>
     <script src="./../static/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
