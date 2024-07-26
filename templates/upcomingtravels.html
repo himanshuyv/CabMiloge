@@ -43,12 +43,11 @@
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
             <hr />
 
-            <a href="/index" class="sidebar-options">Home</a>
-            <a href="/about" class="sidebar-options">About</a>
             <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
             <a href="/index" class="sidebar-options">Add Trip</a>
             <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
             <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="/about" class="sidebar-options">About</a>
             <a href="#" class="sidebar-options" onclick="logout_user()"
               >Logout</a
             >
@@ -89,8 +88,8 @@
             </div>
           </div>
           {% endfor %} {% else %}
-          <p style="color: black; font-size: 1.5rem">
-            No card added for travel plan from campus
+          <p style="color: black; font-size: 1.5rem; padding-left: 2.5vh; padding-right: 2.5vh;">
+            No Trips added for travel plan from campus
           </p>
           {% endif %}
         </div>
@@ -115,8 +114,8 @@
             </div>
           </div>
           {% endfor %} {% else %}
-          <p style="color: black; font-size: 1.5rem">
-            No card added for travel plan to campus
+          <p style="color: black; font-size: 1.5rem; padding-left: 2.5vh; padding-right: 2.5vh;">
+            No Trips added for travel plan to campus
           </p>
           {% endif %}
         </div>

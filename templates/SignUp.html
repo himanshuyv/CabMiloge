@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,204 +13,229 @@
     <title>CabMiloge</title>
 </head>
 <style>
-body{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Montserrat', sans-serif;
-    background-image: url("../static/login-background.svg"); 
-    background-size:cover;
-    color:#fff;
-}
-
-h1{
-    font-weight:900
-}
-.container{
-    height:70vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size: 16px;
-    flex-direction: column;
-}
-
-.message-box{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.message-box p{
-    font-size:15px;
-    color:red;
-}
-
-.box{
-    width:20%;
-    min-height: fit-content;
-    height:40vh;
-    min-width: 300px;
-    font-size:1rem;
-    padding:2rem;
-    background-color: rgba(0,0,0,0.6);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    border-radius: 30px;
-}
-
-.box h1{
-    text-align: center;
-}
-.user{
-    margin-top: 4rem;
-}
-
-.fas{
-    position: absolute;
-}
-
-input{
-    width:90%;
-    margin-bottom:25px;
-    padding:0 1rem 0.5px;
-    font-size:1rem;
-    border:none;
-    border-bottom: 1px solid rgba(255,255,255,0.55);
-    outline:none;
-    background-color: rgba(0,0,0,0);
-    color: #fff;
-}
-
-input:focus{
-    border-bottom: 1px solid #eeeeee;
-}
-
-.reset-password{
-    color:#ff7f50;
-    text-align:right;
-    margin-top:0px;
-    font-size:12px;
-}
-
-.login-btn{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-}
-
-.btn{
-    display:block;
-    width:80%;
-    padding:15px;
-    background-color: #eeeeee;
-    color:#2e1903;
-    border:none;
-    border-radius:20px;
-    font-size:20px;
-    font-weight:600;
-    opacity:0.8;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.btn:hover{
-    background-color: #d3cfeb;
-    /* opacity:1; */
-}
-
-.signup span{
-    color:#7fb8e6;
-}
-
-.signup span::hover{
-    color:#3793df
-}
-
-a{
-    text-decoration: none;
-}
-
-select {
-    width: 100%;
-    margin-bottom: 25px;
-    padding: 0 30px 15px;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.55);;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0);
-    color:#bdbdbd;
-}
-
-select:focus {
-    border-bottom: 1px solid #eeeeee;
-    background-color: rgba(0,0,0,0.3);
-    color: white;
-}
-
-@media screen and (max-width: 768px) {
-    .box {
-        height: 30vh;
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+        background-image: url("../static/login-background.svg");
+        background-size: cover;
+        color: #fff;
     }
-}
+
+    h1 {
+        font-weight: 900;
+    }
+
+    .container {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5vh;
+        font-size: 16px;
+        flex-direction: column;
+    }
+
+    .message-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .message-box p {
+        font-size: 15px;
+        color: red;
+    }
+
+    .box {
+        width: 30%;
+        min-height: fit-content;
+        height: auto;
+        min-width: 300px;
+        font-size: 1rem;
+        padding: 2rem 2rem 2rem 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 30px;
+    }
+
+    .box h1 {
+        text-align: center;
+    }
+
+    .user {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-div {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-bottom: 25px;
+        margin-left: 0px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .fas {
+        position: absolute;
+        left: 10px;
+        font-size: 1.5rem;
+        pointer-events: none;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 0 1rem;
+        font-size: 1.2rem;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+        outline: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        padding-left: 2rem;
+    }
+
+    input::placeholder,
+    select option {
+        color: grey;
+        /* Updated color for placeholders and select options */
+    }
+
+    input:focus,
+    select:focus {
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    select {
+        cursor: pointer;
+        appearance: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: grey;
+        /* Updated color for select options */
+    }
+
+    select option {
+        color: #000;
+    }
+
+    .login-btn {
+        margin-top: 25px;
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn {
+        display: block;
+        width: 80%;
+        margin-left: 1.5rem;
+        padding: 15px;
+        background-color: #eeeeee;
+        color: #2e1903;
+        border: none;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: 600;
+        opacity: 0.8;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn:hover {
+        background-color: #d3cfeb;
+    }
+
+    .signup span {
+        color: #7fb8e6;
+    }
+
+    .signup span:hover {
+        color: #3793df;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        .box {
+            width: 50%;
+            padding: 1.5rem;
+        }
+
+        .input-div {
+            max-width: 100%;
+        }
+
+        .btn {
+            width: 90%;
+            padding: 12px;
+            font-size: 18px;
+        }
+    }
 </style>
+
 <body>
     <div class="head-container">
         <header class="main-header">
-            <div class="logo unselectable"><img src="/../static/logo.svg" alt="logo">
-            </div>
+            <div class="logo unselectable"><img src="/../static/logo.svg" alt="logo"></div>
             <div class="user-info">
-                <div class="profile-dropdown">
-                </div>
+                <div class="profile-dropdown"></div>
             </div>
         </header>
     </div>
     <div class="container">
         <div class="box">
-        <h1>Sign Up</h1>
-        <div class="user">
-        <form action="/Get_userData" method="post">
-            <input type="text" name="roll" id="roll" required readonly hidden value={{roll}}>
-            <input type="text" name="fname" id="fname" required readonly hidden value={{first_name}}>
-            <input type="text" name="lname" id="lname" requiredCurrent readonly hidden value={{last_name}}>
-            <input type="text" name="email" id="email" required readonly hidden value={{email}}>
-            <input type="text" name="uid" id="uid" required readonly hidden value={{uid}}>
-            <i class="fas fa-venus-mars"></i>
-            <select name="gender" id="gender" required>
-                <option value="" disabled selected>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
-            </select>
-            <!-- Batch Dropdown -->
-            <i class="fas fa-graduation-cap"></i>
-            <select name="batch" id="batch" required>
-                <option value="" disabled selected>Select Batch</option>
-                <option value="UG1">UG1</option>
-                <option value="UG2">UG2</option>
-                <option value="UG3">UG3</option>
-                <option value="UG4">UG4</option>
-                <option value="UG5">UG5</option>
-                <option value="PG1">PG1</option>
-                <option value="PG2">PG2</option>
-            </select>
-            <div class="message-box"> 
-                {% if message %}
-                <p>
-                  {{ message }}
-                </p>
-                {% else %}
-                <p style="display: none"></p>
-                {% endif %}
+            <h1>Sign Up</h1>
+            <div class="user">
+                <form action="/Get_userData" method="post">
+                    <input type="text" name="roll" id="roll" required readonly hidden value="{{roll}}">
+                    <input type="text" name="fname" id="fname" required readonly hidden value="{{first_name}}">
+                    <input type="text" name="lname" id="lname" required readonly hidden value="{{last_name}}">
+                    <input type="text" name="email" id="email" required readonly hidden value="{{email}}">
+                    <input type="text" name="uid" id="uid" required readonly hidden value="{{uid}}">
+                    <div class="input-div">
+                        <i class="fas fa-venus-mars"></i>
+                        <select name="gender" id="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="input-div">
+                        <i class="fas fa-graduation-cap"></i>
+                        <select name="batch" id="batch" required>
+                            <option value="" disabled selected>Select Batch</option>
+                            <option value="UG1">UG1</option>
+                            <option value="UG2">UG2</option>
+                            <option value="UG3">UG3</option>
+                            <option value="UG4">UG4</option>
+                            <option value="UG5">UG5</option>
+                            <option value="PG1">PG1</option>
+                            <option value="PG2">PG2</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+                    <div class="input-div">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" name="PhoneNo" id="PhoneNo" placeholder="Phone Number" required
+                            pattern="[0-9]{10}">
+                    </div>
+                    <div class="login-btn">
+                        <button class="btn" type="submit">Submit</button>
+                    </div>
+                </form>
             </div>
-            <div class="login-btn">
-              <button class="btn" value="Submit"> <a> Submit</a></button>
-            </div>
-        </form>
-            <!-- <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"> -->
-          </div>
         </div>
     </div>
 </body>
+
 </html>

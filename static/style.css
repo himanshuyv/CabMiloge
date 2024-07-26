@@ -417,11 +417,6 @@ body {
         min-width: auto;
     }
 
-    .booking-card {
-        width: 80%;
-        min-width: auto;
-    }
-
     .arrival-departure-container {
         display: flex;
         flex-direction: column;
@@ -1086,14 +1081,14 @@ body {
 
 .mail_btn {
     height: 4vh;
-    width: 8vw;
-    margin-top: 3vh;
-    margin-right: 24.8vw;
+    width: 15vh;
     background-color: transparent;
     cursor: pointer;
-    color: white;
-    font-size: 1vw;
-    border: 2px solid white
+    color: black;
+    font-size: 1em;
+    padding: 1vh;
+    text-align: center;
+    border: 2px solid black;
 }
 
 .mail_btn:hover {
@@ -1140,9 +1135,6 @@ body {
 
 @media only screen and (max-width: 930px) {
     .container_dropdown {
-        /* margin-top: 10px; */
-        /* margin: 30px auto; */
-        /* Center the container on smaller screens */
         position: relative;
     }
 
@@ -1154,33 +1146,24 @@ body {
         margin-top: 10px;
         width: 60vw;
         font-size: 16px;
-        /* Adjust font size for smaller screens */
         position: relative;
     }
 
     .list-items {
-        /* Adjust width for list items on smaller screens */
         width: calc(100% - 32px);
-        /* Subtract container padding */
-        /* margin-left: 25%; */
         width: 60vw;
         position: relative;
     }
 
     .mail_btn {
-        width: 30vw;
-        /* Adjust width for smaller screens */
         margin-right: 2vw;
-        /* Adjust margin for smaller screens */
         font-size: 1.2rem;
-        /* Use rem for better font size scaling */
     }
 
     .mail_btn:hover {
         background-color: #E5E0FF;
         color: #6e93f7;
         font-size: 1.2rem;
-        /* Use rem for better font size scaling */
     }
 
     .submit_button {
@@ -1199,9 +1182,7 @@ body {
     }
 
     .filter-div {
-        /* background-color: bisque; */
         flex-direction: column;
-        margin-top: 17vh;
         justify-content: center;
     }
 
@@ -1226,29 +1207,45 @@ body {
 }
 
 
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5vh;
+    padding-bottom: 10vh;
+}
 
+.booking-card{
+    background-color: #a696f9ff;
+    display: flex;
+    width: 70vw;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30%;
+    padding: 2.5vh;
+    border-radius: 10px;
+}
 
 
 /* Media query for smaller screens (e.g., tablets, mobiles) */
 @media only screen and (max-width: 768px) {
-    .booking-card {
-        width: 100%;
-        /* Set full width on smaller screens */
+    .booking-container{
+        margin-top: 5vh;
     }
 
-    .booking-card-content {
+    .booking-card {
         flex-direction: column;
-        /* Stack elements vertically */
+        justify-content: flex-start;
+        gap: 10%;
     }
 
     .booking-card-content-left,
     .booking-card-content-right {
-        padding: 5%;
-        /* Adjust padding for smaller screens */
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
-        /* Align content to the left */
         align-items: flex-start;
-        /* Align items to the top */
     }
 }
 
@@ -1634,7 +1631,7 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(75, 72, 72, 0.2);
     border-radius: 8px;
-    background-color: transparent;
+    background-color: #a696f9ff;
     min-height: 33.2vh;
     min-width: 50%;
     float: left;
@@ -1698,7 +1695,7 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(75, 72, 72, 0.2);
     border-radius: 8px;
-    background-color: transparent;
+    background-color: #a696f9ff;
     min-height: 33.2vh;
     min-width: 50%;
     float: left;
@@ -1733,7 +1730,6 @@ a {
 
 .input-div i {
     margin-left: 2rem;
-    /* Spacing between icon and select */
     font-size: 1.5rem;
 }
 
@@ -1785,7 +1781,27 @@ a {
     background-color: #c5c2d1;
 }
 
+.input-div input[type="text"] {
+    height: 2.3rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    flex-grow: 1;
+    padding: 0 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: text;
+}
 
+.input-div input[type="text"]:focus {
+    border-color: rgba(76, 105, 220, 0.8);
+    outline: none;
+}
+
+.input-div input[type="text"]:hover {
+    border-color: rgba(76, 105, 220, 0.8);
+}
 
 .update-btn {
     margin-top: 2rem;
@@ -1839,4 +1855,17 @@ a {
         margin-left: 0px;
 
     }
+    .container-top{
+        min-width: none;
+    }
+    .container-top>div{
+        padding: 1vh;
+        min-width: none;
+    }
+
+    .box-edit{
+        min-width: none;
+        padding: 1vh;
+    }
+
 }

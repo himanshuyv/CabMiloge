@@ -7,43 +7,6 @@ let selected_Date;
 
 
 function clear_filter() {
-  // Clear all selected options arrays
-  // selectedBatchOptions.length = 0;
-  // selectedDestiOptions.length = 0;
-  // selectedTimeOptions.length = 0;
-  // selectedStartOptions.length = 0;
-  // selected_Date = null;
-
-  // // Uncheck all items and reset button texts
-  // const dropdowns = [
-  //   { itemsClass: 'item_batch', btnTextClass: 'btn-text_batch', defaultText: 'Select Batch' },
-  //   { itemsClass: 'item_destination', btnTextClass: 'btn-text_destination', defaultText: 'Select Destination' },
-  //   { itemsClass: 'item_time', btnTextClass: 'btn-text_time', defaultText: 'Select Time' },
-  //   { itemsClass: 'item_start', btnTextClass: 'btn-text_start', defaultText: 'Select Start' },
-  // ];
-
-  // dropdowns.forEach(dropdown => {
-  //   // Uncheck all items
-  //   document.querySelectorAll(`.${dropdown.itemsClass}.checked`).forEach(item => {
-  //     item.classList.remove('checked');
-  //   });
-
-  //   // Reset button text
-  //   const btnText = document.querySelector(`.${dropdown.btnTextClass}`);
-  //   if (btnText) {
-  //     btnText.innerText = dropdown.defaultText;
-  //   }
-  // });
-
-  // console.log("Filters cleared. Arrays:", {
-  //   selectedBatchOptions,
-  //   selectedDestiOptions,
-  //   selectedTimeOptions,
-  //   selectedStartOptions,
-  //   selected_Date
-  // });
-
-  // Call Flask function and redirect
   fetch('/viewBookingRedirect', {
     method: 'GET',
     headers: {
@@ -107,9 +70,6 @@ createDropdown("start", "item_start", "btn-text_start", selectedStartOptions);
 
 
 function sendEmail(email, destination, time, date, name) {
-  console.log(email)
-
-
   var subject = "Let's travel together!";
   var body = "Hey there,\n\nI'm reaching out because I'm planning a trip to " + destination + " on " + date + " at " + time + ". Since we're both headed in the same direction, I thought it might be convenient for us to travel together.\n\nIf you're interested and have space available in your cab, it would be great to share the ride and split the travel expenses.\n\nLooking forward to hearing from you soon!\n\nBest regards,\n" + name;
   var mailtoLink = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);

@@ -35,10 +35,10 @@
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="index#filler">Upcoming Travels</a>
+              <a href="/upcomingTravels">Upcoming Travels</a>
             </li>
             <li class="nav-item">
-              <a href="index#AddNewTravel">Add New trip</a>
+              <a href="/index">Add New trip</a>
             </li>
           </ul>
         </nav>
@@ -53,12 +53,11 @@
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
             <hr />
 
-            <a href="/index" class="sidebar-options">Home</a>
-            <a href="/about" class="sidebar-options">About</a>
             <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
             <a href="/index" class="sidebar-options">Add Trip</a>
             <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
             <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="/about" class="sidebar-options">About</a>
             <a href="#" class="sidebar-options" onclick="logout_user()"
               >Logout</a
             >
@@ -80,12 +79,6 @@
           </div>
 
           <ul class="list-items">
-            <li class="item_batch">
-              <span class="checkbox">
-                <i class="fa-solid fa-check check-icon"></i>
-              </span>
-              <span class="item-text_batch">All</span>
-            </li>
             <li class="item_batch">
               <span class="checkbox">
                 <i class="fa-solid fa-check check-icon"></i>
@@ -114,25 +107,25 @@
               <span class="checkbox">
                 <i class="fa-solid fa-check check-icon"></i>
               </span>
-              <span class="item-text_batch">UG5+</span>
+              <span class="item-text_batch">UG5</span>
             </li>
             <li class="item_batch">
               <span class="checkbox">
                 <i class="fa-solid fa-check check-icon"></i>
               </span>
-              <span class="item-text_batch">MS</span>
+              <span class="item-text_batch">PG1</span>
             </li>
             <li class="item_batch">
               <span class="checkbox">
                 <i class="fa-solid fa-check check-icon"></i>
               </span>
-              <span class="item-text_batch">Mtech</span>
+              <span class="item-text_batch">PG2</span>
             </li>
             <li class="item_batch">
               <span class="checkbox">
                 <i class="fa-solid fa-check check-icon"></i>
               </span>
-              <span class="item-text_batch">PHD</span>
+              <span class="item-text_batch">PhD</span>
             </li>
           </ul>
         </div>
@@ -389,19 +382,18 @@
     <div class="booking-container">
       {% for entry in available_options %}
       <div class="booking-card">
-        <div class="booking-card-content">
           <div class="booking-card-content-left">
             <h3>Name: {{entry[3]}}</h3>
             <p>Batch: {{entry[5]}}</p>
             <p>Gender: {{entry[4]}}</p>
             <p>Email: {{entry[8]}}</p>
+            <p>Phone: {{entry[9]}}</p>
           </div>
           <div class="booking-card-content-right">
             <h3>From: {{entry[7]}}</h3>
             <h3>To: {{entry[6]}}</h3>
             <p>Time: {{entry[1]}}</p>
             <p>Date: {{entry[0]}}</p>
-            <!-- Add the button here -->
             <button
               class="mail_btn"
               onclick="sendEmail('{{ entry[8] }}', '{{ entry[6] }}', '{{ entry[1] }}', '{{entry[0]}}', '{{entry[3]}}')"
@@ -409,11 +401,10 @@
               Send Email
             </button>
           </div>
-        </div>
       </div>
       {% endfor %}
     </div>
-
+    
     <script src="./../static/bookings.js"></script>
     <script src="./../static/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
