@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./../static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +21,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
 
-    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
 
     <title>CabMiloge</title>
   </head>
@@ -30,15 +30,15 @@
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="./../static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="/upcomingTravels">Upcoming Travels</a>
+              <a href="{{ subpath }}/upcomingTravels">Upcoming Travels</a>
             </li>
             <li class="nav-item">
-              <a href="/index">Add New trip</a>
+              <a href="{{ subpath }}/index">Add New trip</a>
             </li>
           </ul>
         </nav>
@@ -53,11 +53,11 @@
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
             <hr />
 
-            <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
-            <a href="/index" class="sidebar-options">Add Trip</a>
+            <a href="{{ subpath }}/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
+            <a href="{{ subpath }}/index" class="sidebar-options">Add Trip</a>
             <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
-            <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
-            <a href="/about" class="sidebar-options">About</a>
+            <a href="{{ subpath }}/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="{{ subpath }}/about" class="sidebar-options">About</a>
             <a href="#" class="sidebar-options" onclick="logout_user()"
               >Logout</a
             >
@@ -405,8 +405,11 @@
       {% endfor %}
     </div>
     
-    <script src="./../static/bookings.js"></script>
-    <script src="./../static/script.js"></script>
+    <script type="text/javascript">
+        var subpath = "{{ subpath }}";
+    </script>
+    <script src="{{ subpath }}/static/bookings.js"></script>
+    <script src="{{ subpath }}/static/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 

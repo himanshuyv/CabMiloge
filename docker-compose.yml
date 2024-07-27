@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  cabsharing_network:
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+
+services:
+    cabsharing:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        networks:
+            cabsharing_network:
+                ipv4_address: 172.22.0.2
+        env_file:
+            - ./.env
+        volumes:
+            - ./sqllite_volume:/app/sqllite_volume
+        tty: true

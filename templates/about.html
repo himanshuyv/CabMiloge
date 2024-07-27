@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,23 +14,27 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
-    <script src="./../static/script.js" defer></script>
+    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    
+    <script type="text/javascript">
+        var subpath = "{{ subpath }}";
+    </script>
+    <script src="{{ subpath }}/static/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
   <body>
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="./../static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="/upcomingTravels">Upcoming Trips</a>
+              <a href="{{ subpath }}/upcomingTravels">Upcoming Trips</a>
             </li>
             <li class="nav-item">
-              <a href="/index">Add New Trip</a>
+              <a href="{{ subpath }}/index">Add New Trip</a>
             </li>
             <li class="nav-item">
               <a href="#" onclick="redirect_to_booking()">View All Trips</a>
@@ -48,11 +52,11 @@
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
             <hr />
 
-            <a href="/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
-            <a href="/index" class="sidebar-options">Add Trip</a>
+            <a href="{{ subpath }}/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
+            <a href="{{ subpath }}/index" class="sidebar-options">Add Trip</a>
             <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
-            <a href="/editprofilepage" class="sidebar-options">Edit Profile</a>
-            <a href="/about" class="sidebar-options">About</a>
+            <a href="{{ subpath }}/editprofilepage" class="sidebar-options">Edit Profile</a>
+            <a href="{{ subpath }}/about" class="sidebar-options">About</a>
             <a href="#" class="sidebar-options" onclick="logout_user()"
               >Logout</a
             >
@@ -101,7 +105,7 @@
     <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:10vh; margin-bottom:0;">
 
       <div class="text-xs h-auto">
-        <img alt="OSDG" loading="lazy" width="1192" height="484" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="./../static/OSDG_logo.png">
+        <img alt="OSDG" loading="lazy" width="1192" height="484" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
 

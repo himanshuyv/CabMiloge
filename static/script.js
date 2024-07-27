@@ -126,7 +126,7 @@ function deleteBooking(entry_id, direction) {
 
 
 function redirect_to_booking() {
-  window.location.href = "/viewBookingRedirect";
+  window.location.href = `${subpath}/viewBookingRedirect`;
 
 }
 
