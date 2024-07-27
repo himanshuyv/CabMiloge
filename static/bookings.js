@@ -7,7 +7,7 @@ let selected_Date;
 
 
 function clear_filter() {
-  fetch('/viewBookingRedirect', {
+  fetch(`${subpath}/viewBookingRedirect`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ function clear_filter() {
         throw new Error('Network response was not ok');
       }
       // Assuming the response is an HTML page to render
-      window.location.href = '/viewBookingRedirect'; // Redirect to the route
+      window.location.href = `${subpath}/viewBookingRedirect`; // Redirect to the route
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation:', error);
@@ -113,7 +113,7 @@ document.querySelector(".submit_button").addEventListener("click", function () {
   };
 
   // Send data to Flask using Fetch API
-  fetch('/apply_filters', {
+  fetch(`${subpath}/apply_filters`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

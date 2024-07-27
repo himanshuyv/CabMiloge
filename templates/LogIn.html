@@ -3,21 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
-    <script src="./../static/script.js" defer></script>
+    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <script type="text/javascript">
+        var subpath = "{{ subpath }}";
+    </script>
+    <script src="{{ subpath }}/static/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
   <style>
     body {
       font-family: "Montserrat", sans-serif;
-      background-image: url("../static/login-background.svg");
+      background-image: url("{{ subpath }}/static/login-background.svg");
       background-size: cover;
       background-repeat: no-repeat;
       color: #fff;
@@ -137,7 +140,7 @@
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="/../static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
         </div>
         <div class="user-info">
           <div class="profile-dropdown"></div>
@@ -148,7 +151,7 @@
       <div class="box">
         <h1>Log In Using IIIT Credentials</h1>
         <div class="user">
-          <form method="post" action="/Get_Auth">
+          <form method="post" action="{{ subpath }}/Get_Auth">
             <i class="fas fa-user"></i>
             <div class="message-box">
               {% if message %}
