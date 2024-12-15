@@ -4,4 +4,4 @@ if [[ $CAB_DIR == "" ]]; then
     CAB_DIR=.
 fi
 
-docker-compose -f $CAB_DIR/docker-compose.yml -p cas down
+docker-compose -f $CAB_DIR/docker-compose.yml -p cabsharing down
