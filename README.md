@@ -14,16 +14,7 @@ CabMiloge is a cab-sharing platform designed exclusively for the IIIT Hyderabad 
 
 CabMiloge now runs as a Docker container! For help with Docker refer to [this](https://docs.docker.com/).
 
-### Make venv and enter venv
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-```
-
-### Install requirements.txt
-```bash
-pip install -r requirements.txt
-```
+### Clone the repository
 
 ### Add env variables in .env
 ```bash

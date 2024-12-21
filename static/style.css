@@ -244,7 +244,7 @@ body {
 /* ---------------------------------------------------------------------
 
             || Main body starts  || 
-     index.html and upcomingtravels.html
+     addnewpage.html and upcomingtravels.html
 --------------------------------------------------------------------  */
 
 
@@ -264,7 +264,7 @@ body {
 .card h1 {
     margin-left: 4%;
     font-size: 350%;
-    margin-top: 25vh;
+    margin-top: 5vh;
     color: #4b68dbff;
 }
 

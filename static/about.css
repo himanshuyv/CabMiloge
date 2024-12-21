@@ -36,7 +36,7 @@
    margin-left: 12%;
    margin-right: 12%;
    margin-top: 5%;
-   text-align: center;
+   text-align: justify;
 }
 
 .about p{
@@ -83,14 +83,18 @@
    margin-left: 12%;
    margin-right: 12%;
    margin-top: 5%;
-   text-align: center;
+   text-align: justify;
 }
 
 @media screen and (max-width:520px) {
    .about h4{
       font-size: 1.3rem;
+      margin-left: 0;
+      margin-right: 0;
    }
    .howTouse h4{
       font-size: 1.3rem;
+      margin-left: 0;
+      margin-right: 0;
    }
 }
