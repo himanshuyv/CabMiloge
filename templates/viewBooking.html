@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,15 +14,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="./../static/icon.svg" type="image/x-icon" />
-    <script src="./../static/script.js" defer></script>
+    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <script type="text/javascript">
+        var subpath = "{{ subpath }}";
+    </script>
+    <script src="{{ subpath }}/static/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
   <body>
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="./../static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
@@ -49,7 +52,7 @@
     <div class="flex-container">
       <div class="card">
         <div class="form-container">
-          <form method="post" action="viewBooking">
+          <form method="post" action="{{ subpath }}/viewBooking">
             <label for="hours">+- Hrs:</label>
             <input type="number" name="hours" />
             <input type="hidden" name="entry_id" value="{{ entry_id }}" />

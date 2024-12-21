@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,redirect,session,jsonify,flash,url_for;
+from flask import Flask, render_template, request,redirect,session,jsonify,send_from_directory,url_for
 import sqlite3
 from cas import CASClient
 from urllib.parse import quote_plus
@@ -6,12 +6,15 @@ from cryptography.fernet import Fernet
 import os
 from functools import cmp_to_key
 
+key = Fernet.generate_key()
+
+BASE_URL = os.getenv('BASE_URL', 'http://172.22.0.2:80')
+SUBPATH = os.getenv('SUBPATH', '')
+
 SECRET_KEY = os.getenv('SECRET_KEY',os.urandom(24))
 CAS_SERVER_URL = os.getenv('CAS_SERVER_URL', 'https://login.iiit.ac.in/cas/')
-SERVICE_URL = os.getenv('SERVICE_URL', 'http://localhost:5000/Get_Auth')
-REDIRECT_URL = os.getenv('REDIRECT_URL', 'http://localhost:5000/Get_Auth')
-
-
+SERVICE_URL = os.getenv('SERVICE_URL', f'{BASE_URL}{SUBPATH}/Get_Auth')
+REDIRECT_URL = os.getenv('REDIRECT_URL', f'{BASE_URL}{SUBPATH}/Get_Auth')
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
@@ -23,9 +26,8 @@ cas_client = CASClient(
 )
 
 # Database Setup
-conn = sqlite3.connect('cabmates.db')
+conn = sqlite3.connect('sqllite_volume/cabmates.db')
 cursor = conn.cursor()
-
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS Login (
         Fname TEXT,
@@ -61,12 +63,12 @@ def sort_by_datetime(entries):
 
 
 
-@app.route('/')
+@app.route(f'{SUBPATH}/')
 def LogIn():
-    return render_template('LogIn.html')
+    return render_template('LogIn.html', subpath=SUBPATH)
 
 
-@app.route('/Get_Auth', methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/Get_Auth', methods=['POST', 'GET'])
 def Get_Auth():
     if request.method == 'POST':
         cas_login_url = cas_client.get_login_url()
@@ -83,7 +85,6 @@ def Get_Auth():
                 uid = attributes['uid']
                 batch = ''
                 gender = ''
-                conn = sqlite3.connect('cabmates.db') 
                 cursor = conn.cursor()
                 try:
                     cursor.execute( '''
@@ -91,30 +92,27 @@ def Get_Auth():
                                     ''', (uid,))
                     entry=cursor.fetchone()
                     conn.commit()
-                    conn.close()
                     if entry:
-                        with open('key.key', 'rb') as file:
-                            key = file.read()
                         fernet = Fernet(key)
                         token = fernet.encrypt(uid.encode())
                         session['token'] = token
-                        return redirect('/index')
+                        return redirect(f'{SUBPATH}/upcomingTravels')
                     else:
                         message='User not found! Please Sign Up.'
-                        return render_template('SignUp.html',roll=roll, email=email, first_name=first_name, last_name=last_name, uid=uid, message=message)
+                        return render_template('SignUp.html',roll=roll, email=email, first_name=first_name, last_name=last_name, uid=uid, message=message, subpath=SUBPATH)
                 except:
                     message='Error with database. Please try again'
-                    return render_template('LogIn.html', message=message)
+                    return render_template('LogIn.html', message=message, subpath=SUBPATH)
             else:
                 message='Error with CAS. Please try again'
-                return render_template('LogIn.html', message=message)
+                return render_template('LogIn.html', message=message, subpath=SUBPATH)
         else:
             message='Error with CAS. Please try again'
-            return render_template('LogIn.html', message=message)
+            return render_template('LogIn.html', message=message, subpath=SUBPATH)
         
 
 
-@app.route('/Get_userData',methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/Get_userData',methods=['POST', 'GET'])
 def Get_userData():
     if request.method == 'POST':
         fname = request.form['fname']
@@ -125,7 +123,6 @@ def Get_userData():
         gender = request.form['gender']
         batch = request.form['batch']
         PhoneNo = request.form['PhoneNo']
-        conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
         try:
             print(fname)
@@ -142,27 +139,22 @@ def Get_userData():
                         ''', (fname, lname, email, roll, uid, batch, gender, PhoneNo))
             print('signUp successful')
             conn.commit()
-            conn.close()
-            with open('key.key', 'rb') as file:
-                key = file.read()
             fernet = Fernet(key)
             token = fernet.encrypt(uid.encode())
             session['token'] = token
-            return redirect('/index')
+            return redirect(f'{SUBPATH}/upcomingTravels')
         except:
             print('Sign Up Failed')
             message='Sign Up Failed!'
-            return render_template('LogIn.html', message=message)
+            return render_template('LogIn.html', message=message, subpath=SUBPATH)
 
 
 
 
-@app.route('/getDataForBooking',methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/getDataForBooking',methods=['POST', 'GET'])
 def getForFromCampus():
     if request.method == 'POST':
         token = session['token']
-        with open('key.key', 'rb') as file:
-            key = file.read()
         fernet = Fernet(key)
         uid = fernet.decrypt(token).decode()
         to = request.form['station']
@@ -173,7 +165,6 @@ def getForFromCampus():
         f = '%Y-%m-%d %H:%M:%S'
         date_time = date + ' ' + time + ':00'
         try:
-            conn = sqlite3.connect('cabmates.db') 
             cursor = conn.cursor()
             if direction == 'From Campus':
                 cursor.execute('''INSERT INTO fromCampus (Uid, DateTime, Station) VALUES (?, ?, ?)''', (uid, date_time, to))
@@ -181,44 +172,40 @@ def getForFromCampus():
                 cursor.execute('''INSERT INTO toCampus (Uid, DateTime, Station) VALUES (?, ?, ?)''', (uid, date_time, to))
             print('Data inserted')
             conn.commit()
-            conn.close()
+            
         except:
             print('Data not inserted')
-        return redirect('/index')
+        return redirect(f'{SUBPATH}/index')
     else:
-        return redirect('/index')
+        return redirect(f'{SUBPATH}/index')
 
-@app.route('/deleteBooking', methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/deleteBooking', methods=['POST', 'GET'])
 def delete_booking_route():
     entry_id = request.form['entry_id']
     direction = request.form['direction']
     print(direction, entry_id)
     try:
-        conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
         if direction == 'From Campus':
             cursor.execute('''DELETE FROM fromCampus WHERE BookingID = ?''', (entry_id,))
         else:
             cursor.execute('''DELETE FROM toCampus WHERE BookingID = ?''', (entry_id,))
         conn.commit()
-        conn.close()
+        
         print('Data deleted')
     except:
         print('Data not deleted')
-    return redirect('/index')  
+    return redirect(f'{SUBPATH}/index')  
 
-@app.route('/viewBooking', methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/viewBooking', methods=['POST', 'GET'])
 def view_booking():
     entry_id = request.form['entry_id']
     direction = request.form['direction']
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     print(direction, entry_id)
     try:
-        conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
         BookingEntries = []
         if direction == 'From Campus':
@@ -255,18 +242,15 @@ def view_booking():
         cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
         conn.commit()
-        conn.close()
+        
     except:
         print('Data not found')
-    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[2] , entry_id=entry_id,  direction=direction)
+    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[2] , entry_id=entry_id,  direction=direction, subpath=SUBPATH)
 
-@app.route('/upcomingTravels')
+@app.route(f'{SUBPATH}/upcomingTravels')
 def upcomingTravels():
-    conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     if(session):
@@ -299,17 +283,14 @@ def upcomingTravels():
             toCampus_entries.append(temp_tuple)
         cursor.execute( '''select * from Login where Uid = ?''', (uid,))
         user = cursor.fetchone()
-        return render_template('upcomingtravels.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, fname=user[0],lname=user[1])
+        return render_template('upcomingtravels.html', fromCampus_entries = fromCampus_entries, toCampus_entries = toCampus_entries, fname=user[0], lname=user[1], subpath=SUBPATH)
     else:
-        return redirect('/')
+        return redirect(f'{SUBPATH}/')
     
-@app.route('/index')
+@app.route(f'{SUBPATH}/index')
 def index():
-    conn = sqlite3.connect('cabmates.db') 
     cursor = conn.cursor()
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     if(session):
@@ -317,27 +298,24 @@ def index():
         user = cursor.fetchone()
         print('uid:',uid)
         print('user:',user)
-        return render_template('index.html', fname=user[0],lname=user[1])
+        return render_template('index.html', fname=user[0],lname=user[1], subpath=SUBPATH)
     else:
-        return redirect('/')
+        return redirect(f'{SUBPATH}/')
 
 
-@app.route('/logout_user', methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/logout_user', methods=['POST', 'GET'])
 def logout_user():
     session.pop('token', None)
-    return redirect('/')
+    return redirect(f'{SUBPATH}/')
 
 
-@app.route('/viewBookingRedirect', methods=['POST', 'GET'])
+@app.route(f'{SUBPATH}/viewBookingRedirect', methods=['POST', 'GET'])
 def view_booking_redirect():
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
         
     try:
-        conn = sqlite3.connect('cabmates.db') 
         cursor = conn.cursor()
         BookingEntries = []
         cursor.execute('''SELECT * FROM fromCampus''')
@@ -385,11 +363,11 @@ def view_booking_redirect():
         cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
         conn.commit()
-        conn.close()
+        
     except Exception as e:
         print('An error occurred:', e)
         
-    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1])
+    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1], subpath=SUBPATH)
 
 def isTimeNotInRange(requested_time, entry_time):
     for i in range(len(requested_time)):
@@ -399,16 +377,13 @@ def isTimeNotInRange(requested_time, entry_time):
             return False
     return True
 
-@app.route('/apply_filters', methods=['POST'])
+@app.route(f'{SUBPATH}/apply_filters', methods=['POST'])
 def apply_filters():
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     
-    try:       
-        conn = sqlite3.connect('cabmates.db')
+    try:
         cursor = conn.cursor()
         filters = request.json
 
@@ -476,6 +451,7 @@ def apply_filters():
             BookingEntries.append(entry)
                 
         filtered_data = {'available_options': BookingEntries}
+        
         return jsonify(filtered_data)
     
     except Exception as e:
@@ -484,55 +460,45 @@ def apply_filters():
     
     
 
-@app.route('/about')
+@app.route(f'{SUBPATH}/about')
 def about():
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
-    
-    conn = sqlite3.connect('cabmates.db')
+
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
     user = cursor.fetchone()
 
-    conn.close()
-    return render_template('about.html', fname=user[0], lname=user[1])
+    return render_template('about.html', fname=user[0], lname=user[1], subpath=SUBPATH)
 
 
-@app.route('/editprofilepage')
+@app.route(f'{SUBPATH}/editprofilepage')
 def editprofilepage():
     token = session['token']
-    with open('key.key', 'rb') as file:
-        key = file.read()
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     try:
-        conn = sqlite3.connect('cabmates.db')
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
-        conn.close()
-        return render_template('editprofilepage.html', fname=user[0], lname=user[1],user=user)
+        
+        return render_template('editprofilepage.html', fname=user[0], lname=user[1],user=user, subpath=SUBPATH)
     except Exception as e:
         print('An error occurred:2', e)
     
 
 
-@app.route('/update_userData', methods=['POST'])
+@app.route(f'{SUBPATH}/update_userData', methods=['POST'])
 def update_userData():
     try:
         gender = request.form.get('gender')
         batch = request.form.get('batch')
         PhoneNo = request.form.get('PhoneNo')
         token = session['token']
-        with open('key.key', 'rb') as file:
-            key = file.read()
         fernet = Fernet(key)
         uid = fernet.decrypt(token).decode()
-        
-        conn = sqlite3.connect('cabmates.db')
+
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -545,20 +511,18 @@ def update_userData():
         
         cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchall()
-        conn.close()
+        
 
         # Redirect with a success message
-        return redirect(url_for('editprofilepage', update_message='success'))
+        return redirect(url_for('editprofilepage', update_message='success', subpath=SUBPATH))
         
     except Exception as e:
         print('An error occurred:', e)
-        return redirect(url_for('editprofilepage', update_message='error'))
-    
-    
+        return redirect(url_for('editprofilepage', update_message='error', subpath=SUBPATH))
 
-    
+@app.route(f'{SUBPATH}/static/<path:path>')
+def send_report(path: str = ""):
+    return send_from_directory('static', path)
+
 if __name__ == '__main__':
-    key = Fernet.generate_key()
-    with open('key.key', 'wb') as file:
-        file.write(key)
     app.run(debug=True)
