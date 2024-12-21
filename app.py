@@ -175,9 +175,9 @@ def getForFromCampus():
             
         except:
             print('Data not inserted')
-        return redirect(f'{SUBPATH}/index')
+        return redirect(f'{SUBPATH}/upcomingtravels')
     else:
-        return redirect(f'{SUBPATH}/index')
+        return redirect(f'{SUBPATH}/upcomingtravels')
 
 @app.route(f'{SUBPATH}/deleteBooking', methods=['POST', 'GET'])
 def delete_booking_route():
@@ -195,7 +195,7 @@ def delete_booking_route():
         print('Data deleted')
     except:
         print('Data not deleted')
-    return redirect(f'{SUBPATH}/index')  
+    return redirect(f'{SUBPATH}/upcomingtravels')  
 
 @app.route(f'{SUBPATH}/viewBooking', methods=['POST', 'GET'])
 def view_booking():
@@ -287,8 +287,8 @@ def upcomingTravels():
     else:
         return redirect(f'{SUBPATH}/')
     
-@app.route(f'{SUBPATH}/index')
-def index():
+@app.route(f'{SUBPATH}/upcomingtravels')
+def upcomingtravels():
     cursor = conn.cursor()
     token = session['token']
     fernet = Fernet(key)
@@ -298,9 +298,19 @@ def index():
         user = cursor.fetchone()
         print('uid:',uid)
         print('user:',user)
-        return render_template('index.html', fname=user[0],lname=user[1], subpath=SUBPATH)
+        return render_template('upcomingtravels.html', fname=user[0],lname=user[1], subpath=SUBPATH)
     else:
         return redirect(f'{SUBPATH}/')
+    
+@app.route(f'{SUBPATH}/addnewpage')
+def addnewpage():
+    token = session['token']
+    fernet = Fernet(key)
+    uid = fernet.decrypt(token).decode()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
+    user = cursor.fetchone()
+    return render_template('addnewpage.html', fname=user[0], lname=user[1], subpath=SUBPATH)
 
 
 @app.route(f'{SUBPATH}/logout_user', methods=['POST', 'GET'])
