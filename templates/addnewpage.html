@@ -4,7 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/addnewpage.css" /> 
+    <link rel="stylesheet" href="{{ subpath }}/static/css/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/navbar_sidebar.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link 
@@ -14,11 +16,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
       rel="stylesheet" 
       />
-    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
         var subpath = "{{ subpath }}";
     </script>
-    <script src="{{ subpath }}/static/script.js" defer></script>
+    <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
 
@@ -26,12 +28,12 @@
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
             <li class="nav-item">
-              <a href="{{ subpath }}/upcomingtravels">Upcoming Trips</a>
+              <a href="{{ subpath }}/upcomingTravels">Upcoming Trips</a>
             </li>
             <li class="nav-item">
               <a href="#" onclick="redirect_to_booking()">View All Trips</a>
@@ -47,7 +49,7 @@
             <h2>{{ fname }}&nbsp;{{ lname }}</h2>
             <hr />
 
-            <a href="{{ subpath }}/upcomingtravels" class="sidebar-options">Upcoming Trips</a>
+            <a href="{{ subpath }}/upcomingTravels" class="sidebar-options">Upcoming Trips</a>
             <a href="{{ subpath }}/addnewpage" class="sidebar-options">Add Trip</a>
             <a href="#" onclick="redirect_to_booking()" class="sidebar-options">View All Trips</a>
             <a href="{{ subpath }}/editprofilepage" class="sidebar-options">Edit Profile</a>
@@ -61,22 +63,19 @@
 
     <div class="flex-container">
       <div class="card add-new-journey">
-        <img id="AddNewTravel" src="{{ subpath }}/static/add-new-journey.svg" alt="add-new" />
+        <img id="AddNewTravel" src="{{ subpath }}/static/images/add-new-journey.svg" alt="add-new" />
         <h1 style="margin-left: 6vw; float: left">
-          Add New 
-          Trip
+          Add New Trip
         </h1>
       </div>
 
       <div class="card arrival-departure-container">
         <div class="image-container">
-          <img src="{{ subpath }}/static/from-campus.svg" class="arrival-departure" id="img1" />
-
+          <img src="{{ subpath }}/static/images/from-campus.svg" class="arrival-departure" id="img1" />
           <p>From Campus</p>
         </div>
         <div class="image-container">
-          <img src="{{ subpath }}/static/to-campus.svg" class="arrival-departure" id="img2" />
-
+          <img src="{{ subpath }}/static/images/to-campus.svg" class="arrival-departure" id="img2" />
           <p>To Campus</p>
         </div>
       </div>
@@ -85,7 +84,7 @@
     <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:15vh;">
 
       <div class="text-xs h-auto" >
-        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/OSDG_logo.png">
+        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/images/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
 

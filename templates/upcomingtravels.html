@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/navbar_sidebar.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,18 +15,18 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
         var subpath = "{{ subpath }}";
     </script>
-    <script src="{{ subpath }}/static/script.js" defer></script>
+    <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
   <body>
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
@@ -64,7 +65,7 @@
       <div class="card upcoming-travels">
         <img
           id="upcomingTravels"
-          src="{{ subpath }}/static/upcoming-travels.svg"
+          src="{{ subpath }}/static/images/upcoming-travels.svg"
           alt="upcoming-travels"
         />
         <h1>
@@ -82,7 +83,7 @@
               </div>
               <div class="travel-card-content-right">
                 <img
-                  src="{{ subpath }}/static/delete-button.svg"
+                  src="{{ subpath }}/static/images/delete-button.svg"
                   alt="delete"
                   onclick="deleteBooking('{{ entry[3] }}',0)"
                 />
@@ -108,7 +109,7 @@
               </div>
               <div class="travel-card-content-right">
                 <img
-                  src="{{ subpath }}/static/delete-button.svg"
+                  src="{{ subpath }}/static/images/delete-button.svg"
                   alt="delete"
                   onclick="deleteBooking('{{ entry[3] }}',1)"
                 />
@@ -125,7 +126,7 @@
     </div>
     <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:15vh;">
       <div class="text-xs h-auto" >
-        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/OSDG_logo.png">
+        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/images/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
 
