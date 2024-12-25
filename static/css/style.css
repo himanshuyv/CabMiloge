@@ -3,11 +3,10 @@
             || General Styling || 
 
 --------------------------------------------------------------------  */
-
-
 *{
     font-family: 'Mukta', sans-serif;
 }
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -20,233 +19,10 @@ body {
     background-color: #e5e0ff;
 }
 
-
-
 /* ---------------------------------------------------------------------
-
-            || Navigation and sidebar || 
-
-                    Common to all
---------------------------------------------------------------------  */
-
-
-
-.head-container {
-    display: flex;
-    justify-content: center;
-}
-
-.main-header {
-    position: fixed;
-    z-index: 100;
-    background-color: #E5E0FF;
-    width: 100%;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.logo {
-    padding: 0.3rem;
-    font-size: 1.5rem;
-}
-
-.logo>img {
-    height: 4.1rem;
-}
-
-.unselectable {
-    user-select: none;
-    margin: 5px 25px;
-}
-
-.main-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-.main-nav li {
-    margin-right: 70px;
-    font-size: 1.3rem;
-}
-
-.main-nav .nav-item {
-    font-weight: bold;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: #4b68dbff;
-    transition: color 0.3s;
-}
-
-.main-nav a:hover {
-    color: rgb(137, 114, 254);
-}
-
-.main-nav a::after {
-    scroll-behavior: smooth;
-}
-
-/*Sidebar*/
-
-.dropdown {
-    margin-right: 25px;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.55);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-}
-
-.dropdown .dropbtn {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 14px 16px;
-    margin: 0;
-    color: #4B68DB;
-    font-size: 15px;
-}
-
-.icon-bars {
-    margin-right: 3px;
-    vertical-align: middle;
-    font-size: 1.2rem;
- }
- 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    background-color: #f9f9f9;
-    min-width: 10px;
-    z-index: 1;
-    border-radius: 5px;
-    background-color: #EFEFEF;
-}
-
-.dropdown-content a {
-    margin-right: auto;
-    color: #4B68DB;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #fa5555;
-    border-radius: 5px;
-}
-
-.show {
-    display: block;
-}
-
-
-
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    /* Change from left to right */
-    /* background-color:  rgba(177, 123, 248, 0.98); */
-    background-color:rgb(150, 131, 245);
-    overflow-x: hidden;
-    border-radius: 0.5rem;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidebar a {
-    text-align: center;
-    /* vertical-align: middle; */
-    padding: 8px;
-    min-height: 30px;
-    text-decoration: none;
-    font-size: 20px;
-    color: rgb(244, 240, 240);
-    display: block;
-    transition: 0.3s;
-}
-
-
-.sidebar-options {
-    margin-top: 6%;
-    text-align: center;
-    padding: 40px;
-    text-decoration: none;
-    font-size: 30px;
-    color: rgb(223, 219, 219);
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar-options:hover {
-    color: rgb(237, 234, 234);
-        background-color:rgba(162, 144, 250,);
-
-;
-
-}
-
-
-.sidebar h2 {
-    text-align: center;
-    /* padding: 8px 8px 8px 32px; */
-    font-size: 25px;
-    /* color: rgb(33, 30, 30); */
-    color: whitesmoke;
-
-}
-
-.sidebar hr {
-    text-align: center;
-    width: 80%;
-    color: whitesmoke;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-
-    background-color: whitesmoke;
-}
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.closebtn:hover {
-    color: rgb(237, 234, 234);
-}
-
-#overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(229, 224, 255, 0.5);
-    z-index: 0;
-    /* Lower z-index to place it below the sidebar */
-}
-
-/* ---------------------------------------------------------------------
-
             || Main body starts  || 
      addnewpage.html and upcomingtravels.html
 --------------------------------------------------------------------  */
-
 
 .flex-container {
     position: relative;
@@ -359,17 +135,17 @@ body {
     height: 30%;
     cursor: pointer;
 }
-
+ 
 .add-new-journey a {
     cursor: pointer;
 }
-
+ 
 .add-new-journey h1 {
     margin-left: 2vw;
 }
-
-
-
+ 
+ 
+ 
 .arrival-departure-container {
     position: relative;
     display: flex;
@@ -378,7 +154,7 @@ body {
     gap: 25%;
     min-height: 50vh;
 }
-
+ 
 .arrival-departure {
     color: #ffffff;
     padding: 10px 20px;
@@ -387,22 +163,21 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
+ 
 .image-container {
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: red; */
     gap: 10%;
 }
-
+ 
 .image-container>img {
     height: 15rem;
     width: 15rem;
     cursor: pointer;
 }
-
+ 
 .image-container>p {
     height: 100%;
     width: 100%;
@@ -410,32 +185,67 @@ body {
     color: #4b68dbff;
     text-align: center;
 }
-
-
+ 
+ 
 .form-div {
     position: relative;
     display: flex;
     flex-direction: column;
 }
-
+ 
 .from-to-heading {
     margin: 0;
     padding: 0;
 }
-
+ 
 .form-div>form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 15px;
-}
-
-.form-div>form {
     font-size: 1.2em;
     color: #4b68dbff;
     padding: 2.5vh;
+    gap: 15px;
 }
+
+.form-div select {
+    width:20rem;
+}
+.form-div input[type="date"],
+.form-div input[type="time"],
+.form-div select{
+    appearance: none;
+    height: 2.3rem;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    padding: 0 1rem;
+    background-color: #fff;
+    cursor: pointer;
+} 
+ 
+.form-div select:focus {
+    border-color: rgba(76, 105, 220, 0.8);
+    outline: none;
+}
+ 
+.form-div select:hover {
+    border-color: rgba(76, 105, 220, 0.8);
+}
+ 
+.form-div select option {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+ 
+.form-div select option:hover {
+    background-color: #c5c2d1;
+}
+ 
 .filler {
     margin-top: -20vh;
     z-index: -10;
@@ -722,6 +532,33 @@ a {
         background-color: #2980b9;
         float: left;
     }
+
+    .bg-slate-700 {
+        --tw-bg-opacity: 1;
+        background-color: rgba(166, 150, 249,0.6);
+
+    }
+    .travel-card-content-right img {
+        width: 30%;
+        height: 3rem;
+        cursor: pointer;
+    }
+    .footer-orientation {
+        flex-direction: column;
+    }
+
+    .form-div>form {
+        align-items: flex-start;
+    }
+    .form-div select {
+        width: 14.7rem;
+    }
+    .form-div input[type="date"] {
+        width: 8.5rem;
+    }
+    .form-div input[type="time"] {
+        width: 8.5rem;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -785,6 +622,11 @@ a {
         min-height: 30px;
     }
 
+    .travel-card-content-right img {
+        width: 23%;
+        height: 3rem;
+        cursor: pointer;
+    }
 }
 
 @media (min-width: 768px) {
@@ -793,9 +635,6 @@ a {
         padding-right: 8rem;
     }
 
-}
-
-@media (min-width: 768px) {
     .md\:flex-row {
         flex-direction: row;
     }
@@ -833,16 +672,15 @@ a {
     }
 }
 
-@media (max-width: 768px) {
-    .bg-slate-700 {
-        --tw-bg-opacity: 1;
-        background-color: rgba(166, 150, 249,0.6);
-
+@media screen and (max-width: 420px) {
+    .form-div label {
+        margin-left: 0px;
     }
-}
+    .form-div input[type="date"],
+    .form-div input[type="time"],
+    .form-div select {
+        margin:5px;
+        margin-left: 0px;
 
-@media (max-width: 768px) {
-    .footer-orientation {
-        flex-direction: column;
     }
 }

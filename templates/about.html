@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ subpath }}/static/about.css" />
-    <link rel="stylesheet" href="{{ subpath }}/static/style.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/about.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/navbar_sidebar.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,19 +16,19 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     
     <script type="text/javascript">
         var subpath = "{{ subpath }}";
     </script>
-    <script src="{{ subpath }}/static/script.js" defer></script>
+    <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
   </head>
   <body>
     <div class="head-container">
       <header class="main-header">
         <div class="logo unselectable">
-          <img src="{{ subpath }}/static/logo.svg" alt="logo" />
+          <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
         <nav class="main-nav">
           <ul>
@@ -66,47 +67,45 @@
         </div>
       </header>
     </div>
-
-    <div id="filler" class="filler"></div>
-
-    <div class="about">
-      <h3>About Us</h3>
-      <hr />
-      <h4>
-        Cabmiloge is a user-friendly platform developed by the members of the
-        Open Source Development Group at IIIT Hyderabad. Its main aim is to make
-        it simpler for students to connect with peers who happen to be heading
-        in the same direction. By doing so, Cabmiloge streamlines the process of
-        coordinating rides and travel plans, offering students a convenient and
-        hassle-free way to arrange their journeys.
-      </h4>
+    <div class="about-container">
+      <div class="about">
+        <h3>About Us</h3>
+        <hr />
+        <h4>
+          Cabmiloge is a user-friendly platform developed by the members of the
+          Open Source Development Group at IIIT Hyderabad. Its main aim is to make
+          it simpler for students to connect with peers who happen to be heading
+          in the same direction. By doing so, Cabmiloge streamlines the process of
+          coordinating rides and travel plans, offering students a convenient and
+          hassle-free way to arrange their journeys.
+        </h4>
+      </div>
+  
+  
+      
+      <div class="howTouse">
+        <h3>How to use</h3>
+        <hr />
+        <h4>
+          To ensure a smooth process, we recommend first checking if there's
+          someone traveling in the direction you're planning to go. To simplify
+          this, we've incorporated various filtering options such as batch
+          starting point, destination, date, and time. You can choose one or
+          multiple filters to search for a suitable partner. If you find a match,
+          you can effortlessly send them a prewritten email by clicking the "send
+          mail" option. However, if there's no one traveling in your desired
+          direction, you have the option to add your own card. Simply wait for
+          interested individuals to contact you. Once the taxi is filled, you can
+          delete the card. <br />
+          <br />Wishing you pleasant travels!
+        </h4>
+      </div>  
     </div>
-
-
-    
-    <div class="howTouse">
-      <h3>How to use</h3>
-      <hr />
-      <h4>
-        To ensure a smooth process, we recommend first checking if there's
-        someone traveling in the direction you're planning to go. To simplify
-        this, we've incorporated various filtering options such as batch
-        starting point, destination, date, and time. You can choose one or
-        multiple filters to search for a suitable partner. If you find a match,
-        you can effortlessly send them a prewritten email by clicking the "send
-        mail" option. However, if there's no one traveling in your desired
-        direction, you have the option to add your own card. Simply wait for
-        interested individuals to contact you. Once the taxi is filled, you can
-        delete the card. <br />
-        <br />Wishing you pleasant travels!
-      </h4>
-    </div>
-
 
     <footer class="flex footer-orientation md:flex-row items-center justify-between md:px-32 py-12 bg-slate-700 text-white" style="margin-top:5vh;">
 
       <div class="text-xs h-auto" >
-        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/OSDG_logo.png">
+        <img alt="OSDG" loading="lazy" width="1392" height="584" decoding="async" data-nimg="1" class="w-24 mb-6" style="color:transparent "  src="{{ subpath }}/static/images/OSDG_logo.png">
       </div>
       <div class="flex h-auto justify-center items-center pb-4">
 

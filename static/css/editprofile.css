@@ -17,7 +17,6 @@
 .container-top div {
    text-align: left;
    background-color: rgb(212, 207, 240);
-   /* background-color: #a696f9ff; */
    min-height: 33.2vh;
    min-width: 50%;
    float: left;
@@ -59,7 +58,8 @@
 }
 
 .user-details {
-   margin-left: 5rem;
+   margin-left: 2rem;
+   margin-top: 5px;
 }
 
 .box-edit {
@@ -186,14 +186,20 @@
    .box-edit{
       width: 512px;
    }
+   .container-top div {
+       width: 512px;
+   }
 }
 
 @media (max-width: 768px) {
    .container-top div {
-       margin-left: 0px;
+       margin-left: 1.2%;
        width: 95%;
    }
 
+   .box-edit i{
+         margin-left: 0px;
+   }
    .container-top h2 {
        margin-left: 0px;
    }
@@ -203,11 +209,11 @@
    }
 
    .user-details {
-       margin-left: 1rem;
+       margin-left: 0px;
    }
 
    .box-edit {
-       margin-left: 0px;
+       margin-left: 1.2%;
        margin-top: 5rem;
        padding: 1vh;
        width: 95%;
@@ -228,4 +234,18 @@
    .input-div input[type="text"] {
       min-width: 140px;
    }
+}
+
+@media (max-width: 490px) {
+   .box-edit h2{
+       margin-left: 25%;
+   }
+   .container-top h2{
+      margin-left: 25%;
+  }
+
+   .input-div i{
+         margin-left: 50%;
+   }
+
 }

@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ subpath }}/static/style.css">
+    <link rel="stylesheet" href="{{ subpath }}/static/css/navbar_sidebar.css" />
+    <link rel="stylesheet" href="{{ subpath }}/static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ subpath }}/static/icon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
         var subpath = "{{ subpath }}";
     </script>
-    <script src="{{ subpath }}/static/script.js" defer></script>
+    <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
 </head>
 <style>
@@ -21,7 +22,7 @@
         padding: 0;
         box-sizing: border-box;
         font-family: 'Montserrat', sans-serif;
-        background-image: url("{{ subpath }}/static/login-background.svg");
+        background-image: url("{{ subpath }}/static/images/login-background.svg");
         background-size: cover;
         color: #fff;
     }
@@ -188,7 +189,7 @@
 <body>
     <div class="head-container">
         <header class="main-header">
-            <div class="logo unselectable"><img src="{{ subpath }}/static/logo.svg" alt="logo"></div>
+            <div class="logo unselectable"><img src="{{ subpath }}/static/images/logo.svg" alt="logo"></div>
             <div class="user-info">
                 <div class="profile-dropdown"></div>
             </div>
