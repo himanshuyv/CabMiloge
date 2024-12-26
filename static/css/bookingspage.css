@@ -28,6 +28,7 @@
    display: none;
    max-height: 400px;
    overflow-y: auto;
+   position: absolute;
 }
 
 .select-btn_batch,
@@ -327,7 +328,7 @@
    .list-items {
        width: calc(100% - 32px);
        width: 60vw;
-       position: relative;
+       position: absolute;
    }
 
    .mail_btn {
@@ -398,14 +399,35 @@
 
 @media only screen and (max-width: 450px) {
    .booking-card {
-      width: 100%;
-      align-items: left;
+      width: 85%;
+      align-items: flex-start;
    }
    .booking-card p{
-      margin-left:0px;
-
+      margin: 0px;
+      margin-top: 10px;
    }
    .booking-card h3{
-      margin-left:0px;
+      margin: 0px;
+      margin-top: 10px;
+   }
+   .booking-card-content-left{
+      width: 100%;
+   }
+   .booking-card-content-right{
+      width: 100%;
+   }
+
+   .mail_btn {
+      width:40%;
+      margin: 0px;
+      font-size: 1.2rem;
+   }
+
+   .booking-card-content-right .mail_btn{
+      margin-top: 10px;
+   }
+
+   button.mail_btn.cursor-p{
+      padding: 0;
    }
 }

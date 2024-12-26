@@ -25,28 +25,38 @@ function sendDataForBooking(direction) {
   directionOfTravel = document.createElement("div");
   directionOfTravel.classList.add("card");
   directionOfTravel.classList.add("form-div");
+  
   if (direction === "From Campus" || direction === "To Campus") {
     let heading = document.createElement("h1");
     heading.textContent = direction;
     heading.classList.add("from-to-heading");
     directionOfTravel.appendChild(heading);
+
     let form = document.createElement("form");
     form.method = "post";
     form.action = "getDataForBooking";
+
     let input = document.createElement("input");
     input.type = "hidden";
     input.name = "direction";
     input.value = direction;
     form.appendChild(input);
+
     let stationLabel = document.createElement("label");
     stationLabel.textContent = `${direction === "From Campus" ? "To" : "From"
       } Station:`;
     let stationDropdown = document.createElement("select");
+
     stationDropdown.name = "station";
     stationDropdown.required = true;
-
-
-
+    let placeholder_value = direction === "From Campus" ? "Select Destination" : "Select Source";
+    let placeholder = document.createElement("option");
+    placeholder.value = "";   
+    placeholder.textContent = placeholder_value; 
+    placeholder.disabled = true;  
+    placeholder.selected = true;  
+    stationDropdown.appendChild(placeholder);
+    
     let stations = [
       "Rajiv Gandhi International Airport",
       "Secunderabad Junction",
@@ -102,25 +112,30 @@ function sendDataForBooking(direction) {
 
 
 function deleteBooking(entry_id, direction) {
-  let form = document.createElement("form");
-  form.method = "post";
-  form.action = "deleteBooking";
-  let input = document.createElement("input");
-  input.type = "hidden";
-  input.name = "entry_id";
-  input.value = entry_id;
-  form.appendChild(input);
-  input = document.createElement("input");
-  input.type = "hidden";
-  input.name = "direction";
-  if (direction === 0) {
-    input.value = "From Campus";
-  } else {
-    input.value = "To Campus";
+
+  let confirmDelete = confirm("Are you sure you want to delete this booking?");
+
+  if (confirmDelete) {
+    let form = document.createElement("form");
+    form.method = "post";
+    form.action = "deleteBooking";
+    let input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "entry_id";
+    input.value = entry_id;
+    form.appendChild(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "direction";
+    if (direction === 0) {
+      input.value = "From Campus";
+    } else {
+      input.value = "To Campus";
+    }
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
   }
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
 }
 
 
