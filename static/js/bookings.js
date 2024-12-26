@@ -153,6 +153,7 @@ function updateBookingOptions(availableOptions) {
               <p>Batch: ${entry[5]}</p>
               <p>Gender: ${entry[4]}</p>
               <p>Email: ${entry[8]}</p>
+              <p>Phone: ${entry[9]}</p>
             </div>
             <div class="booking-card-content-right">
               <h3>From: ${entry[7]}</h3>

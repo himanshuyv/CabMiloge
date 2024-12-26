@@ -5,10 +5,11 @@
 
 .main-header {
    position: fixed;
+   margin: 0px;
    z-index: 100;
    background-color: #E5E0FF;
    width: 100%;
-   color: black;
+   color: black;  
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -113,8 +114,6 @@
    display: block;
 }
 
-
-
 .sidebar {
    height: 100%;
    width: 0;
@@ -142,7 +141,6 @@
    display: block;
    transition: 0.3s;
 }
-
 
 .sidebar-options {
    margin-top: 6%;
