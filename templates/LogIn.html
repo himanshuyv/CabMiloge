@@ -13,7 +13,7 @@
     />
     <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
-      var subpath = "{{ subpath }}";
+        var subpath = "{{ subpath }}";
     </script>
     <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
@@ -30,7 +30,7 @@
     }
 
     .container {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -137,18 +137,14 @@
           <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
       </header>
+
     </div>
     <div class="container">
       <div class="box">
         <h1>Log In Using IIIT Credentials</h1>
-        <div class="terms">
-          <strong>Terms of Use:</strong><br /><br />
-          The software provided on this platform is offered “as is,” without any warranties, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. <br /><br />
-          By accessing and using this platform, you acknowledge and agree that the authors and contributors shall not be held liable for any claim, damages, or other liabilities, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or its use.<br /><br />
-          Your continued use of this platform constitutes your agreement to these terms. If you do not agree, please refrain from using the platform.
-        </div>
         <div class="user">
           <form method="post" action="{{ subpath }}/Get_Auth">
+            <i class="fas fa-user"></i>
             <div class="message-box">
               {% if message %}
               <p>{{ message }}</p>
