@@ -13,7 +13,7 @@
     />
     <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
-        var subpath = "{{ subpath }}";
+      var subpath = "{{ subpath }}";
     </script>
     <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
@@ -24,12 +24,12 @@
       background-image: url("{{ subpath }}/static/images/login-background.svg");
       background-size: cover;
       background-repeat: no-repeat;
-      margin:0;
-      padding:0;
+      margin: 0;
+      padding: 0;
       color: #fff;
-   }
+    }
 
-   .container {
+    .container {
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -37,106 +37,97 @@
       font-size: 16px;
       flex-direction: column;
     }
-    
+
     h1 {
       font-weight: 900;
     }
-    
+
+    .terms {
+      font-size: 0.8rem;
+      color: #ddd;
+      margin: 1rem 0;
+      text-align: justify;
+      line-height: 1.4;
+      padding: 0 1rem;
+    }
+
     .message-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    
+
     .message-box p {
-        font-size: 15px;
-        color: red;
+      font-size: 15px;
+      color: red;
     }
-    
+
     .box {
-        width: 20%;
-        min-height: 32vh;
-        min-width: 300px;
-        font-size: 1rem;
-        padding: 2rem;
-        background-color: rgba(0, 0, 0, 0.55);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      width: 20%;
+      min-height: 40vh;
+      min-width: 300px;
+      font-size: 1rem;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.55);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 30px;
-        margin-top: 10vh;
+      border-radius: 30px;
+      margin-top: 10vh;
     }
-    
+
     .box h1 {
-        text-align: center;
+      text-align: center;
     }
+
     .user {
-        margin-top: 4rem;
+      margin-top: 2rem;
     }
-    
-    .fas {
-        position: absolute;
-    }
-    
+
     input {
-        width: 90%;
-        margin-bottom: 25px;
-        padding: 0 1rem 0.5px;
-        font-size: 1rem;
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-        outline: none;
-        background-color: rgba(0, 0, 0, 0);
-        color: #fff;
+      width: 90%;
+      margin-bottom: 25px;
+      padding: 0 1rem 0.5px;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+      outline: none;
+      background-color: rgba(0, 0, 0, 0);
+      color: #fff;
     }
-    
+
     input:focus {
-        border-bottom: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
     }
-    
-    .reset-password {
-        color: #ff7f50;
-        text-align: right;
-        margin-top: 0px;
-        font-size: 12px;
-    }
-    
+
     .login-btn {
-        margin-top: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    
+
     .btn {
-        display: block;
-        width: 80%;
-        padding: 15px;
-        background-color: #eeeeee;
-        color: #2e1903;
-        border: none;
-        border-radius: 20px;
-        font-size: 20px;
-        font-weight: 600;
-        opacity: 0.8;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      display: block;
+      width: 80%;
+      padding: 15px;
+      background-color: #eeeeee;
+      color: #2e1903;
+      border: none;
+      border-radius: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      opacity: 0.8;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-    
+
     .btn:hover {
-        background-color: #d3cfeb;
+      background-color: #d3cfeb;
     }
-    
-    .signup span {
-        color: #7fb8e6;
-    }
-    
-    .signup span::hover {
-        color: #216ca9;
-    }
-    
+
     a {
-        text-decoration: none;
+      text-decoration: none;
     }
   </style>
   <body>
@@ -146,14 +137,18 @@
           <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
       </header>
-
     </div>
     <div class="container">
       <div class="box">
         <h1>Log In Using IIIT Credentials</h1>
+        <div class="terms">
+          <strong>Terms of Use:</strong><br /><br />
+          The software provided on this platform is offered “as is,” without any warranties, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. <br /><br />
+          By accessing and using this platform, you acknowledge and agree that the authors and contributors shall not be held liable for any claim, damages, or other liabilities, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or its use.<br /><br />
+          Your continued use of this platform constitutes your agreement to these terms. If you do not agree, please refrain from using the platform.
+        </div>
         <div class="user">
           <form method="post" action="{{ subpath }}/Get_Auth">
-            <i class="fas fa-user"></i>
             <div class="message-box">
               {% if message %}
               <p>{{ message }}</p>

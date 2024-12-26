@@ -20,7 +20,7 @@ Following the hackathon, the project has been improved and is now maintained by 
 - [Praneeth Jain](https://github.com/PraneethJain)
 - [Vyakhya Gupta](https://github.com/vcnk4v)
 
-The primary goal of [**CabMiloge**](https://osdg.iiit.ac.in/cabsharing/) is to simplify the process of connecting students with peers traveling in the same direction. By doing so, the platform:  
+The primary goal of [**CabMiloge**](https://github.com/OSDG-IIITH/CabMiloge) is to simplify the process of connecting students with peers traveling in the same direction. By doing so, the platform:  
 - Streamlines the coordination of rides and travel plans.  
 - Reduces travel costs.  
 - Offers a convenient and hassle-free way for students to arrange their journeys.  
