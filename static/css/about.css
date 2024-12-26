@@ -34,7 +34,7 @@
    border: 1px solid #333;
 }
 
-.about-container>div>h4 {
+.about-container>div>p {
    font-size: 1.5rem;
    color: #333;
    text-align: justify;
@@ -53,7 +53,7 @@
       width: 95%;
       margin-left: 2.5%; 
    }
-   .about-container>div>h4{
+   .about-container>div>p{
       font-size: 1.3rem;
       margin-left: 0;
       margin-right: 0;

@@ -1,35 +1,69 @@
-# CabMiloge
+# CabMiloge  
 
-**Visit the live website: [CabMiloge](https://osdg.iiit.ac.in/cabsharing)**
+**Visit the live website: [CabMiloge](https://osdg.iiit.ac.in/cabsharing/)**  
 
-## HackIIIT 2024 Winner!
+## About CabMiloge  
 
-CabMiloge was crowned the winner of HackIIIT 2024 in the Design Category! The team members behind the idea were [@StarryBadger](https://www.github.com/StarryBadger),  [@himanshuyv](https://www.github.com/himanshuyv),  [@Jayeshs27](https://www.github.com/Jayeshs27) and  [@gitPROhan](https://www.github.com/gitPROhan). Following the hackathon, OSDG took the project under its wings. Since then, many contributions have been made to further develop and improve CabMiloge.
+[**CabMiloge**](https://github.com/OSDG-IIITH/CabMiloge) is a user-friendly platform developed during the hackathon **HackIIIT 2024**, where it won **1st prize in the design category**.  
+The team members behind this idea were:  
+- [Himanshu Yadav](https://www.github.com/himanshuyv)  
+- [Shaunak Biswas](https://www.github.com/StarryBadger)  
+- [Jayesh Sutar](https://www.github.com/Jayeshs27)  
+- [Rohan Shridhar](https://www.github.com/gitPROhan)  
 
-## About CabMiloge
+Following the hackathon, the project has been improved and is now maintained by the [**Open Source Development Group at IIIT Hyderabad**](https://github.com/OSDG-IIITH). Significant contributions have been made by:  
+- [Anushka Sharma](https://github.com/anushkasharma2005)  
+- [Ankith Pai](https://github.com/ankith26)  
+- [Adithya Kishor](https://github.com/The-Coder-Kishor)  
+- [Vyakhya Gupta](https://github.com/vcnk4v)  
+- [Abhiram Tilak](https://github.com/abhiramtilakiiit)  
 
-CabMiloge is a cab-sharing platform designed exclusively for the IIIT Hyderabad community. Our mission is to simplify travel arrangements, reduce costs, and foster connections among students and faculty.
+The primary goal of [**CabMiloge**](https://osdg.iiit.ac.in/cabsharing/) is to simplify the process of connecting students with peers traveling in the same direction. By doing so, the platform:  
+- Streamlines the coordination of rides and travel plans.  
+- Reduces travel costs.  
+- Offers a convenient and hassle-free way for students to arrange their journeys.  
 
-## For Developers
+## For Developers  
 
-CabMiloge now runs as a Docker container! For help with Docker refer to [this](https://docs.docker.com/).
+CabMiloge runs as a Docker container for easy setup and deployment.  
 
-### Clone the repository
+### Clone the Repository  
 
-### Add env variables in .env
+Clone the repository to your local system:  
+```bash
+git clone https://github.com/OSDG-IIITH/CabMiloge.git
+cd CabMiloge
+```
+
+### Set Environment Variables  
+
+Create a `.env` file in the project directory and add the required environment variables:  
 ```bash
 touch .env
 ```
 
-### Run the docker container with the given bash script
+### Run the Docker Container  
+
+Use the provided script to build and run the Docker container:  
 ```bash
 ./run.sh
 ```
 
-### To gracefully terminate, run
+### To access the website go to:
+
+```bash
+http://172.22.0.2
+```
+
+### To Gracefully Terminate  
+
+Stop the Docker container with the following script:  
 ```bash
 ./stop.sh
 ```
 
 
+## Resources  
 
+- **Docker Documentation**: Refer to [Docker Docs](https://docs.docker.com/) for more help.  
+- **Contributing**: Contributions are welcome! Please submit a PR or create an issue to improve the platform.  
