@@ -13,7 +13,7 @@
     />
     <link rel="icon" href="{{ subpath }}/static/images/icon.svg" type="image/x-icon" />
     <script type="text/javascript">
-      var subpath = "{{ subpath }}";
+        var subpath = "{{ subpath }}";
     </script>
     <script src="{{ subpath }}/static/js/script.js" defer></script>
     <title>CabMiloge</title>
@@ -30,7 +30,7 @@
     }
 
     .container {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -137,6 +137,7 @@
           <img src="{{ subpath }}/static/images/logo.svg" alt="logo" />
         </div>
       </header>
+
     </div>
     <div class="container">
       <div class="box">
@@ -149,6 +150,7 @@
         </div>
         <div class="user">
           <form method="post" action="{{ subpath }}/Get_Auth">
+            <i class="fas fa-user"></i>
             <div class="message-box">
               {% if message %}
               <p>{{ message }}</p>

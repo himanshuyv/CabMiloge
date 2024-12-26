@@ -143,8 +143,6 @@
    transform: scale(1);
 }
 
-
-
 .submit_button {
    max-width: 300px;
    width: 100%;
@@ -159,6 +157,7 @@
 
 
 .clear_button {
+   background-color: rgb(166, 151, 239);
    width: 120px;
    max-width: 300px;
    float: right;
@@ -203,6 +202,7 @@
 
 .date_filter::-webkit-calendar-picker-indicator {
    background-color: #6e93f7;
+   margin-left: 3.8rem;
    cursor: pointer;
    color-scheme: dark;
    border-radius: 6px;
