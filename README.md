@@ -5,18 +5,20 @@
 ## About CabMiloge  
 
 [**CabMiloge**](https://github.com/OSDG-IIITH/CabMiloge) is a user-friendly platform developed during the hackathon **HackIIIT 2024**, where it won **1st prize in the design category**.  
-The team members behind this idea were:  
+The team members behind this project are:  
 - [Himanshu Yadav](https://www.github.com/himanshuyv)  
 - [Shaunak Biswas](https://www.github.com/StarryBadger)  
 - [Jayesh Sutar](https://www.github.com/Jayeshs27)  
 - [Rohan Shridhar](https://www.github.com/gitPROhan)  
 
-Following the hackathon, the project has been improved and is now maintained by the [**Open Source Development Group at IIIT Hyderabad**](https://github.com/OSDG-IIITH). Significant contributions have been made by:  
-- [Anushka Sharma](https://github.com/anushkasharma2005)  
-- [Ankith Pai](https://github.com/ankith26)  
-- [Adithya Kishor](https://github.com/The-Coder-Kishor)  
-- [Vyakhya Gupta](https://github.com/vcnk4v)  
-- [Abhiram Tilak](https://github.com/abhiramtilakiiit)  
+Following the hackathon, the project has been improved and is now maintained by the [**Open Source Developers Group (OSDG) at IIIT Hyderabad**](https://osdg.iiit.ac.in/). The current list of code contributors includes the following people in addition to the original authors:
+- [Abhiram Tilak](https://github.com/abhiramtilakiiit)
+- [Adithya Kishor](https://github.com/The-Coder-Kishor)
+- [Ankith Pai](https://github.com/ankith26)
+- [Anushka Sharma](https://github.com/anushkasharma2005)
+- [Manit Roy](https://github.com/manit2004)
+- [Praneeth Jain](https://github.com/PraneethJain)
+- [Vyakhya Gupta](https://github.com/vcnk4v)
 
 The primary goal of [**CabMiloge**](https://osdg.iiit.ac.in/cabsharing/) is to simplify the process of connecting students with peers traveling in the same direction. By doing so, the platform:  
 - Streamlines the coordination of rides and travel plans.  
