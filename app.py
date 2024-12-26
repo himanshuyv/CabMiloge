@@ -65,6 +65,8 @@ def sort_by_datetime(entries):
 
 @app.route(f'{SUBPATH}/')
 def LogIn():
+    if session:
+        return redirect(f'{SUBPATH}/upcomingTravels')
     return render_template('LogIn.html', subpath=SUBPATH)
 
 
@@ -125,14 +127,6 @@ def Get_userData():
         PhoneNo = request.form['PhoneNo']
         cursor = conn.cursor()
         try:
-            print(fname)
-            print(lname)
-            print(email)
-            print(roll)
-            print(uid)
-            print(gender)
-            print(batch)
-            print(PhoneNo)
             cursor.execute('''
                         INSERT INTO Login (Fname, Lname, Email, RollNo, Uid, Batch, Gender, PhoneNo)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -161,7 +155,6 @@ def getForFromCampus():
         date = request.form['departureDate']
         time = request.form['departureTime']
         direction = request.form['direction']
-        print(to,date,time)
         f = '%Y-%m-%d %H:%M:%S'
         date_time = date + ' ' + time + ':00'
         try:
@@ -183,7 +176,6 @@ def getForFromCampus():
 def delete_booking_route():
     entry_id = request.form['entry_id']
     direction = request.form['direction']
-    print(direction, entry_id)
     try:
         cursor = conn.cursor()
         if direction == 'From Campus':
@@ -196,56 +188,6 @@ def delete_booking_route():
     except:
         print('Data not deleted')
     return redirect(f'{SUBPATH}/upcomingTravels')  
-
-@app.route(f'{SUBPATH}/viewBooking', methods=['POST', 'GET'])
-def view_booking():
-    entry_id = request.form['entry_id']
-    direction = request.form['direction']
-    token = session['token']
-    fernet = Fernet(key)
-    uid = fernet.decrypt(token).decode()
-    print(direction, entry_id)
-    try:
-        cursor = conn.cursor()
-        BookingEntries = []
-        if direction == 'From Campus':
-            cursor.execute('''SELECT * FROM fromCampus WHERE BookingID = ?''', (entry_id,))
-            # cursor.execute('''SELECT * FROM fromCampus''')
-            entry = cursor.fetchone()
-            cursor.execute('''SELECT * FROM fromCampus WHERE Station = ?''', (entry[3],))
-            # cursor.execute('''SELECT * FROM fromCampus ''')
-            
-        else:
-            cursor.execute('''SELECT * FROM toCampus WHERE BookingID = ?''', (entry_id,))
-            # cursor.execute('''SELECT * FROM toCampus''')
-            entry = cursor.fetchone()
-            cursor.execute('''SELECT * FROM toCampus WHERE Station = ?''', (entry[3],))
-            # cursor.execute('''SELECT * FROM toCampus''')
-            
-        entries = cursor.fetchall()
-        
-        for item in entries:
-            if item[1] == uid:
-                continue
-            date = item[2].split(' ')[0]
-            time = item[2].split(' ')[1]
-            uid = item[1]
-            cursor.execute( '''select * from Login where Uid = ?''', (item[1],))
-            data = cursor.fetchone()
-            Fname = data[0]
-            Lname = data[1]
-            Name = Fname + ' ' + Lname
-            Gender = data[6]
-            Batch = data[5]
-            temp_tuple = (date, time, uid, Name, Gender, Batch)
-            BookingEntries.append(temp_tuple)
-        cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
-        user = cursor.fetchone()
-        conn.commit()
-        
-    except:
-        print('Data not found')
-    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[2] , entry_id=entry_id,  direction=direction, subpath=SUBPATH)
 
 @app.route(f'{SUBPATH}/upcomingTravels')
 def upcomingTravels():
