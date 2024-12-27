@@ -87,10 +87,6 @@
             <span class="label-edit">Batch</span><br>
             <span class="user-details"><b>{{ user[5] }}</b></span>
           </p>
-          <p style="border-bottom: 1px solid rgb(75, 72, 72)">
-            <span class="label-edit">Gender</span><br>
-            <span class="user-details"><b>{{ user[6] }}</b></span>
-          </p>
         </div>
       </div>
 
@@ -99,31 +95,6 @@
           <h2>Update info</h2>
           <div class="user-edit">
             <form action="{{ subpath }}/update_userData" method="post">
-              <div class="input-div bg-transparent">
-                <i class="fas fa-venus-mars"></i>
-                <select name="gender" class="border" id="gender" required>
-                  <option value="" disabled selected>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Others">Others</option>
-                </select>
-              </div>
-
-              <div class="input-div bg-transparent">
-                <i class="fas fa-graduation-cap"></i>
-                <select name="batch" class="border" id="batch" required>
-                  <option value="" disabled selected>Select Batch</option>
-                  <option value="UG1">UG1</option>
-                  <option value="UG2">UG2</option>
-                  <option value="UG3">UG3</option>
-                  <option value="UG4">UG4</option>
-                  <option value="UG5">UG5</option>
-                  <option value="PG1">PG1</option>
-                  <option value="PG2">PG2</option>
-                  <option value="PhD">PhD</option>
-                </select>
-              </div>
-
               <div class="input-div bg-transparent">
                 <i class="fas fa-phone"></i>
                 <input type="text" class="border" name="PhoneNo" id="PhoneNo" placeholder="Phone Number" required />
