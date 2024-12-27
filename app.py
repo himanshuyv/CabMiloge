@@ -85,8 +85,7 @@ def Get_Auth():
                 first_name = attributes['FirstName']
                 last_name = attributes['LastName']
                 uid = attributes['uid']
-                batch = ''
-                gender = ''
+                # batch = get_batch(roll)
                 cursor = conn.cursor()
                 try:
                     cursor.execute( '''
@@ -111,7 +110,22 @@ def Get_Auth():
         else:
             message='Error with CAS. Please try again'
             return render_template('LogIn.html', message=message, subpath=SUBPATH)
-        
+
+
+def get_batch(roll):
+    roll = str(roll)
+    year = roll[:4]
+    rem = roll[4:]
+    batch = year
+    if (rem[0] in ('7', '8')) or rem[:3] == "900":
+        batch = "PhD"+batch
+    elif (rem[:2] in ('10', '11')) or rem[:3] == "909":
+        batch = "UG"+batch
+    elif (rem[:2] in ('20', '21')):
+        batch = "PG"+batch
+    elif (rem[:2] == '12'):
+        batch = "LE"+batch
+    return batch
 
 
 @app.route(f'{SUBPATH}/Get_userData',methods=['POST', 'GET'])
@@ -122,8 +136,9 @@ def Get_userData():
         email = request.form['email']
         roll = request.form['roll']
         uid = request.form['uid']
-        gender = request.form['gender']
-        batch = request.form['batch']
+        batch = get_batch(roll)
+        gender = ""
+
         PhoneNo = request.form['PhoneNo']
         cursor = conn.cursor()
         try:
@@ -455,8 +470,6 @@ def editprofilepage():
 @app.route(f'{SUBPATH}/update_userData', methods=['POST'])
 def update_userData():
     try:
-        gender = request.form.get('gender')
-        batch = request.form.get('batch')
         PhoneNo = request.form.get('PhoneNo')
         token = session['token']
         fernet = Fernet(key)
@@ -466,17 +479,11 @@ def update_userData():
 
         cursor.execute('''
         UPDATE Login
-        SET gender = ?, batch = ?, PhoneNo = ?
+        SET PhoneNo = ?
         WHERE Uid = ?
-        ''', (gender, batch, PhoneNo, uid))
+        ''', (PhoneNo, uid))
         
         conn.commit()
-        
-        cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
-        user = cursor.fetchall()
-        
-
-        # Redirect with a success message
         return redirect(url_for('editprofilepage', update_message='success', subpath=SUBPATH))
         
     except Exception as e:
