@@ -310,7 +310,9 @@ def isTimeNotInRange(requested_time, entry_time):
     for i in range(len(requested_time)):
         hour = int(entry_time.split(':')[0])
         timeRange = requested_time[i].split('-')
-        if (hour >= int(timeRange[0].split(':')[0]) and hour <= int(timeRange[1].split(':')[0])):
+        timeRange[0] = int(timeRange[0].split(':')[0])
+        timeRange[1] = int(timeRange[1].split(':')[0])
+        if (hour >= timeRange[0] and hour < timeRange[1]):
             return False
     return True
 
