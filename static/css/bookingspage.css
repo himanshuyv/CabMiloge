@@ -114,7 +114,7 @@
 .item_time .checkbox {
    justify-content: center;
    height: 16px;
-   width: 16px;
+   min-width: 16px;
    border-radius: 4px;
    margin-right: 12px;
    border: 1.5px solid #c0c0c0;
@@ -249,11 +249,11 @@
 
 .mail_btn {
    min-height: 4vh;
-   width: 15vh;
+   width: 12vw;
    background-color: transparent;
    color: black;
    font-size: 1em;
-   padding: 1vh;
+   padding: 1vw;
    text-align: center;
    border: 2px solid black;
 }
@@ -357,14 +357,17 @@
        margin-top: 10px;
 
    }
-
+   .date_filter::-webkit-calendar-picker-indicator {
+      margin-left: 30vw;
+   }
    .filter-div {
        flex-direction: column;
        justify-content: center;
    }
 
    .date_filter {
-       margin-top: 10px;
+      width:60vw ;
+      margin-top: 10px;
 
    }
    .booking-container{
