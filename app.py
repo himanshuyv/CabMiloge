@@ -251,13 +251,17 @@ def view_booking_redirect():
     token = session['token']
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
-        
+
+    destination_list = []
+    starting_list = []
+    Batch_list = []
     try:
         cursor = conn.cursor()
         BookingEntries = []
         cursor.execute('''SELECT * FROM fromCampus''')
         entries1 = cursor.fetchall()
-        
+        if (len(entries1) != 0):
+            starting_list.append("IIIT Campus")
         for item in entries1:
             if item[1] == uid:
                 continue
@@ -275,10 +279,17 @@ def view_booking_redirect():
             station= item[3]
             from_location="IIIT Campus"
             temp_tuple = (date, time, uid, Name, Gender, Batch, station, from_location, email_id, PhoneNo)
+            if station not in destination_list:
+                destination_list.append(station)
+
+            if Batch not in Batch_list:
+                Batch_list.append(Batch)
             BookingEntries.append(temp_tuple)
         
         cursor.execute('''SELECT * FROM toCampus''')
         entries1 = cursor.fetchall()
+        if (len(entries1) != 0):
+            destination_list.append("IIIT Campus")
         for item in entries1:
             if item[1] == uid:
                 continue
@@ -296,6 +307,12 @@ def view_booking_redirect():
             station= "IIIT Campus"
             from_location=item[3]
             temp_tuple = (date, time, uid, Name, Gender, Batch,station,from_location, email_id, PhoneNo)
+            if from_location not in starting_list:
+                starting_list.append(from_location)
+
+            if Batch not in Batch_list:
+                Batch_list.append(Batch)
+
             BookingEntries.append(temp_tuple)
         cursor.execute('SELECT * FROM Login WHERE Uid = ?', (uid,))
         user = cursor.fetchone()
@@ -303,8 +320,12 @@ def view_booking_redirect():
         
     except Exception as e:
         print('An error occurred:', e)
-        
-    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1], subpath=SUBPATH)
+
+    Batch_list.sort()
+    destination_list.sort()
+    starting_list.sort()
+    time_list = ["00:00-01:00", "01:00-02:00", "02:00-03:00", "03:00-04:00", "04:00-05:00", "05:00-06:00", "06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00", "23:00-00:00"]
+    return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1], destination_list=destination_list, starting_list=starting_list, Batch_list=Batch_list, time_list= time_list,subpath=SUBPATH)
 
 def isTimeNotInRange(requested_time, entry_time):
     for i in range(len(requested_time)):
@@ -313,6 +334,9 @@ def isTimeNotInRange(requested_time, entry_time):
         timeRange[0] = int(timeRange[0].split(':')[0])
         timeRange[1] = int(timeRange[1].split(':')[0])
         if (hour >= timeRange[0] and hour < timeRange[1]):
+            return False
+        
+        if (hour>=timeRange[0] and timeRange[1] == 0):
             return False
     return True
 

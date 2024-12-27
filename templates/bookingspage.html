@@ -81,54 +81,14 @@
           </div>
 
           <ul class="list-items box_shadow-black bg-c1">
+            {% for batch in Batch_list%}
             <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
               <span class="checkbox align-c flex z_1">
                 <i class="fa-solid fa-check  check-icon z_1"></i>
               </span>
-              <span class="item-text_batch c-333 z_1 ">UG1</span>
+              <span class="item-text_batch c-333 z_1 ">{{ batch }}</span>
             </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">UG2</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">UG3</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">UG4</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">UG5</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">PG1</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">PG2</span>
-            </li>
-            <li class="item_batch cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_batch c-333 z_1 ">PhD</span>
-            </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -142,32 +102,14 @@
           </div>
 
           <ul class="list-items box_shadow-black bg-c1">
-            <li class="item_destination cursor-p align-c z_1 item_dropdown flex ">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_destination c-333 z_1 ">IIIT Campus</span>
-            </li>
+            {% for dest in destination_list %}
             <li class="item_destination cursor-p align-c z_1 item_dropdown flex">
               <span class="checkbox align-c flex z_1">
                 <i class="fa-solid fa-check  check-icon z_1"></i>
               </span>
-              <span class="item-text_destination c-333 z_1 "
-                >Rajiv Gandhi International Airport</span
-              >
+              <span class="item-text_destination c-333 z_1 ">{{ dest }}</span>
             </li>
-            <li class="item_destination cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_destination c-333 z_1 ">Secunderabad Junction</span>
-            </li>
-            <li class="item_destination cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_destination c-333 z_1 ">Kacheguda Railway Station</span>
-            </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -181,32 +123,14 @@
           </div>
 
           <ul class="list-items box_shadow-black bg-c1">
+            {% for start in starting_list %}
             <li class="item_start cursor-p align-c z_1 item_dropdown flex">
               <span class="checkbox align-c flex z_1">
                 <i class="fa-solid fa-check  check-icon z_1"></i>
               </span>
-              <span class="item-text_start c-333 z_1 ">IIIT Campus</span>
+              <span class="item-text_start c-333 z_1 ">{{ start }}</span>
             </li>
-            <li class="item_start cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_start c-333 z_1 "
-                >Rajiv Gandhi International Airport</span
-              >
-            </li>
-            <li class="item_start cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_start c-333 z_1 ">Secunderabad Junction</span>
-            </li>
-            <li class="item_start cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_start c-333 z_1 ">Kacheguda Railway Station</span>
-            </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -220,150 +144,14 @@
           </div>
 
           <ul class="list-items box_shadow-black bg-c1">
+            {% for time in time_list %}
             <li class="item_time cursor-p align-c z_1 item_dropdown flex">
               <span class="checkbox align-c flex z_1">
                 <i class="fa-solid fa-check  check-icon z_1"></i>
               </span>
-              <span class="item-text_time c-333 z_1 ">00:00-01:00</span>
+              <span class="item-text_time c-333 z_1 ">{{ time }}</span>
             </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">01:00-02:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">02:00-03:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">03:00-04:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">04:00-05:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">05:00-06:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">06:00-07:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">07:00-08:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">08:00-09:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">09:00-10:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">10:00-11:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">11:00-12:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">12:00-13:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">13:00-14:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">14:00-15:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">15:00-16:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">16:00-17:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">17:00-18:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">18:00-19:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">19:00-20:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">20:00-21:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">21:00-22:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">22:00-23:00</span>
-            </li>
-            <li class="item_time cursor-p align-c z_1 item_dropdown flex">
-              <span class="checkbox align-c flex z_1">
-                <i class="fa-solid fa-check  check-icon z_1"></i>
-              </span>
-              <span class="item-text_time c-333 z_1 ">23:00-00:00</span>
-            </li>
+            {% endfor %}
           </ul>
         </div>
 
