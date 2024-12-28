@@ -1,0 +1,15 @@
+# cache dependencies
+FROM python:3.12-slim as python_cache
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+WORKDIR /cache/
+RUN python -m venv /venv
+RUN pip install sqlite-web
+
+# build and start
+FROM python:3.12-slim as build
+WORKDIR /app/
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=python_cache /venv /venv
+CMD sqlite_web -H 0.0.0.0 -p 80 -x -P -u $SQLITE_WEB_SUBPATH /app/sqllite_volume/cabmates.db
