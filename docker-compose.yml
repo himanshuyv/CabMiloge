@@ -19,3 +19,15 @@ services:
         volumes:
             - ./sqllite_volume:/app/sqllite_volume
         tty: true
+    sqliteweb:
+        build:
+            context: .
+            dockerfile: Dockerfile-sqliteweb
+        networks:
+            cabsharing_network:
+                ipv4_address: 172.22.0.3
+        env_file:
+            - ./.env
+        volumes:
+            - ./sqllite_volume:/app/sqllite_volume
+        tty: true
