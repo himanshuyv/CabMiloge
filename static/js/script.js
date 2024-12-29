@@ -61,6 +61,8 @@ function sendDataForBooking(direction) {
       "Rajiv Gandhi International Airport",
       "Secunderabad Junction",
       "Kacheguda Railway Station",
+      "Lingampalli Railway Station",
+      "Pushpak Bus Stop Gachibowli"
     ];
 
     for (let station of stations) {
