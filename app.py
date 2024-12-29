@@ -61,6 +61,17 @@ def sort_by_datetime(entries):
     entries.sort(key=cmp_to_key(compare_datetime))
     return entries
 
+def compare_time(entry1, entry2):
+    if entry1[1] < entry2[1]:
+        return -1
+    elif entry1[1] > entry2[1]:
+        return 1
+    else:
+        return 0
+    
+def sort_by_time(entries):
+    entries.sort(key=cmp_to_key(compare_time))
+    return entries
 
 
 @app.route(f'{SUBPATH}/')
@@ -340,6 +351,7 @@ def view_booking_redirect():
     destination_list.sort()
     starting_list.sort()
     time_list = ["00:00-01:00", "01:00-02:00", "02:00-03:00", "03:00-04:00", "04:00-05:00", "05:00-06:00", "06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00", "23:00-00:00"]
+    BookingEntries = sort_by_time(BookingEntries)
     return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1], destination_list=destination_list, starting_list=starting_list, Batch_list=Batch_list, time_list= time_list,subpath=SUBPATH)
 
 def isTimeNotInRange(requested_time, entry_time):
@@ -428,6 +440,7 @@ def apply_filters():
                 continue
             BookingEntries.append(entry)
                 
+        BookingEntries = sort_by_time(BookingEntries)
         filtered_data = {'available_options': BookingEntries}
         
         return jsonify(filtered_data)
