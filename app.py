@@ -5,6 +5,7 @@ from urllib.parse import quote_plus
 from cryptography.fernet import Fernet
 import os
 from functools import cmp_to_key
+from datetime import datetime
 
 key = Fernet.generate_key()
 
@@ -60,19 +61,6 @@ def compare_datetime(entry1, entry2):
 def sort_by_datetime(entries):
     entries.sort(key=cmp_to_key(compare_datetime))
     return entries
-
-def compare_time(entry1, entry2):
-    if entry1[1] < entry2[1]:
-        return -1
-    elif entry1[1] > entry2[1]:
-        return 1
-    else:
-        return 0
-    
-def sort_by_time(entries):
-    entries.sort(key=cmp_to_key(compare_time))
-    return entries
-
 
 @app.route(f'{SUBPATH}/')
 def LogIn():
@@ -181,7 +169,6 @@ def getForFromCampus():
         date = request.form['departureDate']
         time = request.form['departureTime']
         direction = request.form['direction']
-        f = '%Y-%m-%d %H:%M:%S'
         date_time = date + ' ' + time + ':00'
         try:
             cursor = conn.cursor()
@@ -222,6 +209,7 @@ def upcomingTravels():
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     if(session):
+        cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute( '''
                         SELECT * FROM fromCampus WHERE Uid = ?
                         ''', (uid,))
@@ -234,6 +222,8 @@ def upcomingTravels():
             station = item[3]
             entry_id = item[0]
             temp_tuple = (date,time,station,entry_id)
+            if (date + ' ' + time) < cur_date_time:
+                continue
             fromCampus_entries.append(temp_tuple)
         cursor.execute( '''
                         SELECT * FROM toCampus WHERE Uid = ?
@@ -248,6 +238,8 @@ def upcomingTravels():
             station = item[3]
             entry_id = item[0]
             temp_tuple = (date,time,station,entry_id)
+            if (date + ' ' + time) < cur_date_time:
+                continue
             toCampus_entries.append(temp_tuple)
         cursor.execute( '''select * from Login where Uid = ?''', (uid,))
         user = cursor.fetchone()
@@ -281,13 +273,12 @@ def view_booking_redirect():
     destination_list = []
     starting_list = []
     Batch_list = []
+    cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     try:
         cursor = conn.cursor()
         BookingEntries = []
         cursor.execute('''SELECT * FROM fromCampus''')
         entries1 = cursor.fetchall()
-        if (len(entries1) != 0):
-            starting_list.append("IIIT Campus")
         for item in entries1:
             if item[1] == uid:
                 continue
@@ -305,8 +296,15 @@ def view_booking_redirect():
             station= item[3]
             from_location="IIIT Campus"
             temp_tuple = (date, time, uid, Name, Gender, Batch, station, from_location, email_id, PhoneNo)
+            
+            if (date + ' ' + time) < cur_date_time:
+                continue
+
             if station not in destination_list:
                 destination_list.append(station)
+
+            if "IIIT Campus" not in starting_list:
+                starting_list.append("IIIT Campus")
 
             if Batch not in Batch_list:
                 Batch_list.append(Batch)
@@ -314,8 +312,6 @@ def view_booking_redirect():
         
         cursor.execute('''SELECT * FROM toCampus''')
         entries1 = cursor.fetchall()
-        if (len(entries1) != 0):
-            destination_list.append("IIIT Campus")
         for item in entries1:
             if item[1] == uid:
                 continue
@@ -333,8 +329,15 @@ def view_booking_redirect():
             station= "IIIT Campus"
             from_location=item[3]
             temp_tuple = (date, time, uid, Name, Gender, Batch,station,from_location, email_id, PhoneNo)
+
+            if (date + ' ' + time) < cur_date_time:
+                continue
+
             if from_location not in starting_list:
                 starting_list.append(from_location)
+
+            if "IIIT Campus" not in destination_list:
+                destination_list.append("IIIT Campus")
 
             if Batch not in Batch_list:
                 Batch_list.append(Batch)
@@ -351,7 +354,7 @@ def view_booking_redirect():
     destination_list.sort()
     starting_list.sort()
     time_list = ["00:00-01:00", "01:00-02:00", "02:00-03:00", "03:00-04:00", "04:00-05:00", "05:00-06:00", "06:00-07:00", "07:00-08:00", "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00", "18:00-19:00", "19:00-20:00", "20:00-21:00", "21:00-22:00", "22:00-23:00", "23:00-00:00"]
-    BookingEntries = sort_by_time(BookingEntries)
+    BookingEntries.sort()
     return render_template('/bookingspage.html', available_options = BookingEntries, fname=user[0], lname=user[1], destination_list=destination_list, starting_list=starting_list, Batch_list=Batch_list, time_list= time_list,subpath=SUBPATH)
 
 def isTimeNotInRange(requested_time, entry_time):
@@ -376,7 +379,7 @@ def apply_filters():
     try:
         cursor = conn.cursor()
         filters = request.json
-
+        cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         requested_batch = filters.get('selectedBatch').split(",")
         requested_time = filters.get('selectedTime').split(",")
         requested_desti = filters.get('selectedDestination').split(",")
@@ -403,6 +406,8 @@ def apply_filters():
             station= item[3]
             from_location="IIIT Campus"
             temp_tuple = (date, time, uid, Name, Gender, Batch, station, from_location, email_id, PhoneNo)
+            if (date + ' ' + time) < cur_date_time:
+                continue
             AllEntries.append(temp_tuple)
         
         cursor.execute('''SELECT * FROM toCampus''')
@@ -424,6 +429,8 @@ def apply_filters():
             station= "IIIT Campus"
             from_location=item[3]
             temp_tuple = (date, time, uid, Name, Gender, Batch,station,from_location, email_id, PhoneNo)
+            if (date + ' ' + time) < cur_date_time:
+                continue
             AllEntries.append(temp_tuple)
 
         BookingEntries = []       
@@ -440,7 +447,7 @@ def apply_filters():
                 continue
             BookingEntries.append(entry)
                 
-        BookingEntries = sort_by_time(BookingEntries)
+        BookingEntries.sort()
         filtered_data = {'available_options': BookingEntries}
         
         return jsonify(filtered_data)
