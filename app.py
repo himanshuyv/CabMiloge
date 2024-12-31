@@ -6,6 +6,8 @@ from cryptography.fernet import Fernet
 import os
 from functools import cmp_to_key
 from datetime import datetime
+import pytz
+
 
 key = Fernet.generate_key()
 
@@ -49,6 +51,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS toCampus (BookingID INTEGER PRIMARY
 
 # Database Setup End
 
+
+local_timezone = pytz.timezone('Asia/Kolkata')
 
 def compare_datetime(entry1, entry2):
     if entry1[2] < entry2[2]:
@@ -209,7 +213,7 @@ def upcomingTravels():
     fernet = Fernet(key)
     uid = fernet.decrypt(token).decode()
     if(session):
-        cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        cur_date_time = datetime.now(local_timezone).strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute( '''
                         SELECT * FROM fromCampus WHERE Uid = ?
                         ''', (uid,))
@@ -273,7 +277,7 @@ def view_booking_redirect():
     destination_list = []
     starting_list = []
     Batch_list = []
-    cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    cur_date_time = datetime.now(local_timezone).strftime('%Y-%m-%d %H:%M:%S')
     try:
         cursor = conn.cursor()
         BookingEntries = []
@@ -379,7 +383,7 @@ def apply_filters():
     try:
         cursor = conn.cursor()
         filters = request.json
-        cur_date_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        cur_date_time = datetime.now(local_timezone).strftime('%Y-%m-%d %H:%M:%S')
         requested_batch = filters.get('selectedBatch').split(",")
         requested_time = filters.get('selectedTime').split(",")
         requested_desti = filters.get('selectedDestination').split(",")
